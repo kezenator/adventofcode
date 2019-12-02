@@ -57,11 +57,15 @@ fn main()
     assert_eq!(module_fuel_required("1969\n"), 654);
     assert_eq!(module_fuel_required("100756\n"), 33583);
 
-    println!("Answer #1={}", module_fuel_required(INPUT));
+    let answer_1 = module_fuel_required(INPUT);
+    println!("Answer #1={}", answer_1);
+    assert_eq!(answer_1, 3479429);
 
     assert_eq!(total_fuel_required("14\n"), 2);
     assert_eq!(total_fuel_required("1969\n"), 966);
     assert_eq!(total_fuel_required("100756\n"), 50346);
 
-    println!("Answer #2={}", total_fuel_required(INPUT));
+    let answer_2 = total_fuel_required(INPUT);
+    println!("Answer #2={}", answer_2);
+    assert_eq!(answer_2, 5216273);
 }
