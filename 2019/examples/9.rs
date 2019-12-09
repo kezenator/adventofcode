@@ -1,4 +1,4 @@
-const INPUT: &str = include_str!("input_7.txt");
+const INPUT: &str = include_str!("input_9.txt");
 
 mod mod_ch
 {
@@ -113,6 +113,7 @@ mod int_code
     {
         memory: Vec<i64>,
         ip: usize,
+        relative_base: i64,
         inputs: Receiver<i64>,
         outputs: Sender<i64>,
     }
@@ -133,6 +134,7 @@ mod int_code
             {
                 memory,
                 ip: 0,
+                relative_base: 0,
                 inputs,
                 outputs,
             }
@@ -224,6 +226,15 @@ mod int_code
                     self.write(3, if a == b { 1 } else { 0 });
                     return StepResult::StepIp(4);
                 },
+                9 =>
+                {
+                    // Adjust Relative Base
+                    let a = self.read(1);
+
+                    self.relative_base += a;
+
+                    return StepResult::StepIp(2);
+                },
                 99 =>
                 {
                     return StepResult::Halt;
@@ -262,9 +273,22 @@ mod int_code
 
             match mode
             {
-                0 => self.memory[contents as usize],
+                0 => self.read_index(contents as usize),
                 1 => contents,
+                2 => self.read_index((self.relative_base + contents) as usize),
                 _ => { assert!(false); unreachable!(); },
+            }
+        }
+
+        fn read_index(&mut self, index: usize) -> i64
+        {
+            if index > self.memory.len()
+            {
+                0
+            }
+            else
+            {
+                self.memory[index]
             }
         }
 
@@ -278,193 +302,95 @@ mod int_code
             let opcode = self.memory[self.ip];
             let mode = (opcode / factor) % 10;
 
-            assert_eq!(mode, 0);
-
             let contents = self.memory[self.ip + offset];
-            self.memory[contents as usize] = value;
-        }
-    }
-}
 
-mod perms
-{
-    use std::iter::Iterator;
-
-    pub struct PermIterator<T>
-        where T: Clone
-    {
-        items: Vec<T>,
-        state: Vec<usize>,
-    }
-
-    impl<T> PermIterator<T>
-        where T: Clone
-    {
-        pub fn new(items: Vec<T>) -> Self
-        {
-            let len = items.len();
-            PermIterator{ items, state: vec![0; len]}
-        }
-
-        fn increment(&mut self) -> bool
-        {
-            let mut index = self.state.len() - 1;
-            loop
+            match mode
             {
-                self.state[index] += 1;
-                if self.state[index] >= self.state.len()
-                {
-                    if index == 0
-                    {
-                        return false;
-                    }
-                    self.state[index] = 0;
-                    index -= 1;
-                }
-                else
-                {
-                    return true;
-                }
+                0 => self.write_index(contents as usize, value),
+                1 => { assert!(false); unreachable!(); },
+                2 => self.write_index((self.relative_base + contents) as usize, value),
+                _ => { assert!(false); unreachable!(); },
             }
         }
 
-        fn indexes_unique(&mut self) -> bool
+        fn write_index(&mut self, index: usize, value: i64)
         {
-            for i in self.state.iter()
+            if index >= self.memory.len()
             {
-                if self.state.iter().filter(|&a| *a == *i).count() != 1
-                {
-                    return false;
-                }
+                self.memory.resize(index + 1, 0);
             }
-            true
+            self.memory[index] = value;
         }
-    }
-
-    impl<T> Iterator for PermIterator<T>
-        where T: Clone
-    {
-        type Item = Vec<T>;
-
-        fn next(&mut self) -> Option<Vec<T>>
-        {
-            loop
-            {
-                if !self.increment()
-                {
-                    return None;
-                }
-
-                if self.indexes_unique()
-                {
-                    return Some(self.state.iter()
-                        .map(|a| self.items[*a].clone())
-                        .collect());
-                }
-            }
-        }
-    }
-
-    pub fn permutations<T>(items: Vec<T>) -> PermIterator<T>
-        where T: Clone
-    {
-        PermIterator::new(items)
     }
 }
 
 use mod_ch::{channel, Sender, Receiver};
-use perms::permutations;
 use int_code::IntCode;
 use futures::executor::LocalPool;
 use futures::task::LocalSpawnExt;
 
-async fn run_single_amp(input: &'static str, tx: Sender<i64>, rx: Receiver<i64>) -> ()
+async fn run_prog_future(prog: &'static str, inputs: Receiver<i64>, outputs: Sender<i64>)
 {
-    let mut comp = IntCode::new(input, rx, tx);
-    comp.run().await
+    let mut comp = IntCode::new(prog, inputs, outputs);
+    comp.run().await;
 }
 
-fn run_amps(input: &'static str, settings: &Vec<i64>) -> i64
+fn run_prog(prog: &'static str, inputs: Vec<i64>) -> Vec<i64>
 {
-    let num_amps = settings.len();
-
-    let channels = (0..num_amps).map(|i| channel::<i64>(i.to_string())).collect::<Vec<_>>();
-
-    // Input the settings
-
-    for i in 0..num_amps
-    {
-        channels[i].0.send(settings[i]);
-    }
-
-    // Input the first zero into the first amp
-
-    channels[0].0.send(0);
-
-    // Run each amp
-
     let mut pool = LocalPool::new();
     let spawner = pool.spawner();
 
-    for i in 0..num_amps
+    let (itx, irx) = channel("inputs".to_owned());
+    let (otx, orx) = channel("outputs".to_owned());
+
+    for input in inputs
     {
-        let tx = channels[(i + 1) % num_amps].0.clone();
-        let rx = channels[i].1.clone();
-        spawner.spawn_local(run_single_amp(input, tx, rx)).unwrap();
+        itx.send(input);
     }
+
+    spawner.spawn_local(run_prog_future(prog, irx, otx)).unwrap();
 
     pool.run();
 
-    // The final output is the remainder that has
-    // been sent back to the first amp
-    
-    let output_vec = channels[0].1.remainder();
-    assert_eq!(output_vec.len(), 1);
-    return output_vec[0];
+    orx.remainder()
 }
 
 fn part_1() -> i64
 {
-    let mut values = Vec::new();
-
-    for settings in permutations(vec![0, 1, 2, 3, 4])
-    {
-        values.push(run_amps(INPUT, &settings));
-    }
-
-    values.sort();
-    *values.last().unwrap()
+    let outputs = run_prog(INPUT, vec!(1));
+    assert_eq!(outputs.len(), 1);
+    outputs[0]
 }
 
 fn part_2() -> i64
 {
-    let mut values = Vec::new();
-
-    for settings in permutations(vec![5, 6, 7, 8, 9])
-    {
-        values.push(run_amps(INPUT, &settings));
-    }
-
-    values.sort();
-    *values.last().unwrap()
+    let outputs = run_prog(INPUT, vec!(2));
+    assert_eq!(outputs.len(), 1);
+    outputs[0]
 }
 
 fn main()
 {
-    assert_eq!(permutations(vec![0, 1, 2]).collect::<Vec<Vec<usize>>>(), vec![vec![0, 1, 2], vec![0, 2, 1], vec![1, 0, 2], vec![1, 2, 0], vec![2, 0, 1], vec![2, 1, 0]]);
+    assert_eq!(run_prog(
+        "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99\n",
+        vec!()),
+        vec!(109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99));
 
-    assert_eq!(run_amps("3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0\n", &vec!(4,3,2,1,0)), 43210);
-    assert_eq!(run_amps("3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0\n", &vec!(0,1,2,3,4)), 54321);
-    assert_eq!(run_amps("3,31,3,32,1002,32,10,32,1001,31,-2,31,1007,31,0,33,1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0\n", &vec!(1,0,4,3,2)), 65210);
+    assert_eq!(run_prog(
+        "1102,34915192,34915192,7,4,7,99,0\n",
+        vec!()),
+        vec!(1219070632396864));
+
+    assert_eq!(run_prog(
+        "104,1125899906842624,99\n",
+        vec!()),
+        vec!(1125899906842624));
 
     let answer_1 = part_1();
     println!("Answer #1={}", answer_1);
-    assert_eq!(answer_1, 21760);
-
-    assert_eq!(run_amps("3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,27,4,27,1001,28,-1,28,1005,28,6,99,0,0,5\n", &vec!(9,8,7,6,5)), 139629729);
-    assert_eq!(run_amps("3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10\n", &vec!(9,7,8,5,6)), 18216);
+    assert_eq!(answer_1, 3518157894);
 
     let answer_2 = part_2();
     println!("Answer #2={}", answer_2);
-    assert_eq!(answer_2, 69816958);
+    assert_eq!(answer_2, 80379);
 }
