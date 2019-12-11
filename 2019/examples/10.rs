@@ -205,7 +205,7 @@ fn part_2(input: &str, nth: i64) -> i64
     let monitoring = best_monitoring(input).1;
     //let monitoring = Point::new(8, 3);
 
-    println!("Mon: {:?}", monitoring);
+    //println!("Mon: {:?}", monitoring);
 
     points.remove(&monitoring);
 
@@ -221,7 +221,7 @@ fn part_2(input: &str, nth: i64) -> i64
                 count += 1;
                 points.remove(&next);
                 angle = monitoring.angle_to(&next);
-                println!("{} => {:?}", count, next);
+                //println!("{} => {:?}", count, next);
                 if count == nth
                 {
                     return next.x * 100 + next.y;
@@ -231,7 +231,7 @@ fn part_2(input: &str, nth: i64) -> i64
             {
                 // None left on this rotation - try again
                 // on the next rotation
-                println!("Resetting angle");
+                //println!("Resetting angle");
                 angle = -1;
             }
         }
@@ -272,7 +272,7 @@ fn main()
     const EXAMPLE_1_2: &str = "......#.#.\n#..#.#....\n..#######.\n.#.#.###..\n.#..#.....\n..#....#.#\n#..#....#.\n.##.#..###\n##...#..#.\n.#....####\n";
     const EXAMPLE_1_3: &str = ".#..##.###...#######\n##.############..##.\n.#.######.########.#\n.###.#######.####.#.\n#####.##.#.##.###.##\n..#####..#.#########\n####################\n#.####....###.#.#.##\n##.#################\n#####.##.###..####..\n..######..##.#######\n####.##.####...##..#\n.#####..#.######.###\n##...#.##########...\n#.##########.#######\n.####.#.###.###.#.##\n....##.##.###..#####\n.#.#.###########.###\n#.#.#.#####.####.###\n###.##.####.##.#..##\n";
 
-    const EXAMPLE_2_1: &str = ".#....#####...#..\n##...##.#####..##\n##...#...#.#####.\n..#.....X...###..\n..#.#.....#....##\n";
+    //const EXAMPLE_2_1: &str = ".#....#####...#..\n##...##.#####..##\n##...#...#.#####.\n..#.....X...###..\n..#.#.....#....##\n";
 
     assert_eq!(part_1(EXAMPLE_1_1), 8);
     assert_eq!(part_1(EXAMPLE_1_2), 33);
@@ -287,5 +287,5 @@ fn main()
 
     let answer_2 = part_2(INPUT, 200);
     println!("Answer #2={}", answer_2);
-    //assert_eq!(answer_2, 80379);
+    assert_eq!(answer_2, 502);
 }

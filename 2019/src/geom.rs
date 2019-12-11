@@ -19,6 +19,35 @@ impl Point
         (self.x - other.x).abs()
             + (self.y - other.y).abs()
     }
+
+    pub fn rotate_90_clockwise(&self) -> Point
+    {
+        // 2D Rotation matix:
+        // x = x cos w - y sin w
+        // y = x sin w + y code w
+        // For 90 clockwise (with the opposite y axis direction), sin w = 1, cos w = 0
+        // so
+        // x = -y
+        // y = x
+        Point::new(-self.y, self.x)
+    }
+
+    pub fn rotate_90_anticlockwise(&self) -> Point
+    {
+        // 2D Rotation matix:
+        // x = x cos w - y sin w
+        // y = x sin w + y code w
+        // For 90 clockwise (with the opposite y axis direction), sin w = -1, cos w = 0
+        // so
+        // x = y
+        // y = -x
+        Point::new(self.y, -self.x)
+    }
+
+    pub fn rotate_180(&self) -> Point
+    {
+        Point::new(-self.x, -self.y)
+    }
 }
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Debug, Clone, Copy)]
@@ -42,60 +71,33 @@ impl Line
 
     pub fn points_along(&self) -> Vec<Point>
     {
+        let mut points = Vec::new();
+
         let sign_x = (self.to.x - self.from.x).signum();
         let sign_y = (self.to.y - self.from.y).signum();
 
         let dist_x = (self.to.x - self.from.x).abs();
         let dist_y = (self.to.y - self.from.y).abs();
 
-        let mut points = HashSet::new();
+        let gcd = crate::gcd(dist_x, dist_y);
 
-        // Go through the mid points
-        // dx/dist_x = dy/dist_y
-        // so e.g. for x
-        //
-        // dy = (dx * dist_y) / dist_x
-        // and only if this is an integer
-
-        for dx in 1..dist_x
+        if gcd > 0
         {
-            let num = dx * dist_y;
-            if num % dist_x == 0
-            {
-                let dy = num / dist_x;
+            let step_x = dist_x / gcd;
+            let step_y = dist_y / gcd;
 
-                points.insert(Point::new(
-                    self.from.x + dx * sign_x,
-                    self.from.y + dy * sign_y));
+            let mut index = 1;
+            while index < gcd
+            {
+                points.push(Point::new(
+                    self.from.x + index * step_x * sign_x,
+                    self.from.y + index * step_y * sign_y));
+
+                index += 1;
             }
         }
 
-        for dy in 1..dist_y
-        {
-            let num = dy * dist_x;
-            if num % dist_y == 0
-            {
-                let dx = num / dist_y;
-
-                points.insert(Point::new(
-                    self.from.x + dx * sign_x,
-                    self.from.y + dy * sign_y));
-            }
-        }
-
-        // Ensure we don't include either end - due to rouding errors
-
-        points.remove(&self.from);
-        points.remove(&self.to);
-
-        // Collect the points into a vector
-        // and sort in increasing distance from our source
-
-        let mut result: Vec<Point> = points.drain().collect();
-
-        result.sort_by(|a, b| a.manhatten_dist_to(&self.from).cmp(&b.manhatten_dist_to(&self.from)));
-
-        result
+        points
     }
 
     pub fn intersection(&self, other: &Line) -> Option<Point>
@@ -115,7 +117,8 @@ impl Line
 
     pub fn degrees_clockwise_from_up(&self) -> f64
     {
-        // Up is zero, then clockwise
+        // Up (0, -1) is zero, then clockwise
+        // NOTE - graphics co-ordinates
 
         let dx = (self.to.x - self.from.x) as f64;
         let dy = (self.to.y - self.from.y) as f64;
@@ -142,6 +145,11 @@ impl Line
 
         ang.to_degrees()
     }
+
+    pub fn manhatten_len(&self) -> i64
+    {
+        self.from.manhatten_dist_to(&self.to)
+    }
 }
 
 #[cfg(test)]
@@ -156,6 +164,24 @@ mod tests
         assert_eq!(Point::new(0, 0).manhatten_dist_to(&Point::new(3, 0)), 3);
         assert_eq!(Point::new(0, 0).manhatten_dist_to(&Point::new(0, 4)), 4);
         assert_eq!(Point::new(0, 0).manhatten_dist_to(&Point::new(3, 4)), 7);
+
+        let check_rotation_cycle = |points: Vec<Point>|
+        {
+            for i in 0..4
+            {
+                let next = (i + 1) % 4;
+                let prev = (i + 3) % 4;
+                let opposite = (i + 2) % 4;
+
+                assert_eq!(points[i].rotate_90_clockwise(), points[next]);
+                assert_eq!(points[i].rotate_90_anticlockwise(), points[prev]);
+                assert_eq!(points[i].rotate_180(), points[opposite]);
+            }
+        };
+
+        check_rotation_cycle(vec!(Point::new(0, -1), Point::new(1, 0), Point::new(0, 1), Point::new(-1, 0)));
+        check_rotation_cycle(vec!(Point::new(1, -1), Point::new(1, 1), Point::new(-1, 1), Point::new(-1, -1)));
+        check_rotation_cycle(vec!(Point::new(7, -3), Point::new(3, 7), Point::new(-7, 3), Point::new(-3, -7)));
     }
 
     #[test]
@@ -212,6 +238,11 @@ mod tests
         assert_eq!(Line::from_coords(0, 0, -2, 2).points_along(), vec![Point::new(-1, 1)]);
         assert_eq!(Line::from_coords(0, 0, -2, -2).points_along(), vec![Point::new(-1, -1)]);
         assert_eq!(Line::from_coords(0, 0, 4, -6).points_along(), vec![Point::new(2, -3)]);
+
+        assert_eq!(Line::from_coords(0, 0, 3, 0).points_along(), vec![Point::new(1, 0), Point::new(2, 0)]);
+        assert_eq!(Line::from_coords(0, 0, -3, 0).points_along(), vec![Point::new(-1, 0), Point::new(-2, 0)]);
+        assert_eq!(Line::from_coords(0, 0, 0, 3).points_along(), vec![Point::new(0, 1), Point::new(0, 2)]);
+        assert_eq!(Line::from_coords(0, 0, 0, -3).points_along(), vec![Point::new(0, -1), Point::new(0, -2)]);
 
         // X=30 is 2x3x5, Y=105 is 3x5x7, should be 3x5=15 points, X spaced by 2, Y spaced by 7, minus the two ends, for 13 points
         assert_eq!(Line::from_coords(0, 0, -30, 105).points_along(), (1..15).map(|i| Point::new(-2*i, 7*i)).collect::<Vec<_>>());
