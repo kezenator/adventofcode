@@ -11,7 +11,7 @@ enum StepResult
 
 pub struct IntCode
 {
-    memory: Vec<i64>,
+    pub memory: Vec<i64>,
     ip: usize,
     relative_base: i64,
     inputs: Receiver<i64>,
