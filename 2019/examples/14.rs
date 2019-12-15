@@ -163,7 +163,7 @@ fn main()
 
     let answer_1 = part_1(INPUT);
     println!("Answer #1={}", answer_1);
-    //assert_eq!(answer_1, 233);
+    assert_eq!(answer_1, 469536);
 
     assert_eq!(part_2(EXAMPLE_3), 82892753);
     assert_eq!(part_2(EXAMPLE_4), 5586022);
@@ -171,5 +171,5 @@ fn main()
 
     let answer_2 = part_2(INPUT);
     println!("Answer #2={}", answer_2);
-    //assert_eq!(answer_2, 0);
+    assert_eq!(answer_2, 3343477);
 }
