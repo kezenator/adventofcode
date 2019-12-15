@@ -1,4 +1,3 @@
-use aoc2019::*;
 use std::collections::HashSet;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]

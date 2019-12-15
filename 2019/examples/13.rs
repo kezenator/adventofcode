@@ -37,7 +37,7 @@ fn part_1(input: &'static str) -> i64
 pub async fn async_joystick(inputs: Sender<i64>, outputs: Receiver<i64>, scores: Sender<i64>)
 {
     let mut score = 0;
-    let mut ball = Point::new(0, 0);
+    //let mut ball = Point::new(0, 0);
     let mut paddle = Point::new(0, 0);
 
     let mut points = HashMap::new();
@@ -65,7 +65,7 @@ pub async fn async_joystick(inputs: Sender<i64>, outputs: Receiver<i64>, scores:
             println!("Score={}", score);
             paint(&points);
             do_paint = false;
-            std::thread::sleep_ms(100);
+            //std::thread::sleep_ms(100);
         }
         //do_paint = true;
 
@@ -104,7 +104,7 @@ pub async fn async_joystick(inputs: Sender<i64>, outputs: Receiver<i64>, scores:
             else if tile == '.'
             {
                 inputs.send((x - paddle.x).signum());
-                ball = Point::new(x, y);
+                //ball = Point::new(x, y);
             }
             else if tile == '-'
             {
