@@ -48,6 +48,11 @@ impl Point
     {
         Point::new(-self.x, -self.y)
     }
+
+    pub fn subtract(&self, other: &Point) -> Point
+    {
+        Point::new(self.x - other.x, self.y - other.y)
+    }
 }
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Debug, Clone, Copy)]
