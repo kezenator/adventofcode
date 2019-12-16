@@ -18,3 +18,4 @@ cargo run --example 12_refactored
 cargo run --example 13
 cargo run --example 14
 cargo run --example 15
+cargo run --example 16

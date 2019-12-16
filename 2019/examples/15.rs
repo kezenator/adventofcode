@@ -274,5 +274,5 @@ fn main()
 
     let answer_2 = part_2(INPUT);
     println!("Answer #2={}", answer_2);
-    //assert_eq!(answer_2, 11991);
+    assert_eq!(answer_2, 370);
 }
