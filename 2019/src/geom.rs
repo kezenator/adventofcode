@@ -58,6 +58,14 @@ impl Point
     {
         Point::new(self.x - other.x, self.y - other.y)
     }
+
+    pub fn cardinal_neighbours(&self) -> Vec<Point>
+    {
+        vec![Point::new(-1, 0), Point::new(1, 0), Point::new(0, -1), Point::new(0, 1)]
+            .drain(..)
+            .map(|p| self.add(&p))
+            .collect()
+    }
 }
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Hash, Debug, Clone, Copy)]

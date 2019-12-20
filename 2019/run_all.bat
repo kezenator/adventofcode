@@ -20,5 +20,6 @@ cargo run --example 14
 cargo run --example 15
 cargo run --example 16
 cargo run --example 17
-cargo run --example 18
+cargo run --example 18_refactored
 cargo run --example 19
+cargo run --example 20
