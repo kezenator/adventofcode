@@ -1,6 +1,7 @@
 use std::collections::BTreeMap;
 use std::str::FromStr;
 use std::fmt::Debug;
+use std::time::Instant;
 
 pub struct Answer<T, U>
 {
@@ -53,13 +54,21 @@ impl PuzzleSet
     {
         for entry in self.funcs.iter()
         {
+            let start = Instant::now();
+
             let answer = entry.1();
 
-            println!("{} => {}", entry.0, answer.calculated);
+            let duration = Instant::now().duration_since(start);
+
+            println!("[ {:10} ] [ {:3}.{:06} s] => [ {:10} ]",
+                entry.0,
+                duration.as_secs(),
+                duration.subsec_micros(),
+                answer.calculated);
 
             if answer.calculated != answer.expected
             {
-                println!("   Expected {}", answer.expected);
+                println!("   *** Expected {}", answer.expected);
             }
 
             assert!(answer.calculated == answer.expected);
