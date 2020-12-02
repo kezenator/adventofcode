@@ -7,8 +7,8 @@ const INPUT: &str = include_str!("input.txt");
 #[derive(Debug)]
 struct Policy
 {
-    min: usize,
-    max: usize,
+    a: usize,
+    b: usize,
     ch: char,
     password: String,
 }
@@ -19,18 +19,13 @@ impl FromStr for Policy
 
     fn from_str(s: &str) -> Result<Self, Self::Err>
     {
-        let mut a = s.split('-');
-        let (a, b) = (a.next().unwrap(), a.next().unwrap());
-        let min = a.parse::<usize>().unwrap();
+        let (a, b, ch, password) = scan(s)
+            .until("-").parse::<usize>()
+            .until(" ").parse::<usize>()
+            .until(": ").parse::<char>()
+            .remaining().parse::<String>();
 
-        let mut b = b.split(' ');
-        let (b, c, d) = (b.next().unwrap(), b.next().unwrap(), b.next().unwrap());
-        let max = b.parse::<usize>().unwrap();
-
-        let ch = c.chars().nth(0).unwrap();
-        let password = d.to_owned();
-
-        Ok(Policy{ min, max, ch, password})
+        Ok(Policy{ a, b, ch, password })
     }
 }
 
@@ -40,13 +35,13 @@ impl Policy
     {
         let count = self.password.chars().filter(|c| *c == self.ch).count();
 
-        (count >= self.min) && (count <= self.max)
+        (count >= self.a) && (count <= self.b)
     }
 
     fn valid_2(&self) -> bool
     {
-        let a = self.password.chars().nth(self.min - 1).unwrap() == self.ch;
-        let b = self.password.chars().nth(self.max - 1).unwrap() == self.ch;
+        let a = self.password.chars().nth(self.a - 1).unwrap() == self.ch;
+        let b = self.password.chars().nth(self.b - 1).unwrap() == self.ch;
 
         (a || b) && !(a && b)
     }

@@ -1,6 +1,4 @@
 use std::collections::BTreeMap;
-use std::str::FromStr;
-use std::fmt::Debug;
 use std::time::Instant;
 
 pub struct Answer<T, U>
@@ -74,23 +72,4 @@ impl PuzzleSet
             assert!(answer.calculated == answer.expected);
         }
     }
-}
-
-pub fn input_to_lines(input: &str) -> Vec<String>
-{
-    input
-        .split("\n")
-        .filter(|s| !s.is_empty())
-        .map(|s| s.to_owned())
-        .collect()
-}
-
-pub fn input_to_lines_parsed<T>(input: &str) -> Vec<T>
-    where T: FromStr,
-        T::Err: Debug
-{
-    input_to_lines(input)
-        .drain(..)
-        .map(|s| s.parse::<T>().unwrap())
-        .collect()
 }
