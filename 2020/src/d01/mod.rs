@@ -11,11 +11,11 @@ fn product_of_terms_that_sum_to_2020(input: &str, num_terms: usize) -> u64
         .combinations(num_terms)
         .filter(|s| s.iter().sum::<u64>() == 2020)
         .next().unwrap()
-        .iter()
+        .drain(..)
         .product()
 }
 
-pub fn register(puzzles: &mut PuzzleSet)
+pub fn puzzles(puzzles: &mut PuzzleSet)
 {
     puzzles.register("d01.e01", || Answer {
         calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 2),
