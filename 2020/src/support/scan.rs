@@ -113,6 +113,22 @@ impl<'a, T> ScanParse<'a, T>
             remaining: self.remaining,
         }
     }
+
+    #[allow(dead_code)]
+    pub fn parse_vec<V>(self, s: &str) -> ScanTokenize<'a, T::ResultType>
+        where T: TupleAppend<Vec<V>>,
+            V: 'static + Debug + FromStr,
+            V::Err: Debug
+    {
+        let parsed_val = self.to_parse.split(s).map(|s| s.parse::<V>().expect("Error parsing input: Could not parse value")).collect::<Vec<V>>();
+        let new_tuple = self.tuple.append(parsed_val);
+
+        ScanTokenize::<T::ResultType>
+        {
+            tuple: new_tuple,
+            remaining: self.remaining,
+        }
+    }
 }
 
 pub struct ScanParseFinal<'a, T>
@@ -133,6 +149,18 @@ impl<'a, T> ScanParseFinal<'a, T>
 
         new_tuple
     }
+
+
+    pub fn parse_vec<V>(self, s: &str) -> T::ResultType
+        where T: TupleAppend<Vec<V>>,
+            V: 'static + Debug + FromStr,
+            V::Err: Debug
+    {
+        let parsed_val = self.to_parse.split(s).map(|s| s.parse::<V>().expect("Error parsing input: Could not parse value")).collect::<Vec<V>>();
+        let new_tuple = self.tuple.append(parsed_val);
+
+        new_tuple
+    }
 }
 
 #[cfg(test)]
@@ -143,9 +171,10 @@ mod tests
     #[test]
     fn test_scan()
     {
-        let expected: (String, char, char, String, i64, String, i64) = ("asdf".to_owned(), 'x', '*', "abc".to_owned(), 123, "fgh".to_owned(), 456);
+        let expected: (String, char, char, String, i64, String, Vec<i64>, i64) =
+            ("asdf".to_owned(), 'x', '*', "abc".to_owned(), 123, "fgh".to_owned(), vec![1,2,-1], 456);
 
-        let scanned = scan("asdf x:---*  \n abcde123fgh 456")
+        let scanned = scan("asdf x:---*  \n abcde123fgh 1,2,-1 456")
             .until(" ").parse::<String>()
             .until(":").parse::<char>()
             .skip(3)
@@ -154,8 +183,9 @@ mod tests
             .take_skip(3, 2).parse::<String>()
             .take_digits().parse::<i64>()
             .until_whitespace().parse::<String>()
+            .until_whitespace().parse_vec::<i64>(",")
             .remaining().parse::<i64>();
-            
+
         assert_eq!(expected, scanned);
     }
 }

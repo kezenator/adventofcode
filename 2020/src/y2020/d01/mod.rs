@@ -17,22 +17,22 @@ fn product_of_terms_that_sum_to_2020(input: &str, num_terms: usize) -> u64
 
 pub fn puzzles(puzzles: &mut PuzzleSet)
 {
-    puzzles.register("d01.e01", || Answer {
+    puzzles.register("y2020.d01.e1", || Answer {
         calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 2),
         expected: 514579,
     });
 
-    puzzles.register("d01.e02", || Answer {
+    puzzles.register("y2020.d01.e2", || Answer {
         calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 3),
         expected: 241861950,
     });
 
-    puzzles.register("d01.p1", || Answer {
+    puzzles.register("y2020.d01.p1", || Answer {
         calculated: product_of_terms_that_sum_to_2020(INPUT, 2),
         expected: 357504,
     });
 
-    puzzles.register("d01.p2", || Answer {
+    puzzles.register("y2020.d01.p2", || Answer {
         calculated: product_of_terms_that_sum_to_2020(INPUT, 3),
         expected: 12747392,
     });

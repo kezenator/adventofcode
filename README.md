@@ -30,6 +30,9 @@ I should still go back and fix up the 2019 answers...
 For me, the puzzles are released at 3PM - so most weekdays I'll be
 doing these at work.
 
+I've also started re-doing some of the 2019 puzzles to try
+and have some ready solutions to expected issues....
+
 Notes about each day:
 
 1. Finding one combination from a list of integers.

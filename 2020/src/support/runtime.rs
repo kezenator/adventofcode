@@ -58,7 +58,7 @@ impl PuzzleSet
 
             let duration = Instant::now().duration_since(start);
 
-            println!("[ {:10} ] [ {:3}.{:06} s] => [ {:10} ]",
+            println!("[ {:10} ] [ {:3}.{:06} s] => [ {:20} ]",
                 entry.0,
                 duration.as_secs(),
                 duration.subsec_micros(),

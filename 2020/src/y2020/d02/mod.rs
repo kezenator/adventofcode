@@ -65,22 +65,22 @@ fn part_2(input: &str) -> usize
  
 pub fn puzzles(puzzles: &mut PuzzleSet)
 {
-    puzzles.register("d02.e01", || Answer {
+    puzzles.register("y2020.d02.e1", || Answer {
         calculated: part_1(EXAMPLE),
         expected: 2,
     });
 
-    puzzles.register("d02.e02", || Answer {
+    puzzles.register("y2020.d02.e2", || Answer {
         calculated: part_2(EXAMPLE),
         expected: 1,
     });
 
-    puzzles.register("d02.p1", || Answer {
+    puzzles.register("y2020.d02.p1", || Answer {
         calculated: part_1(INPUT),
         expected: 445,
     });
 
-    puzzles.register("d02.p2", || Answer {
+    puzzles.register("y2020.d02.p2", || Answer {
         calculated: part_2(INPUT),
         expected: 491,
     });
