@@ -3,28 +3,16 @@ use super::intcode::*;
 
 const INPUT: &str = include_str!("input.txt");
 
-fn programme(input: &str) -> Vec<i64>
-{
-    let (prog,) = scan(input_to_lines(input)
-            .iter()
-            .nth(0)
-            .unwrap())
-        .remaining()
-        .parse_vec::<i64>(",");
-
-    prog
-}
-
 fn mem_after_run(input: &str) -> String
 {
-    let mut comp = Intcode::new(programme(input));
+    let mut comp = Intcode::new_from_input(input);
     comp.run();
     comp.get_mem().iter().map(|i| i.to_string()).collect::<Vec<String>>().join(",")
 }
 
 fn part_1() -> i64
 {
-    let mut comp = Intcode::new(programme(INPUT));
+    let mut comp = Intcode::new_from_input(INPUT);
     comp.write_mem(1, 12);
     comp.write_mem(2, 2);
     comp.run();
@@ -34,13 +22,11 @@ fn part_1() -> i64
 
 fn part_2() -> i64
 {
-    let prog = programme(INPUT);
-
     for noun in 0..100
     {
         for verb in 0..100
         {
-            let mut comp = Intcode::new(prog.clone());
+            let mut comp = Intcode::new_from_input(INPUT);
             comp.write_mem(1, noun);
             comp.write_mem(2, verb);
             comp.run();

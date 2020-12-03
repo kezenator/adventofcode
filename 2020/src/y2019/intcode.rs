@@ -1,17 +1,34 @@
+use std::collections::VecDeque;
+use crate::support::{input_to_lines, scan};
+
 pub struct Intcode
 {
     mem: Vec<i64>,
     pc: usize,
+    input_buffer: VecDeque<i64>,
+    outputs: VecDeque<i64>,
 }
 
 impl Intcode
 {
+    pub fn new_from_input(input: &str) -> Self
+    {
+        let line = input_to_lines(input)[0].clone();
+
+        let (mem,) = scan(&line)
+            .remaining().parse_vec::<i64>(",");
+
+        Self::new(mem)
+    }
+
     pub fn new(mem: Vec<i64>) -> Self
     {
         Intcode
         {
             mem: mem,
-            pc: 0
+            pc: 0,
+            input_buffer: VecDeque::new(),
+            outputs: VecDeque::new(),
         }
     }
 
@@ -25,58 +42,159 @@ impl Intcode
         self.mem[index]
     }
 
-    fn read_index(&self, index: usize) -> usize
-    {
-        self.read_mem(index) as usize
-    }
-
     pub fn get_mem(&self) -> Vec<i64>
     {
         self.mem.clone()
+    }
+
+    pub fn input(&mut self, input: i64)
+    {
+        self.input_buffer.push_back(input);
+    }
+
+    pub fn all_output(&mut self) -> Vec<i64>
+    {
+        self.outputs.drain(..).collect()
     }
 
     pub fn run(&mut self)
     {
         loop
         {
-            let inst = self.read_mem(self.pc);
+            let mut inst = self.read_mem(self.pc);
 
-            if inst == 1
+            match self.instruction_opcode(&mut inst)
             {
-                let index_a = self.read_index(self.pc + 1);
-                let index_b = self.read_index(self.pc + 2);
-                let index_c = self.read_index(self.pc + 3);
+                1 =>
+                {
+                    let a = self.read_param(&mut inst, 1);
+                    let b = self.read_param(&mut inst, 2);
+                    let index_c = self.read_index(&mut inst, 3);
 
-                let a = self.read_mem(index_a);
-                let b = self.read_mem(index_b);
-                let c = a + b;
+                    self.write_mem(index_c, a + b);
 
-                self.write_mem(index_c, c);
+                    self.pc += 4;
+                },
+                2 =>
+                {
+                    let a = self.read_param(&mut inst, 1);
+                    let b = self.read_param(&mut inst, 2);
+                    let index_c = self.read_index(&mut inst, 3);
 
-                self.pc += 4;
-            }
-            else if inst == 2
-            {
-                let index_a = self.read_index(self.pc + 1);
-                let index_b = self.read_index(self.pc + 2);
-                let index_c = self.read_index(self.pc + 3);
+                    self.write_mem(index_c, a * b);
 
-                let a = self.read_mem(index_a);
-                let b = self.read_mem(index_b);
-                let c = a * b;
+                    self.pc += 4;
+                },
+                3 =>
+                {
+                    let val = self.input_buffer.pop_front().expect("No inputs remaining");
+                    let index = self.read_index(&mut inst, 1);
 
-                self.write_mem(index_c, c);
+                    self.write_mem(index, val);
 
-                self.pc += 4;
-            }
-            else if inst == 99
-            {
-                return;
-            }
-            else
-            {
-                unreachable!();
+                    self.pc += 2;
+                },
+                4 =>
+                {
+                    let val = self.read_param(&mut inst, 1);
+
+                    self.outputs.push_back(val);
+
+                    self.pc += 2;
+                },
+                5 =>
+                {
+                    let val = self.read_param(&mut inst, 1);
+                    let new_pc = self.read_param(&mut inst, 2);
+
+                    if val != 0
+                    {
+                        self.pc = new_pc as usize;
+                    }
+                    else
+                    {
+                        self.pc += 3;
+                    }
+                },
+                6 =>
+                {
+                    let val = self.read_param(&mut inst, 1);
+                    let new_pc = self.read_param(&mut inst, 2);
+
+                    if val == 0
+                    {
+                        self.pc = new_pc as usize;
+                    }
+                    else
+                    {
+                        self.pc += 3;
+                    }
+                },
+                7 =>
+                {
+                    let a = self.read_param(&mut inst, 1);
+                    let b = self.read_param(&mut inst, 2);
+                    let index_c = self.read_index(&mut inst, 3);
+
+                    let result = if a < b { 1 } else { 0 };
+
+                    self.write_mem(index_c, result);
+
+                    self.pc += 4;
+                },
+                8 =>
+                {
+                    let a = self.read_param(&mut inst, 1);
+                    let b = self.read_param(&mut inst, 2);
+                    let index_c = self.read_index(&mut inst, 3);
+
+                    let result = if a == b { 1 } else { 0 };
+
+                    self.write_mem(index_c, result);
+
+                    self.pc += 4;
+                },
+                99 =>
+                {
+                    return;
+                },
+                _ =>
+                {
+                    unreachable!();
+                },
             }
         }
+    }
+
+    fn instruction_opcode(&self, inst: &mut i64) -> i64
+    {
+        let result = *inst % 100;
+        *inst /= 100;
+        result
+    }
+
+    fn read_param(&self, inst: &mut i64, offset: usize) -> i64
+    {
+        let mode = *inst % 10;
+        *inst /= 10;
+
+        let val = self.read_mem(self.pc + offset);
+
+        match mode
+        {
+            0 => self.read_mem(val as usize),
+            1 => val,
+            _ => unreachable!(),
+        }
+    }
+
+    fn read_index(&self, inst: &mut i64, offset: usize) -> usize
+    {
+        let mode = *inst % 10;
+        *inst /= 10;
+
+        assert_eq!(mode, 0);
+
+        self.read_mem(self.pc + offset) as usize
     }
 }
