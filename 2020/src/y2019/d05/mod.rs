@@ -6,9 +6,8 @@ const INPUT: &str = include_str!("input.txt");
 
 fn run(prog: &str, input: i64) -> i64
 {
-    let mut comp = Intcode::new_from_input(prog);
-    comp.input(input);
-    comp.run();
+    let mut comp = Intcode::new_from_input(prog);    comp.input(input);
+    comp.run_until_halt();
 
     let output = comp.all_output();
 

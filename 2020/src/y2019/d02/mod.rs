@@ -6,7 +6,7 @@ const INPUT: &str = include_str!("input.txt");
 fn mem_after_run(input: &str) -> String
 {
     let mut comp = Intcode::new_from_input(input);
-    comp.run();
+    comp.run_until_halt();
     comp.get_mem().iter().map(|i| i.to_string()).collect::<Vec<String>>().join(",")
 }
 
@@ -15,7 +15,7 @@ fn part_1() -> i64
     let mut comp = Intcode::new_from_input(INPUT);
     comp.write_mem(1, 12);
     comp.write_mem(2, 2);
-    comp.run();
+    comp.run_until_halt();
 
     comp.read_mem(0)
 }
@@ -29,7 +29,7 @@ fn part_2() -> i64
             let mut comp = Intcode::new_from_input(INPUT);
             comp.write_mem(1, noun);
             comp.write_mem(2, verb);
-            comp.run();
+            comp.run_until_halt();
 
             let output = comp.read_mem(0);
 

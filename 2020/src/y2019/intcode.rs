@@ -1,12 +1,20 @@
 use std::collections::VecDeque;
 use crate::support::{input_to_lines, scan};
 
+#[derive(Debug, PartialEq, Eq)]
+pub enum IntcodePause
+{
+    MoreInputRequired,
+    Halted,
+}
+
 pub struct Intcode
 {
     mem: Vec<i64>,
     pc: usize,
     input_buffer: VecDeque<i64>,
     outputs: VecDeque<i64>,
+    halted: bool,
 }
 
 impl Intcode
@@ -29,6 +37,7 @@ impl Intcode
             pc: 0,
             input_buffer: VecDeque::new(),
             outputs: VecDeque::new(),
+            halted: false,
         }
     }
 
@@ -52,13 +61,35 @@ impl Intcode
         self.input_buffer.push_back(input);
     }
 
+    pub fn pop_output(&mut self) -> i64
+    {
+        self.outputs.pop_front().expect("No more Intcode outputs")
+    }
+
     pub fn all_output(&mut self) -> Vec<i64>
     {
         self.outputs.drain(..).collect()
     }
 
-    pub fn run(&mut self)
+    pub fn is_halted(&self) -> bool
     {
+        self.halted
+    }
+
+    pub fn run_until_halt(&mut self)
+    {
+        let pause = self.run_until_halt_or_input_required();
+
+        assert_eq!(pause, IntcodePause::Halted);
+    }
+
+    pub fn run_until_halt_or_input_required(&mut self) -> IntcodePause
+    {
+        if self.halted
+        {
+            return IntcodePause::Halted;
+        }
+
         loop
         {
             let mut inst = self.read_mem(self.pc);
@@ -87,6 +118,11 @@ impl Intcode
                 },
                 3 =>
                 {
+                    if self.input_buffer.is_empty()
+                    {
+                        return IntcodePause::MoreInputRequired;
+                    }
+
                     let val = self.input_buffer.pop_front().expect("No inputs remaining");
                     let index = self.read_index(&mut inst, 1);
 
@@ -156,7 +192,8 @@ impl Intcode
                 },
                 99 =>
                 {
-                    return;
+                    self.halted = true;
+                    return IntcodePause::Halted;
                 },
                 _ =>
                 {

@@ -44,8 +44,13 @@ Notes about each day:
    * Refactored to use Itertools after submitting. It's a little slower,
      but fine in release mode.
 2. Parsing input then checking "passwords" based on parsed data.
-   * 13m/17m - Bad.
+   * 13m/17m - 2552th Bad.
    * I knew parsing in Rust is not straight forward, and
      didn't have this ready. Not really impressed with myself.
      Will be spending tonight getting some parsing stuff ready for future
      puzzles.
+3. Simple looping through text input and couting.
+   * 8m/10m - 944th
+   * Again I was distracted at work and wasn't prepared and only
+     started about 2 minutes past. Had a chance to do well here
+     if I was available a bit earlier.
