@@ -54,3 +54,15 @@ Notes about each day:
    * Again I was distracted at work and wasn't prepared and only
      started about 2 minutes past. Had a chance to do well here
      if I was available a bit earlier.
+4. Input validation.
+   * Too long. Unrated.
+   * Again distrated at work. Didn't start until 3:08.
+   * Then discovered it was a boring validation puzzle and gave up.
+   * Input validation - super important - but also super boring as
+     it's **real world** shit that professional people have to deal with.
+     I've spend too many years dealing with that to find it fun.
+   * I'm glad it's a puzzle - it shows of what you need to deal with - but
+     that doesn't mean it's fun for a 39 year old with experience.
+   * Has proved that my scan(...) utility is really well suited for
+     these puzzles - separating delimitation (e.g. take_digits())
+     from parsing/validation (e.g. ensure it's six digits long)

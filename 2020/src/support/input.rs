@@ -3,12 +3,21 @@ use std::fmt::Debug;
 
 pub fn input_to_lines(input: &str) -> Vec<String>
 {
-    input
+    let mut result = input
         .replace("\r\n", "\n")
         .split("\n")
-        .filter(|s| !s.is_empty())
         .map(|s| s.to_owned())
-        .collect()
+        .collect::<Vec<String>>();
+
+    if let Some(last) = result.last()
+    {
+        if last.is_empty()
+        {
+            result.pop();
+        }
+    }
+
+    result
 }
 
 pub fn input_to_lines_parsed<T>(input: &str) -> Vec<T>

@@ -59,7 +59,11 @@ impl<'a, T> ScanTokenize<'a, T>
     #[allow(dead_code)]
     pub fn take_digits(self) -> ScanParse<'a, T>
     {
-        let pos = self.remaining.find(|c: char| !c.is_ascii_digit()).expect("Error parsing input: no non-digits found");
+        let pos = match self.remaining.find(|c: char| !c.is_ascii_digit())
+        {
+            Some(p) => p,
+            None => self.remaining.len()
+        };
 
         self.take_skip(pos, 0)
     }
@@ -185,6 +189,16 @@ mod tests
             .until_whitespace().parse::<String>()
             .until_whitespace().parse_vec::<i64>(",")
             .remaining().parse::<i64>();
+
+        assert_eq!(expected, scanned);
+    }
+
+    #[test]
+    fn test_scan_digits()
+    {
+        let expected: (i64, String) = (176, String::new());
+
+        let scanned = scan("176").take_digits().parse::<i64>().remaining().parse::<String>();
 
         assert_eq!(expected, scanned);
     }
