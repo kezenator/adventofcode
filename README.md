@@ -66,3 +66,15 @@ Notes about each day:
    * Has proved that my scan(...) utility is really well suited for
      these puzzles - separating delimitation (e.g. take_digits())
      from parsing/validation (e.g. ensure it's six digits long)
+5. Binary number encoding, as letters, finding gaps
+   * 7m/11m - 728th
+   * Fun little puzzle.
+   * I mapped FL/BR to 0/1, then folded (2*acc + new)
+   * Should have mapped to 0/1 chars then just called from_string
+     with a binary encoding - but I may have taken a while to find
+     that in the rust std library.
+  * Rust Vec::windows() made part 2 easy.
+  * Forgot to sort which cost me a little while.
+  * Also away and did it on my laptop which slows me down a little.
+  * Happy with today's outcome.
+
