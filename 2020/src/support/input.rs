@@ -20,6 +20,32 @@ pub fn input_to_lines(input: &str) -> Vec<String>
     result
 }
 
+pub fn input_to_groups(input: &str) -> Vec<Vec<String>>
+{
+    let mut result = Vec::new();
+    let mut cur = Vec::new();
+
+    for line in input_to_lines(input)
+    {
+        if line.is_empty()
+        {
+            result.push(cur);
+            cur = Vec::new();
+        }
+        else
+        {
+            cur.push(line);
+        }
+    }
+
+    if !cur.is_empty()
+    {
+        result.push(cur);
+    }
+
+    result
+}
+
 pub fn input_to_lines_parsed<T>(input: &str) -> Vec<T>
     where T: FromStr,
         T::Err: Debug
@@ -42,6 +68,13 @@ mod tests
         assert_eq!(input_to_lines("a\nb\n"), vec!["a".to_owned(), "b".to_owned()]);
         assert_eq!(input_to_lines("a\r\nb"), vec!["a".to_owned(), "b".to_owned()]);
         assert_eq!(input_to_lines("a\r\nb\r\n"), vec!["a".to_owned(), "b".to_owned()]);
+    }
+
+    #[test]
+    fn test_input_to_groups()
+    {
+        assert_eq!(input_to_groups("a\nb"), vec![vec!["a".to_owned(), "b".to_owned()]]);
+        assert_eq!(input_to_groups("a\nb\n\nc\nd\n\n"), vec![vec!["a".to_owned(), "b".to_owned()], vec!["c".to_owned(), "d".to_owned()]]);
     }
 
     #[test]

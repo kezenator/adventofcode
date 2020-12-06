@@ -77,4 +77,6 @@ Notes about each day:
   * Forgot to sort which cost me a little while.
   * Also away and did it on my laptop which slows me down a little.
   * Happy with today's outcome.
-
+6. Counting matching characters, in blank-line-separated groups
+   * Was out and about on the weekend. Didn't start until a couple
+     hours past the release. No score.

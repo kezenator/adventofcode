@@ -7,16 +7,12 @@ const INPUT: &str = include_str!("input.txt");
 fn parse_passports(input: &str) -> Vec<HashMap<String, String>>
 {
     let mut result = Vec::new();
-    let mut cur = HashMap::new();
 
-    for line in input_to_lines(input)
+    for group in input_to_groups(input)
     {
-        if line.is_empty()
-        {
-            result.push(cur);
-            cur = HashMap::new();
-        }
-        else
+        let mut pport = HashMap::new();
+
+        for line in group
         {
             let (fields,) = scan(&line).remaining().parse_vec::<String>(" ");
 
@@ -26,12 +22,12 @@ fn parse_passports(input: &str) -> Vec<HashMap<String, String>>
                     .until(":").parse::<String>()
                     .remaining().parse::<String>();
 
-                cur.insert(name, val);
+                    pport.insert(name, val);
             }
         }
-    }
 
-    result.push(cur);
+        result.push(pport);
+    }
 
     result
 }
