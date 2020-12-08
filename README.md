@@ -80,3 +80,8 @@ Notes about each day:
 6. Counting matching characters, in blank-line-separated groups
    * Was out and about on the weekend. Didn't start until a couple
      hours past the release. No score.
+7. AT WORK - Not commited yet     
+8. Hand-held Console - possible start of a re-useable computer...
+   * Was at the salon getting my hair done today, then dinner.
+   * Didn't start until late. Was tired.
+   * Took me about 25 mins - not good.....
