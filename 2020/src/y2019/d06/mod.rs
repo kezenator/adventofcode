@@ -62,25 +62,11 @@ fn part_2(input: &str) -> usize
     p1.len() + p2.len()
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2019.d06.e1", || Answer {
-        calculated: part_1(EXAMPLE_1),
-        expected: 42,
-    });
-
-    puzzles.register("y2019.d06.e2", || Answer {
-        calculated: part_2(EXAMPLE_2),
-        expected: 4,
-    });
-
-    puzzles.register("y2019.d06.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 150150,
-    });
-
-    puzzles.register("y2019.d06.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 352,
-    });
+    puzzle_day(6)
+        .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 42, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 150150, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 4, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 352, })
 }

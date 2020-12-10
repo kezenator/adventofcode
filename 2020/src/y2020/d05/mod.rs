@@ -41,30 +41,12 @@ pub fn part_2(input: &str) -> u64
     unreachable!();
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2020.d05.e1", || Answer {
-        calculated: seat_id("BFFFBBFRRR"),
-        expected: 567,
-    });
-
-    puzzles.register("y2020.d05.e2", || Answer {
-        calculated: seat_id("FFFBBBFRRR"),
-        expected: 119,
-    });
-
-    puzzles.register("y2020.d05.e3", || Answer {
-        calculated: seat_id("BBFFBBFRLL"),
-        expected: 820,
-    });
-
-    puzzles.register("y2020.d05.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 978,
-    });
-
-    puzzles.register("y2020.d05.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 727,
-    });
+    puzzle_day(5)
+        .example(|| Answer { calculated: seat_id("BFFFBBFRRR"), expected: 567, })
+        .example(|| Answer { calculated: seat_id("FFFBBBFRRR"), expected: 119, })
+        .example(|| Answer { calculated: seat_id("BBFFBBFRLL"), expected: 820, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 978, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 727, })
 }

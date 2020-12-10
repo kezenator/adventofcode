@@ -7,10 +7,10 @@ use support::*;
 
 fn main()
 {
-    let mut puzzles = PuzzleSet::new();
-
-    y2019::puzzles(&mut puzzles);
-    y2020::puzzles(&mut puzzles);
+    let puzzles = PuzzleSet::new()
+        .with(y2019::puzzles())
+        .with(y2020::puzzles())
+    ;
 
     puzzles.run();
 }

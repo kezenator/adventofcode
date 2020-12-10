@@ -10,13 +10,14 @@ mod d05;
 mod d06;
 mod d07;
 
-pub fn puzzles<'a>(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleYear
 {
-    d01::puzzles(puzzles);
-    d02::puzzles(puzzles);
-    d03::puzzles(puzzles);
-    d04::puzzles(puzzles);
-    d05::puzzles(puzzles);
-    d06::puzzles(puzzles);
-    d07::puzzles(puzzles);
+    puzzle_year(2019)
+        .with(d01::puzzles())
+        .with(d02::puzzles())
+        .with(d03::puzzles())
+        .with(d04::puzzles())
+        .with(d05::puzzles())
+        .with(d06::puzzles())
+        .with(d07::puzzles())
 }

@@ -6,38 +6,19 @@ const INPUT: &str = include_str!("input.txt");
 
 fn run(prog: &str, input: i64) -> i64
 {
-    let mut comp = Intcode::new_from_input(prog);    comp.input(input);
+    let mut comp = Intcode::new_from_input(prog);
+    comp.input(input);
     comp.run_until_halt();
 
-    let output = comp.all_output();
-
-    output[output.len() - 1]
+    *comp.all_output().last().unwrap()
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2019.d05.e1", || Answer {
-        calculated: run(EXAMPLE, 7),
-        expected: 999,
-    });
-
-    puzzles.register("y2019.d05.e2", || Answer {
-        calculated: run(EXAMPLE, 8),
-        expected: 1000,
-    });
-
-    puzzles.register("y2019.d05.e3", || Answer {
-        calculated: run(EXAMPLE, 9),
-        expected: 1001,
-    });
-
-    puzzles.register("y2019.d05.p1", || Answer {
-        calculated: run(INPUT, 1),
-        expected: 13787043,
-    });
-
-    puzzles.register("y2019.d05.p2", || Answer {
-        calculated: run(INPUT, 5),
-        expected: 3892695,
-    });
+    puzzle_day(5)
+        .example(|| Answer { calculated: run(EXAMPLE, 7), expected: 999, })
+        .example(|| Answer { calculated: run(EXAMPLE, 8), expected: 1000, })
+        .example(|| Answer { calculated: run(EXAMPLE, 9), expected: 1001, })
+        .part_1(|| Answer { calculated: run(INPUT, 1), expected: 13787043, })
+        .part_2(|| Answer { calculated: run(INPUT, 5), expected: 3892695, })
 }

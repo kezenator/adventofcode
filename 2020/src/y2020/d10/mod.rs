@@ -125,35 +125,13 @@ fn part_2(input: &str) -> u64
     top_down
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2020.d10.e1", || Answer {
-        calculated: part_1(EXAMPLE_1),
-        expected: 35,
-    });
-
-    puzzles.register("y2020.d10.e2", || Answer {
-        calculated: part_1(EXAMPLE_2),
-        expected: 220,
-    });
-
-    puzzles.register("y2020.d10.e3", || Answer {
-        calculated: part_2(EXAMPLE_1),
-        expected: 8,
-    });
-
-    puzzles.register("y2020.d10.e4", || Answer {
-        calculated: part_2(EXAMPLE_2),
-        expected: 19208,
-    });
-
-    puzzles.register("y2020.d10.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 2482,
-    });
-
-    puzzles.register("y2020.d10.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 96717311574016u64,
-    });
+    puzzle_day(10)
+        .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 35, })
+        .example(|| Answer { calculated: part_1(EXAMPLE_2), expected: 220, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2482, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_1), expected: 8, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 19208, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 96717311574016u64, })
 }

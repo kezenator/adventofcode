@@ -40,25 +40,11 @@ pub fn part_2(input: &str) -> u64
         * count_trees_down_slope(&input_to_lines(input), 1, 2)
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2020.d03.e1", || Answer {
-        calculated: part_1(EXAMPLE),
-        expected: 7,
-    });
-
-    puzzles.register("y2020.d03.e2", || Answer {
-        calculated: part_2(EXAMPLE),
-        expected: 336,
-    });
-
-    puzzles.register("y2020.d03.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 265,
-    });
-
-    puzzles.register("y2020.d03.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 3154761400u64,
-    });
+    puzzle_day(3)
+        .example(|| Answer { calculated: part_1(EXAMPLE), expected: 7, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 265, })
+        .example(|| Answer { calculated: part_2(EXAMPLE), expected: 336, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 3154761400u64, })
 }

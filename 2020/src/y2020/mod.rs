@@ -6,17 +6,22 @@ mod d03;
 mod d04;
 mod d05;
 mod d06;
+mod d07;
 mod d08;
+mod d09;
 mod d10;
 
-pub fn puzzles<'a>(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleYear
 {
-    d01::puzzles(puzzles);
-    d02::puzzles(puzzles);
-    d03::puzzles(puzzles);
-    d04::puzzles(puzzles);
-    d05::puzzles(puzzles);
-    d06::puzzles(puzzles);
-    d08::puzzles(puzzles);
-    d10::puzzles(puzzles);
+    puzzle_year(2020)
+        .with(d01::puzzles())
+        .with(d02::puzzles())
+        .with(d03::puzzles())
+        .with(d04::puzzles())
+        .with(d05::puzzles())
+        .with(d06::puzzles())
+        .with(d07::puzzles())
+        .with(d08::puzzles())
+        .with(d09::puzzles())
+        .with(d10::puzzles())
 }

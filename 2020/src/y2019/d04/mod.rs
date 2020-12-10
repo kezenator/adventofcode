@@ -56,45 +56,15 @@ fn part_2() -> usize
         .count()
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2019.d04.e1", || Answer {
-        calculated: is_valid_1(111111),
-        expected: true,
-    });
-
-    puzzles.register("y2019.d04.e2", || Answer {
-        calculated: is_valid_1(223450),
-        expected: false,
-    });
-
-    puzzles.register("y2019.d04.e3", || Answer {
-        calculated: is_valid_1(123789),
-        expected: false,
-    });
-
-    puzzles.register("y2019.d04.e4", || Answer {
-        calculated: is_valid_2(112233),
-        expected: true,
-    });
-
-    puzzles.register("y2019.d04.e5", || Answer {
-        calculated: is_valid_2(123444),
-        expected: false,
-    });
-
-    puzzles.register("y2019.d04.e6", || Answer {
-        calculated: is_valid_2(111122),
-        expected: true,
-    });
-
-    puzzles.register("y2019.d04.p1", || Answer {
-        calculated: part_1(),
-        expected: 1169,
-    });
-
-    puzzles.register("y2019.d04.p2", || Answer {
-        calculated: part_2(),
-        expected: 757,
-    });
+    puzzle_day(4)
+        .example(|| Answer { calculated: is_valid_1(111111), expected: true, })
+        .example(|| Answer { calculated: is_valid_1(223450), expected: false, })
+        .example(|| Answer { calculated: is_valid_1(123789), expected: false, })
+        .part_1(|| Answer { calculated: part_1(), expected: 1169, })
+        .example(|| Answer { calculated: is_valid_2(112233), expected: true, })
+        .example(|| Answer { calculated: is_valid_2(123444), expected: false, })
+        .example(|| Answer { calculated: is_valid_2(111122), expected: true, })
+        .part_2(|| Answer { calculated: part_2(), expected: 757, })
 }

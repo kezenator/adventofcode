@@ -15,25 +15,23 @@ fn product_of_terms_that_sum_to_2020(input: &str, num_terms: usize) -> u64
         .product()
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2020.d01.e1", || Answer {
-        calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 2),
-        expected: 514579,
-    });
-
-    puzzles.register("y2020.d01.e2", || Answer {
-        calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 3),
-        expected: 241861950,
-    });
-
-    puzzles.register("y2020.d01.p1", || Answer {
-        calculated: product_of_terms_that_sum_to_2020(INPUT, 2),
-        expected: 357504,
-    });
-
-    puzzles.register("y2020.d01.p2", || Answer {
-        calculated: product_of_terms_that_sum_to_2020(INPUT, 3),
-        expected: 12747392,
-    });
+    puzzle_day(1)
+        .example(|| Answer {
+            calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 2),
+            expected: 514579,
+        })
+        .part_1(|| Answer {
+            calculated: product_of_terms_that_sum_to_2020(INPUT, 2),
+            expected: 357504,
+        })
+        .example(|| Answer {
+            calculated: product_of_terms_that_sum_to_2020(EXAMPLE, 3),
+            expected: 241861950,
+        })
+        .part_2(|| Answer {
+            calculated: product_of_terms_that_sum_to_2020(INPUT, 3),
+            expected: 12747392,
+        })
 }

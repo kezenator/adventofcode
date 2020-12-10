@@ -113,45 +113,15 @@ fn part_2(input: &str) -> i64
     steps[0]
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2019.d03.e1", || Answer {
-        calculated: part_1(EXAMPLE_1),
-        expected: 6,
-    });
-
-    puzzles.register("y2019.d03.e2", || Answer {
-        calculated: part_1(EXAMPLE_2),
-        expected: 159,
-    });
-
-    puzzles.register("y2019.d03.e3", || Answer {
-        calculated: part_1(EXAMPLE_3),
-        expected: 135,
-    });
-
-    puzzles.register("y2019.d03.e4", || Answer {
-        calculated: part_2(EXAMPLE_1),
-        expected: 30,
-    });
-
-    puzzles.register("y2019.d03.e5", || Answer {
-        calculated: part_2(EXAMPLE_2),
-        expected: 610,
-    });
-
-    puzzles.register("y2019.d03.e6", || Answer {
-        calculated: part_2(EXAMPLE_3),
-        expected: 410,
-    });
-
-    puzzles.register("y2019.d03.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 651,
-    });
-
-    puzzles.register("y2019.d03.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 7534,
-    });
+    puzzle_day(3)
+        .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 6, })
+        .example(|| Answer { calculated: part_1(EXAMPLE_2), expected: 159, })
+        .example(|| Answer { calculated: part_1(EXAMPLE_3), expected: 135, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 651, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_1), expected: 30, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 610, })
+        .example(|| Answer { calculated: part_2(EXAMPLE_3), expected: 410, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 7534, })
 }

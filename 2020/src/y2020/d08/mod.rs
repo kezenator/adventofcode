@@ -114,25 +114,11 @@ fn part_2(input: &str) -> i64
     unreachable!();
 }
 
-pub fn puzzles(puzzles: &mut PuzzleSet)
+pub fn puzzles() -> PuzzleDay
 {
-    puzzles.register("y2020.d08.e1", || Answer {
-        calculated: part_1(EXAMPLE),
-        expected: 5,
-    });
-
-    puzzles.register("y2020.d08.e2", || Answer {
-        calculated: part_2(EXAMPLE),
-        expected: 8,
-    });
-
-    puzzles.register("y2020.d08.p1", || Answer {
-        calculated: part_1(INPUT),
-        expected: 2003,
-    });
-
-    puzzles.register("y2020.d08.p2", || Answer {
-        calculated: part_2(INPUT),
-        expected: 1984,
-    });
+    puzzle_day(8)
+        .example(|| Answer { calculated: part_1(EXAMPLE), expected: 5, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2003, })
+        .example(|| Answer { calculated: part_2(EXAMPLE), expected: 8, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 1984, })
 }
