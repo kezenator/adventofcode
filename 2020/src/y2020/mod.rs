@@ -7,6 +7,7 @@ mod d04;
 mod d05;
 mod d06;
 mod d08;
+mod d10;
 
 pub fn puzzles<'a>(puzzles: &mut PuzzleSet)
 {
@@ -17,4 +18,5 @@ pub fn puzzles<'a>(puzzles: &mut PuzzleSet)
     d05::puzzles(puzzles);
     d06::puzzles(puzzles);
     d08::puzzles(puzzles);
+    d10::puzzles(puzzles);
 }

@@ -85,3 +85,10 @@ Notes about each day:
    * Was at the salon getting my hair done today, then dinner.
    * Didn't start until late. Was tired.
    * Took me about 25 mins - not good.....
+10. Recursive function, needing memorization
+    * Again - busy at work. Waited until I got home.
+    * Took about 20 mins, but I did search for then hand-roll a memoriztion
+      solution.
+    * Then I re-factored into a re-useable memorization function for
+      future days.
+    * Then I also implemented a bottom-up solution.
