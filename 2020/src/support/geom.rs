@@ -16,6 +16,42 @@ impl Point
     {
         self.x.abs() + self.y.abs()
     }
+
+    pub fn directions_8() -> Vec<Point>
+    {
+        vec![
+            Point::new(1, 0),
+            Point::new(0, 1),
+            Point::new(1, 1),
+
+            Point::new(-1, 0),
+            Point::new(0, -1),
+            Point::new(-1, -1),
+
+            Point::new(1, -1),
+            Point::new(-1, 1),
+        ]
+    }
+
+    #[allow(dead_code)]
+    pub fn neighbours_8(&self) -> Vec<Point>
+    {
+        let x = self.x;
+        let y = self.y;
+
+        vec![
+            Point::new(x + 1, y),
+            Point::new(x, y + 1),
+            Point::new(x + 1, y + 1),
+
+            Point::new(x - 1, y),
+            Point::new(x, y - 1),
+            Point::new(x - 1, y - 1),
+
+            Point::new(x + 1, y - 1),
+            Point::new(x - 1, y + 1),
+        ]
+    }
 }
 
 impl std::ops::Add for Point

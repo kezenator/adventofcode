@@ -98,4 +98,4 @@ Notes about each day:
       this would be coming - and I find this part of Rust very
       difficult because the isize/usize stuff really seems to get
       in the way.
-    * Will re-write with some better helpers.
+    * Re-write with a better library after the fact.
