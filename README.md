@@ -92,3 +92,10 @@ Notes about each day:
     * Then I re-factored into a re-useable memorization function for
       future days.
     * Then I also implemented a bottom-up solution.
+11. Game of life clone - iterate until stable config
+    * 31 minutes - too slow!
+    * I didn't have my character grid stuff prepared. I knew
+      this would be coming - and I find this part of Rust very
+      difficult because the isize/usize stuff really seems to get
+      in the way.
+    * Will re-write with some better helpers.

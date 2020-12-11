@@ -62,7 +62,7 @@ impl PuzzleDayBuilder
         self
     }
 
-    pub fn part_1<T, U, F>(mut self, puzzle: F) -> PuzzleDayBuilderPart1Done
+    pub fn part_1<T, U, F>(self, puzzle: F) -> PuzzleDayBuilderPart1Done
         where T: 'static + ToString,
             U: 'static + ToString,
             F: 'static + Fn() -> Answer<T, U>
@@ -96,7 +96,7 @@ impl PuzzleDayBuilderPart1Done
         self
     }
 
-    pub fn part_2<T, U, F>(mut self, puzzle: F) -> PuzzleDay
+    pub fn part_2<T, U, F>(self, puzzle: F) -> PuzzleDay
         where T: 'static + ToString,
             U: 'static + ToString,
             F: 'static + Fn() -> Answer<T, U>
