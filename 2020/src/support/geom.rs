@@ -52,6 +52,21 @@ impl Point
             Point::new(x - 1, y + 1),
         ]
     }
+
+    pub fn rotate_left(&self) -> Point
+    {
+        Point::new(-self.y, self.x)
+    }
+
+    pub fn rotate_right(&self) -> Point
+    {
+        Point::new(self.y, -self.x)
+    }
+
+    pub fn invert(&self) -> Point
+    {
+        Point::new(-self.x, -self.y)
+    }
 }
 
 impl std::ops::Add for Point
