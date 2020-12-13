@@ -127,7 +127,8 @@ fn part_2(input: &str) -> i64
         }
     }
     
-    pos.manhatten_size()}
+    pos.manhatten_size()
+}
 
 pub fn puzzles() -> PuzzleDay
 {

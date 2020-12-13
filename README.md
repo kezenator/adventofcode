@@ -102,3 +102,11 @@ Notes about each day:
 12. 2D movement and rotation.
     * 27 minutes - too long - didn't have 2D rotations ready.
       Should have known this was coming!
+13. Number theory
+    * Was away for the weekend, so was late doing this one.
+    * Knocked the first part over in 3 mins.
+    * The second part was dreadful. Just tired from the weekend.
+    * It took close to an hour - with some reading the news, chatting
+      etc. in between times.
+    * Eventually realized to only consider the first two busses, then
+      add in the third bus....
