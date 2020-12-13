@@ -99,3 +99,6 @@ Notes about each day:
       difficult because the isize/usize stuff really seems to get
       in the way.
     * Re-write with a better library after the fact.
+12. 2D movement and rotation.
+    * 27 minutes - too long - didn't have 2D rotations ready.
+      Should have known this was coming!

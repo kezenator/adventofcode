@@ -33,26 +33,6 @@ impl Point
         ]
     }
 
-    #[allow(dead_code)]
-    pub fn neighbours_8(&self) -> Vec<Point>
-    {
-        let x = self.x;
-        let y = self.y;
-
-        vec![
-            Point::new(x + 1, y),
-            Point::new(x, y + 1),
-            Point::new(x + 1, y + 1),
-
-            Point::new(x - 1, y),
-            Point::new(x, y - 1),
-            Point::new(x - 1, y - 1),
-
-            Point::new(x + 1, y - 1),
-            Point::new(x - 1, y + 1),
-        ]
-    }
-
     pub fn rotate_left(&self) -> Point
     {
         Point::new(-self.y, self.x)
@@ -79,6 +59,15 @@ impl std::ops::Add for Point
     }
 }
 
+impl std::ops::AddAssign for Point
+{
+    fn add_assign(&mut self, rhs: Point)
+    {
+        self.x += rhs.x;
+        self.y += rhs.y;
+    }
+}
+
 impl std::ops::Sub for Point
 {
     type Output = Point;
@@ -86,6 +75,35 @@ impl std::ops::Sub for Point
     fn sub(self, rhs: Point) -> Point
     {
         Point::new(self.x - rhs.x, self.y - rhs.y)
+    }
+}
+
+impl std::ops::SubAssign for Point
+{
+    fn sub_assign(&mut self, rhs: Point)
+    {
+        self.x -= rhs.x;
+        self.y -= rhs.y;
+    }
+}
+
+impl std::ops::Mul<i64> for Point
+{
+    type Output = Point;
+    
+    fn mul(self, rhs: i64) -> Point
+    {
+        Point::new(self.x * rhs, self.y * rhs)
+    }
+}
+
+impl std::ops::Mul<Point> for i64
+{
+    type Output = Point;
+    
+    fn mul(self, rhs: Point) -> Point
+    {
+        Point::new(self * rhs.x, self * rhs.y)
     }
 }
 
