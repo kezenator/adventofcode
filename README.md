@@ -110,3 +110,8 @@ Notes about each day:
       etc. in between times.
     * Eventually realized to only consider the first two busses, then
       add in the third bus....
+14. Bit masking
+    * 43 mins.
+    * Meh - just a boring puzzle.
+    * I had had the day off after a big social weekend, and to be honest
+      the puzzle was just not interesting. I lost focus and mucked around.
