@@ -62,7 +62,7 @@ impl ItemCombiner
                     }
                 }
 
-                // Try moding to the pad
+                // Try moving to the pad
 
                 turns.push_back(NextTurn::Move(direction_to_pad));
             }
@@ -415,7 +415,7 @@ impl Droid
                             && *item != "escape pod"
                             && *item != "infinite loop"
                         {
-                            return NextTurn::Take(visited.items.iter().next().unwrap().clone());
+                            return NextTurn::Take(item.clone());
                         }
                     }
                 }
@@ -423,8 +423,8 @@ impl Droid
         }
 
         // OK - no items in the current room - try and
-        // move to the next unvisited location - so we collect
-        // all known items
+        // move to the next unvisited location - so we
+        // will eventually collect all possible items
 
         if !self.unvisited_locations.is_empty()
         {
@@ -474,7 +474,7 @@ impl Droid
             }
         }
 
-        // If we've reached the pressure senstive pad and been given
+        // If we've reached the pressure senstive floor and been given
         // a password, then we need to return it
 
         if let Some(cur_loc) = self.cur_location.clone()
