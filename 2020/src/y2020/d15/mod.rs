@@ -18,42 +18,41 @@ pub fn after_turns(input: &str, total_turns: usize) -> usize
         return starting[total_turns - 1];
     }
 
-    let mut number_to_turn = HashMap::new();
+    let mut number_to_turn = starting.iter()
+        .enumerate()
+        .map(|(index, num)| (*num, index + 1))
+        .collect::<HashMap<usize, usize>>();
 
-    for t in 0..starting.len()
-    {
-        let turn = t + 1;
-        let num = starting[t];
-
-        number_to_turn.insert(num, turn);
-    }
-
-    let mut turn = starting.len() + 1;
-    let mut last_spoken = starting[starting.len() - 1];
+    let mut turn = starting.len();
+    let mut just_spoken = starting[starting.len() - 1];
 
     loop
     {
-        let answer = match number_to_turn.get(&last_spoken)
-        {
-            Some(&last_turn_spoken) =>
-            {
-                turn - 1 - last_turn_spoken
-            },
-            None =>
-            {
-                0
-            },
-        };
+        let mut answer = 0;
 
-        number_to_turn.insert(last_spoken, turn - 1);
+        if let Some(last_turn_spoken) = number_to_turn.get_mut(&just_spoken)
+        {
+            // Has been spoken before - calculate the answer as the difference
+            // in turns, and directly update the HashMap (saving an extra lookup)
+
+            answer = turn - *last_turn_spoken;
+            *last_turn_spoken = turn;
+        }
+        else
+        {
+            // Never spoken before - leave answer as zero
+            // and manually insert into the HashMap
+
+            number_to_turn.insert(just_spoken, turn);
+        }
+
+        turn += 1;
+        just_spoken = answer;
 
         if turn == total_turns
         {
             return answer;
         }
-
-        last_spoken = answer;
-        turn += 1;
     }
 }
 

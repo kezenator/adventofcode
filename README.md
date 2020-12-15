@@ -115,3 +115,12 @@ Notes about each day:
     * Meh - just a boring puzzle.
     * I had had the day off after a big social weekend, and to be honest
       the puzzle was just not interesting. I lost focus and mucked around.
+15. Iterative sequence with memory
+    * 15min/17min
+    * I wrote part 1 using the dictionary rather than linear search through
+      the history. Made part 2 easy.
+    * Made some off-by-one errors - which is why it took so long.
+    * Part 2 just worked - in about 2.5 seconds.
+    * Improved to remove one HashMap lookup for previously spoken numbers -
+      which improved performance 25% to about 2 seconds (on the i7-6770HQ
+      I was using).
