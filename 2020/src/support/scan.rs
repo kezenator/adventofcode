@@ -37,6 +37,13 @@ impl<'a, T> ScanTokenize<'a, T>
         self.skip(pos)
     }
 
+    pub fn skip_str(self, s: &str) -> ScanTokenize<'a, T>
+    {
+        assert!(self.remaining.starts_with(s));
+
+        self.skip(s.len())
+    }
+
     pub fn take_skip(self, take: usize, skip: usize) -> ScanParse<'a, T>
     {
         let to_parse = self.remaining.split_at(take).0;

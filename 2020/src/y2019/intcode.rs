@@ -12,6 +12,7 @@ pub struct Intcode
 {
     mem: Vec<i64>,
     pc: usize,
+    rel_base: i64,
     input_buffer: VecDeque<i64>,
     outputs: VecDeque<i64>,
     halted: bool,
@@ -35,6 +36,7 @@ impl Intcode
         {
             mem: mem,
             pc: 0,
+            rel_base: 0,
             input_buffer: VecDeque::new(),
             outputs: VecDeque::new(),
             halted: false,
@@ -43,12 +45,24 @@ impl Intcode
 
     pub fn write_mem(&mut self, index: usize, value: i64)
     {
+        while self.mem.len() <= index
+        {
+            self.mem.push(0);
+        }
+
         self.mem[index] = value;
     }
 
     pub fn read_mem(&self, index: usize) -> i64
     {
-        self.mem[index]
+        if index >= self.mem.len()
+        {
+            0
+        }
+        else
+        {
+            self.mem[index]
+        }
     }
 
     pub fn get_mem(&self) -> Vec<i64>
@@ -59,6 +73,16 @@ impl Intcode
     pub fn input(&mut self, input: i64)
     {
         self.input_buffer.push_back(input);
+    }
+
+    pub fn is_input_buffer_empty(&self) -> bool
+    {
+        self.input_buffer.is_empty()
+    }
+
+    pub fn output_len(&self) -> usize
+    {
+        self.outputs.len()
     }
 
     pub fn pop_output(&mut self) -> i64
@@ -190,6 +214,12 @@ impl Intcode
 
                     self.pc += 4;
                 },
+                9 =>
+                {
+                    self.rel_base += self.read_param(&mut inst, 1);
+
+                    self.pc += 2;
+                },
                 99 =>
                 {
                     self.halted = true;
@@ -221,6 +251,7 @@ impl Intcode
         {
             0 => self.read_mem(val as usize),
             1 => val,
+            2 => self.read_mem((val + self.rel_base) as usize),
             _ => unreachable!(),
         }
     }
@@ -230,8 +261,12 @@ impl Intcode
         let mode = *inst % 10;
         *inst /= 10;
 
-        assert_eq!(mode, 0);
-
-        self.read_mem(self.pc + offset) as usize
+        match mode
+        {
+            0 => self.read_mem(self.pc + offset) as usize,
+            1 => unreachable!(),
+            2 => (self.rel_base + self.read_mem(self.pc + offset)) as usize,
+            _ => unreachable!(),
+        }
     }
 }

@@ -1,4 +1,4 @@
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 pub struct Point
 {
     pub x: i64,
@@ -15,6 +15,16 @@ impl Point
     pub fn manhatten_size(&self) -> i64
     {
         self.x.abs() + self.y.abs()
+    }
+
+    pub fn directions_4() -> Vec<Point>
+    {
+        vec![
+            Point::new(1, 0),
+            Point::new(0, 1),
+            Point::new(-1, 0),
+            Point::new(0, -1),
+        ]
     }
 
     pub fn directions_8() -> Vec<Point>
