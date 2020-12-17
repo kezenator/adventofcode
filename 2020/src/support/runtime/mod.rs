@@ -36,11 +36,15 @@ impl PuzzleSet
         self
     }
 
-    pub fn run(&self)
+    pub fn run(&self, year_filter: Option<usize>, day_filter: Option<usize>)
     {
         for (&year, puzzle_year) in self.years.iter()
         {
-            puzzle_year.run(PuzzleYearRunner::new(year));
+            if year_filter.is_none()
+                || year_filter == Some(year)
+            {
+                puzzle_year.run(PuzzleYearRunner::new(year, day_filter));
+            }
         }
     }
 }
@@ -48,16 +52,23 @@ impl PuzzleSet
 pub struct PuzzleYearRunner
 {
     year: usize,
+    day_filter: Option<usize>,
 }
 
 impl PuzzleYearRunner
 {
-    fn new(year: usize) -> Self
+    fn new(year: usize, day_filter: Option<usize>) -> Self
     {
         PuzzleYearRunner
         {
             year,
+            day_filter,
         }
+    }
+
+    pub fn include_day(&self, day: usize) -> bool
+    {
+        self.day_filter.is_none() || self.day_filter == Some(day)
     }
 
     pub fn for_day(&self, day: usize) -> PuzzleDayRunner

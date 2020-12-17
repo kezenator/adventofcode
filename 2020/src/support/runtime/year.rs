@@ -39,7 +39,10 @@ impl PuzzleYear
     {
         for (&day, day_puzzles) in self.days.iter()
         {
-            day_puzzles.run(runner.for_day(day));
+            if runner.include_day(day)
+            {
+                day_puzzles.run(runner.for_day(day));
+            }
         }
     }
 }
