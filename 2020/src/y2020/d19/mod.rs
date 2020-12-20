@@ -117,7 +117,9 @@ impl Input
         {
             Rule::Match(ch) => format!("{}", ch),
             Rule::Seq(seq) => format!("{}", seq.iter().map(|r| self.rule_to_regex(*r)).join("")),
-            Rule::SeqOrSeq(a, b) => format!("({}|{})", a.iter().map(|r| self.rule_to_regex(*r)).join(""), b.iter().map(|r| self.rule_to_regex(*r)).join("")),
+            Rule::SeqOrSeq(a, b) => format!("({}|{})",
+                a.iter().map(|r| self.rule_to_regex(*r)).join(""),
+                b.iter().map(|r| self.rule_to_regex(*r)).join("")),
         }
     }
 
