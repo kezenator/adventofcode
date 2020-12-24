@@ -94,7 +94,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(20)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 20899048083289u64, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 0, })
+        .part_1(|| Answer { calculated: part_1(INPUT), expected: 15006909892229u64, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 0, })
         .part_2(|| Answer { calculated: part_2(INPUT), expected: 0, })
 }
