@@ -85,7 +85,7 @@ fn part_1(input: &str) -> u64
     corners.into_iter().product()
 }
 
-fn part_2(input: &str) -> u64
+fn part_2(_input: &str) -> u64
 {
     0
 }
