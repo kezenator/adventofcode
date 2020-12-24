@@ -6,61 +6,88 @@ const INPUT: &str = "974618352";
 
 fn simulate(input: &str, num_cups: usize, num_moves: usize) -> Vec<usize>
 {
-    let mut cups = input.chars().map(|c| (c as usize) - ('0' as usize)).collect::<Vec<usize>>();
-    let mut new_cups = Vec::<usize>::new();
+    // First - create the list of cups in the initial order.
+    // This has no real purpose, except for creating the initial next
+    // linked list in the correct initial order.
+    //
+    // Start with the digits from the input, then
+    // append additional numbers until we reach the required number
+    // of cups.
+
+    let mut cups = input.chars().map(|c| c.to_digit(10).unwrap() as usize).collect::<Vec<usize>>();
 
     cups.reserve(num_cups);
-    new_cups.reserve(num_cups);
 
     for i in 10..(num_cups + 1)
     {
         cups.push(i);
     }
 
-    for mv in 0..num_moves
+    // Now, use this list to create the next linked list.
+    // If cup is a cup number, next[cup] is the cup next in the ring.
+
+    let mut next = Vec::<usize>::new();
+
+    next.resize(num_cups + 1, 0);
+
+    for i in 0..num_cups
     {
-        if mv % 10000 == 0
-        {
-            //println!();
-            println!("{}", mv);
-            //println!("{:?}", cups);
-        }
+        let cur_cup = cups[i];
+        let next_cup = cups[(i + 1) % num_cups];
 
-        let cur = cups[0];
-        let a = cups[1];
-        let b = cups[2];
-        let c = cups[3];
-
-        let mut dest = ((cur + num_cups - 2) % num_cups) + 1;
-        while dest == a || dest == b || dest == c
-        {
-            dest = ((dest + num_cups - 2) % num_cups) + 1
-        }
-        
-        let dest_index = cups.iter().position(|i| *i == dest).unwrap();
-
-        new_cups.resize(0, 0);
-        new_cups.reserve(num_cups);
-
-        new_cups.extend(&cups[4..(dest_index + 1)]);
-        new_cups.push(a);
-        new_cups.push(b);
-        new_cups.push(c);
-        new_cups.extend(&cups[(dest_index + 1)..]);
-        new_cups.push(cur);
-
-        std::mem::swap(&mut cups, &mut new_cups);
+        next[cur_cup] = next_cup;
     }
 
-    // Finally - end up with cup 1 at the start
+    let mut cur_cup = cups[0];
 
-    let one_index = cups.iter().position(|i| *i == 1).unwrap();
+    // Now - apply the moves.
+    // For each move:
+    // 1) Collect 5 cups using the next list:
+    //    cur, a, b, c, next_cur
+    // 2) Subtract 1 until we find the dest cup -
+    //    that can't be a, b or c.
+    // 3) The next list gives us dest_next
+    // 3) Shuffle - moving a/b/c from between cur/next_cur to dest/dest_next:
+    //    cur => next_cur
+    //    dest => a
+    //    c => dest_next
+
+    for mv in 0..num_moves
+    {
+        let a = next[cur_cup];
+        let b = next[a];
+        let c = next[b];
+        let next_cur = next[c];
+
+        let mut dest = ((cur_cup + num_cups - 2) % num_cups) + 1;
+
+        while dest == a || dest == b || dest == c
+        {
+            dest = ((dest + num_cups - 2) % num_cups) + 1            
+        }
+
+        let dest_next = next[dest];
+
+        next[cur_cup] = next_cur;
+        next[dest] = a;
+        next[c] = dest_next;
+
+        cur_cup = next_cur;
+    }
+
+    // Finally, return the ring of cups
+    // starting from cup 1
 
     let mut result = Vec::<usize>::new();
     result.reserve(num_cups);
 
-    result.extend(&cups[one_index..]);
-    result.extend(&cups[..one_index]);
+    let mut cur_cup = 1;
+
+    for _ in 0..num_cups
+    {
+        result.push(cur_cup);
+        cur_cup = next[cur_cup];
+    }
 
     result
 }
@@ -89,6 +116,6 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: simulate(EXAMPLE, 9, 10).iter().join(""), expected: "192658374", })
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: "67384529", })
         .part_1(|| Answer { calculated: part_1(INPUT), expected: "75893264", })
-        .example(|| Answer { calculated: part_2(EXAMPLE), expected: 0, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 38162588308, })
+        .example(|| Answer { calculated: part_2(EXAMPLE), expected: 149245887792u64, })
+        .part_2(|| Answer { calculated: part_2(INPUT), expected: 38162588308u64, })
 }
