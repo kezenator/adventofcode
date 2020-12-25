@@ -98,6 +98,38 @@ impl CharGrid
     {
         self.chars.clone()
     }
+
+    pub fn rotate_cw_90(&self) -> CharGrid
+    {
+        let mut result = CharGrid::new_from_fill(self.height as usize, self.width as usize, self.default);
+
+        for y in 0..self.height
+        {
+            for x in 0..self.width
+            {
+                let ch = self.get_char(&Point::new(x, y));
+                result.put_char(&Point::new(self.height - 1 - y, x), ch);
+            }
+        }
+        
+        result
+    }
+
+    pub fn flip_horizontally(&self) -> CharGrid
+    {
+        let mut result = CharGrid::new_from_fill(self.width as usize, self.height as usize, self.default);
+
+        for y in 0..self.height
+        {
+            for x in 0..self.width
+            {
+                let ch = self.get_char(&Point::new(x, y));
+                result.put_char(&Point::new(self.width - 1 - x, y), ch);
+            }
+        }
+        
+        result
+    }
 }
 
 impl ToString for CharGrid
