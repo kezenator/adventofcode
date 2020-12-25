@@ -677,14 +677,9 @@ fn part_1() -> String
     droid.run_part_1()
 }
 
-fn part_2() -> usize
-{
-    0
-}
-
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(25)
         .part_1(|| Answer { calculated: part_1(), expected: "805306888", })
-        .part_2(|| Answer { calculated: part_2(), expected: 0, })
+        .final_gift()
 }

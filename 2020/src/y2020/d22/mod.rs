@@ -1,6 +1,4 @@
 use std::collections::{HashSet, VecDeque};
-use std::str::FromStr;
-use itertools::Itertools;
 use crate::support::*;
 
 const EXAMPLE: &str = "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10";

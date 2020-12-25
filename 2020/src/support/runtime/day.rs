@@ -17,7 +17,7 @@ pub struct PuzzleDay
     part1_examples: Vec<Puzzle>,
     part1: Puzzle,
     part2_examples: Vec<Puzzle>,
-    part2: Puzzle,
+    part2: Option<Puzzle>,
 }
 
 impl PuzzleDay
@@ -40,8 +40,11 @@ impl PuzzleDay
         {
             runner.run("Example", example);
         }
-
-        runner.run("Part 2", &self.part2);
+        
+        if let Some(part2) = &self.part2
+        {
+            runner.run("Part 2", &part2);
+        }
     }
 }
 
@@ -107,7 +110,22 @@ impl PuzzleDayBuilderPart1Done
             part1_examples: self.part1_examples,
             part1: self.part1,
             part2_examples: self.part2_examples,
-            part2: Box::new(move || puzzle().into())
+            part2: Some(Box::new(move || puzzle().into())),
+        }
+    }
+
+    pub fn final_gift(self) -> PuzzleDay
+    {
+        assert_eq!(self.day, 25);
+        assert!(self.part2_examples.is_empty());
+
+        PuzzleDay
+        {
+            day: self.day,
+            part1_examples: self.part1_examples,
+            part1: self.part1,
+            part2_examples: self.part2_examples,
+            part2: None,
         }
     }
 }

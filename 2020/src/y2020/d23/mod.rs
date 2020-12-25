@@ -52,7 +52,7 @@ fn simulate(input: &str, num_cups: usize, num_moves: usize) -> Vec<usize>
     //    dest => a
     //    c => dest_next
 
-    for mv in 0..num_moves
+    for _ in 0..num_moves
     {
         let a = next[cur_cup];
         let b = next[a];
