@@ -124,3 +124,31 @@ Notes about each day:
     * Improved to remove one HashMap lookup for previously spoken numbers -
       which improved performance 25% to about 2 seconds (on the i7-6770HQ
       I was using).
+
+## 2021
+
+Another year down! It's been a big one. A lot of personal changes.
+As such there has not been much personal programming this year.
+
+Still going to try in rust, using the same framework as 2020.
+
+Still in eastern Australia - so puzzles are released at 3PM.
+
+My results:
+| Day | Part 1        | Part 2         |
+|-----|---------------|----------------|
+| 1   | 2:24 / 933    | 9:00 / 2049    |
+|-----|---------------|----------------|
+
+Notes on each day:
+1. Came home from work early and got ready.
+   Pretty happy with 2:24 for part 1. Got stuck with
+   Rust iterators and references and slices vs slices of
+   references vs references to slices of references :(
+   this must be one of the worst parts of rust for simple
+   projects like this. Feel like I need to write "collect_vec"
+   and "windows_copied" to make this all much easier. Perhaps
+   that's a job for tonight. Got to go as I need a lesson for
+   using the hedge trimmer, and have an appointment at the barber
+   at 6 PM.
+
