@@ -1,5 +1,4 @@
 use crate::support::*;
-use itertools::Itertools;
 
 const EXAMPLE: &str = "forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2";
 const INPUT: &str = include_str!("input.txt");

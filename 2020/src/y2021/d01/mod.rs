@@ -1,5 +1,4 @@
 use crate::support::*;
-use itertools::Itertools;
 
 const EXAMPLE: &str = "199\n200\n208\n210\n200\n207\n240\n269\n260\n263\n";
 const INPUT: &str = include_str!("input.txt");
