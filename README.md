@@ -134,11 +134,10 @@ Still going to try in rust, using the same framework as 2020.
 
 Still in eastern Australia - so puzzles are released at 3PM.
 
-My results:
+My results (for days I was able to start at 3PM):
 | Day | Part 1        | Part 2         |
 |-----|---------------|----------------|
 | 1   | 2:24 / 933    | 9:00 / 2049    |
-|-----|---------------|----------------|
 
 Notes on each day:
 1. Came home from work early and got ready.
@@ -151,4 +150,9 @@ Notes on each day:
    that's a job for tonight. Got to go as I need a lesson for
    using the hedge trimmer, and have an appointment at the barber
    at 6 PM.
+2. Was ready and waiting, but got a call at work at 2:59.
+   Didn't do anything until I got home.
+3. Christmas party. No work done. Found this puzzle very boring.
+4. Busy Saturday doing things. Totally missed 3PM.
+
 
