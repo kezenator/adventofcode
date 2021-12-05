@@ -173,6 +173,34 @@ impl Line
 
         None
     }
+
+    pub fn points_on_line(&self) -> Vec<Point>
+    {
+        let dir_x = (self.end.x - self.start.x).signum();
+        let dir_y = (self.end.y - self.start.y).signum();
+
+        let len_x = (self.end.x - self.start.x).abs();
+        let len_y = (self.end.y - self.start.y).abs();
+
+        // Only support:
+        // 1. Diagnoals at 45 degress (x and y lengths are the same)
+        // 2. Vertical (x length is zero)
+        // 3. Horizontal (y length is zero)
+        assert!((len_x == len_y) || (len_x == 0) || (len_y == 0));
+
+        let len = i64::max(len_x, len_y);
+
+        let mut result = Vec::new();
+
+        for i in 0..(len + 1)
+        {
+            result.push(Point::new(
+                self.start.x + i * dir_x,
+                self.start.y + i * dir_y));
+        }
+
+        result
+    }
 }
 
 #[cfg(test)]
@@ -192,7 +220,7 @@ mod tests
     }
 
     #[test]
-    fn test_line()
+    fn test_line_intersection()
     {
         let l_04_54 = Line::new(Point::new(0, 4), Point::new(5, 4));
         let l_30_35 = Line::new(Point::new(3, 0), Point::new(3, 5));
@@ -205,5 +233,50 @@ mod tests
 
         assert_eq!(l_54_04.intersection(&l_35_30), Some(Point::new(3, 4)));
         assert_eq!(l_35_30.intersection(&l_54_04), Some(Point::new(3, 4)));
+    }
+
+    #[test]
+    fn test_line_points_on_line()
+    {
+        // Empty line
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(0, 0)).points_on_line(),
+            vec![Point::new(0, 0)]);
+
+        // Horizontal lines
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(2, 0)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(1, 0), Point::new(2, 0)]);
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(-2, 0)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(-1, 0), Point::new(-2, 0)]);
+
+        // Vertical lines
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(0, 2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(0, 1), Point::new(0, 2)]);
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(0, -2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(0, -1), Point::new(0, -2)]);
+
+        // Diagonal lines @ 45 degrees
+
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(2, 2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(1, 1), Point::new(2, 2)]);
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(-2, 2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(-1, 1), Point::new(-2, 2)]);
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(2, -2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(1, -1), Point::new(2, -2)]);
+        assert_eq!(
+            Line::new(Point::new(0, 0), Point::new(-2, -2)).points_on_line(),
+            vec![Point::new(0, 0), Point::new(-1, -1), Point::new(-2, -2)]);
     }
 }

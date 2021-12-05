@@ -138,6 +138,7 @@ My results (for days I was able to start at 3PM):
 | Day | Part 1        | Part 2         |
 |-----|---------------|----------------|
 | 1   | 2:24 / 933    | 9:00 / 2049    |
+| 5   | 13:26 / 1243  | 18:59 / 834    |
 
 Notes on each day:
 1. Came home from work early and got ready.
@@ -154,5 +155,12 @@ Notes on each day:
    Didn't do anything until I got home.
 3. Christmas party. No work done. Found this puzzle very boring.
 4. Busy Saturday doing things. Totally missed 3PM.
+5. Busy Sunday doing lots of wood-working making Christmas presents -
+   see https://github.com/kezenator/pico-lamp. Made it upstairs in
+   time for 3PM but pretty tired and hungry.
+   Got really tripped up about not considering diagonals in part 1.
+   Annoyed my Line class didn't already have "points_on_line()" method.
+   Pretty slow. Not particularly impressed with this result - but stil
+   under 1000th for part 2. I thought this puzzle was a little bit of fun.
 
 
