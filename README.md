@@ -162,5 +162,11 @@ Notes on each day:
    Annoyed my Line class didn't already have "points_on_line()" method.
    Pretty slow. Not particularly impressed with this result - but stil
    under 1000th for part 2. I thought this puzzle was a little bit of fun.
-
+6. Was at work and IT changes mean I don't have access to a VM with rust
+   on it at the moment. Then found an online Rust RPEL loop and decided to
+   use that. Could have got part 1 done quickly if I was ready. Got stuck on
+   part 2. I was going to use memorization to calculate 256 as 8 halves combined.
+   Then I realized the real solution. So a bit slow. Wrote a real version
+   and checked it in when I got home. Done in 9:14 / 2648th and 25:55 / 2924th,
+   so perhaps no bad considering the slow start. I'm not putting this in the table above.
 
