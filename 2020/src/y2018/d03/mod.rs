@@ -1,8 +1,9 @@
+use crate::support::*;
 use std::collections::{HashMap, HashSet};
 use std::cmp::{min, max};
 
-const INPUT: &str = include_str!("input_3.txt");
-const EXAMPLE_1: &str = "#1 @ 1,3: 4x4\n#2 @ 3,1: 4x4\n#3 @ 5,5: 2x2\n";
+const INPUT: &str = include_str!("input.txt");
+const EXAMPLE1: &str = "#1 @ 1,3: 4x4\n#2 @ 3,1: 4x4\n#3 @ 5,5: 2x2\n";
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 struct Point
@@ -80,7 +81,7 @@ fn load(input: &str) -> HashMap<u32, Rectangle>
     return result;
 }
 
-fn count_overlapping(input: &str) -> usize
+fn part_1(input: &str) -> usize
 {
     let rects = load(input);
     let mut overlapping = HashSet::new();
@@ -105,7 +106,7 @@ fn count_overlapping(input: &str) -> usize
     return overlapping.len();
 }
 
-fn untouched_claim(input: &str) -> u32
+fn part_2(input: &str) -> u32
 {
     let rects = load(input);
 
@@ -135,11 +136,19 @@ fn untouched_claim(input: &str) -> u32
     unreachable!();
 }
 
-fn main()
+pub fn puzzles() -> PuzzleDay
 {
-    assert_eq!(count_overlapping(EXAMPLE_1), 4);
-    assert_eq!(untouched_claim(EXAMPLE_1), 3);
-
-    println!("Answer #1: {}", count_overlapping(INPUT));
-    println!("Answer #2: {}", untouched_claim(INPUT));
+    puzzle_day(3)
+        .example(|| Answer {
+            calculated: part_1(EXAMPLE1),
+            expected: 4, })
+        .part_1(|| Answer {
+            calculated: part_1(INPUT),
+            expected: 104712, })
+        .example(|| Answer {
+            calculated: part_2(EXAMPLE1),
+            expected: 3, })
+        .part_2(|| Answer {
+            calculated: part_2(INPUT),
+            expected: 840, })
 }

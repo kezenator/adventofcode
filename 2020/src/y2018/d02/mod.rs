@@ -1,4 +1,6 @@
-const INPUT: &str = include_str!("input_2.txt");
+use crate::support::*;
+
+const INPUT: &str = include_str!("input.txt");
 const EXAMPLE1: &str = "abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab\n";
 const EXAMPLE2: &str = "abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz\n";
 
@@ -35,7 +37,7 @@ fn count_with_exactly(inp: &str, target: usize) -> usize
         .count()
 }
 
-fn checksum(inp: &str) -> usize
+fn part_1(inp: &str) -> usize
 {
     return count_with_exactly(inp, 2) * count_with_exactly(inp, 3);
 }
@@ -47,7 +49,7 @@ fn difference(a: &str, b: &str) -> usize
         .count();
 }
 
-fn matching(inp: &str) -> String
+fn part_2(inp: &str) -> String
 {
     let lines = lines(inp);
 
@@ -69,13 +71,19 @@ fn matching(inp: &str) -> String
     unreachable!();
 }
 
-fn main()
+pub fn puzzles() -> PuzzleDay
 {
-    assert_eq!(checksum(EXAMPLE1), 12);
-
-    println!("Answer #1 = {}", checksum(INPUT));
-
-    assert_eq!(matching(EXAMPLE2), "fgij");
-
-    println!("Answer #2 = {}", matching(INPUT));
+    puzzle_day(2)
+        .example(|| Answer {
+            calculated: part_1(EXAMPLE1),
+            expected: 12, })
+        .part_1(|| Answer {
+            calculated: part_1(INPUT),
+            expected: 5928, })
+        .example(|| Answer {
+            calculated: part_2(EXAMPLE2),
+            expected: "fgij", })
+        .part_2(|| Answer {
+            calculated: part_2(INPUT),
+            expected: "bqlporuexkwzyabnmgjqctvfs", })
 }
