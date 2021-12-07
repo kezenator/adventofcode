@@ -5,7 +5,7 @@ const INPUT: &str = include_str!("input.txt");
 
 fn part_1(input: &str) -> i32
 {
-    input.split("\n")
+    input_to_lines(input).iter()
         .filter(|s| !s.is_empty())
         .map(|s| s.parse::<i32>().unwrap())
         .sum::<i32>()
@@ -13,7 +13,7 @@ fn part_1(input: &str) -> i32
 
 fn part_2(input: &str) -> i32
 {
-    let changes = input.split("\n")
+    let changes = input_to_lines(input).iter()
         .filter(|s| !s.is_empty())
         .map(|s| s.parse::<i32>().unwrap())
         .collect::<Vec<_>>();

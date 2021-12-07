@@ -4,13 +4,6 @@ const INPUT: &str = include_str!("input.txt");
 const EXAMPLE1: &str = "abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab\n";
 const EXAMPLE2: &str = "abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz\n";
 
-fn lines(inp: &str) -> Vec<&str>
-{
-    let mut result = inp.split("\n").collect::<Vec<_>>();
-    result.pop();
-    return result;
-}
-
 fn count(line: &str, ch: char) -> usize
 {
     line.chars()
@@ -32,7 +25,7 @@ fn has_exactly(line: &str, target: usize) -> bool
 
 fn count_with_exactly(inp: &str, target: usize) -> usize
 {
-    lines(inp).iter()
+    input_to_lines(inp).iter()
         .filter(|a| has_exactly(a, target))
         .count()
 }
@@ -51,7 +44,7 @@ fn difference(a: &str, b: &str) -> usize
 
 fn part_2(inp: &str) -> String
 {
-    let lines = lines(inp);
+    let lines = input_to_lines(inp);
 
     for la in lines.iter()
     {
