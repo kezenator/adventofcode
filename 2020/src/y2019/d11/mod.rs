@@ -57,11 +57,11 @@ fn run(start_on_white: bool) -> HashMap::<Point, bool>
 
                 if right
                 {
-                    dir = dir.rotate_right();
+                    dir = dir.rotate_90_right();
                 }
                 else
                 {
-                    dir = dir.rotate_left();
+                    dir = dir.rotate_90_left();
                 }
 
                 pos += dir;

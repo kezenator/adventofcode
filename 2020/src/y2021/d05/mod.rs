@@ -25,7 +25,7 @@ fn solve(input: &str, diagonals: bool) -> usize
 
         if (x1 == x2) || (y1 == y2) || diagonals
         {
-            for point in line.points_on_line()
+            for point in line.points_exactly_on_line_inclusive()
             {
                 if let Some(count) = point_to_count.get_mut(&point)
                 {
