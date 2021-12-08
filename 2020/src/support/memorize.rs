@@ -72,3 +72,29 @@ impl<I, O> Memorized<I, O>
         output
     }
 }
+
+#[test]
+fn test_memorized()
+{
+    let fibonacchi = Memorized::new(
+        move |target, fibonacchi| -> u64
+        {
+            match *target
+            {
+                0 => 0,
+                1 => 1,
+                _ => fibonacchi.get(&(*target - 2)) + fibonacchi.get(&(*target - 1)),
+            }
+        });
+
+    assert_eq!(fibonacchi.get(&0), 0);
+    assert_eq!(fibonacchi.get(&1), 1);
+    assert_eq!(fibonacchi.get(&2), 1);
+    assert_eq!(fibonacchi.get(&3), 2);
+    assert_eq!(fibonacchi.get(&4), 3);
+    assert_eq!(fibonacchi.get(&5), 5);
+    assert_eq!(fibonacchi.get(&6), 8);
+    assert_eq!(fibonacchi.get(&7), 13);
+    assert_eq!(fibonacchi.get(&8), 21);
+    assert_eq!(fibonacchi.get(&92), 7540113804746346429u64);
+}
