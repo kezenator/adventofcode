@@ -36,9 +36,9 @@ fn part_1(input: &str) -> i64
             {
                 match dist
                 {
-                    90 => dir = dir.rotate_left(),
-                    180 => dir = dir.invert(),
-                    270 => dir = dir.rotate_right(),
+                    90 => dir = dir.rotate_90_left(),
+                    180 => dir = dir.rotate_180(),
+                    270 => dir = dir.rotate_90_right(),
                     _ => unreachable!(),
                 }
             },
@@ -46,9 +46,9 @@ fn part_1(input: &str) -> i64
             {
                 match dist
                 {
-                    90 => dir = dir.rotate_right(),
-                    180 => dir = dir.invert(),
-                    270 => dir = dir.rotate_left(),
+                    90 => dir = dir.rotate_90_right(),
+                    180 => dir = dir.rotate_180(),
+                    270 => dir = dir.rotate_90_left(),
                     _ => unreachable!(),
                 }
             },
@@ -97,9 +97,9 @@ fn part_2(input: &str) -> i64
                 let mut move_dir = waypoint - pos;
                 match dist
                 {
-                    90 => move_dir = move_dir.rotate_left(),
-                    180 => move_dir = move_dir.invert(),
-                    270 => move_dir = move_dir.rotate_right(),
+                    90 => move_dir = move_dir.rotate_90_left(),
+                    180 => move_dir = move_dir.rotate_180(),
+                    270 => move_dir = move_dir.rotate_90_right(),
                     _ => unreachable!(),
                 }
                 waypoint = pos + move_dir;
@@ -109,9 +109,9 @@ fn part_2(input: &str) -> i64
                 let mut move_dir = waypoint - pos;
                 match dist
                 {
-                    90 => move_dir = move_dir.rotate_right(),
-                    180 => move_dir = move_dir.invert(),
-                    270 => move_dir = move_dir.rotate_left(),
+                    90 => move_dir = move_dir.rotate_90_right(),
+                    180 => move_dir = move_dir.rotate_180(),
+                    270 => move_dir = move_dir.rotate_90_left(),
                     _ => unreachable!(),
                 }
                 waypoint = pos + move_dir;
