@@ -52,7 +52,7 @@ fn best_monitoring(input: &str) -> (i64, Point)
 
                 for other in points.iter().filter(|&other| *other != location)
                 {
-                    let num_stations_between = Line::new(location, *other).points_exactly_on_line_exclusive().iter()
+                    let num_stations_between = Line::new(location, *other).points_exactly_on_line_exclusive()
                         .filter(|mid| points.contains(mid))
                         .count();
 

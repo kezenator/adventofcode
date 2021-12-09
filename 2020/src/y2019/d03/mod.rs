@@ -70,7 +70,7 @@ fn part_1(input: &str) -> i64
     {
         for line2 in path2.iter()
         {
-            if let Some(intersection) = line1.intersection(line2)
+            if let Some(intersection) = line1.crossing_point(*line2)
             {
                 distances.push(intersection.manhatten_size());
             }
@@ -94,7 +94,7 @@ fn part_2(input: &str) -> i64
         let mut steps2 = 0;
         for line2 in path2.iter()
         {
-            if let Some(intersection) = line1.intersection(line2)
+            if let Some(intersection) = line1.crossing_point(*line2)
             {
                 let total_steps1 = steps1 + (intersection - line1.start).manhatten_size();
                 let total_steps2 = steps2 + (intersection - line2.start).manhatten_size();
