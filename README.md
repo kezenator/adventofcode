@@ -140,6 +140,12 @@ My results (for days I was able to start at 3PM):
 | 1   | 2:24 / 933    | 9:00 / 2049    |
 | 5   | 13:26 / 1243  | 18:59 / 834    |
 
+Puzzles more than 24 hours late:
+| Day | Puzzle(s) |
+|-----|-----------|
+| 3   | Both      |
+| 8   | 2nd       |
+
 Notes on each day:
 1. Came home from work early and got ready.
    Pretty happy with 2:24 for part 1. Got stuck with
@@ -169,4 +175,15 @@ Notes on each day:
    Then I realized the real solution. So a bit slow. Wrote a real version
    and checked it in when I got home. Done in 9:14 / 2648th and 25:55 / 2924th,
    so perhaps no bad considering the slow start. I'm not putting this in the table above.
+7. Busy working. Fun little puzzle. I got the triangle number equation,
+   but missed the median/mean part.
+8. Bad day at work, and was out. Was pretty tired when I got home and
+   really struggled to get anything. I went down totally the wrong track.
+   I think the final solution is pretty easy to read.
+   It was an enjoyable puzzle to do on day 9 - but still took me a good hour.
+9. Working at 3. Fun puzzle. First use of graph algorithms.
+   I got stuck with the meaning of 9 and edges in part 1.
+   Part 2 I got stuck using "strongly connected" rather than "breadth-first search reach".
+   Good refresher into the rust pathfinding library that will hopefully
+   help me on future days.
 
