@@ -139,6 +139,7 @@ My results (for days I was able to start at 3PM):
 |-----|---------------|----------------|
 | 1   | 2:24 / 933    | 9:00 / 2049    |
 | 5   | 13:26 / 1243  | 18:59 / 834    |
+| 10  | 10:57 / 1814  | 21:40 / 2087   |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -147,43 +148,45 @@ Puzzles more than 24 hours late:
 | 8   | 2nd       |
 
 Notes on each day:
-1. Came home from work early and got ready.
-   Pretty happy with 2:24 for part 1. Got stuck with
-   Rust iterators and references and slices vs slices of
-   references vs references to slices of references :(
-   this must be one of the worst parts of rust for simple
-   projects like this. Feel like I need to write "collect_vec"
-   and "windows_copied" to make this all much easier. Perhaps
-   that's a job for tonight. Got to go as I need a lesson for
-   using the hedge trimmer, and have an appointment at the barber
-   at 6 PM.
-2. Was ready and waiting, but got a call at work at 2:59.
-   Didn't do anything until I got home.
-3. Christmas party. No work done. Found this puzzle very boring.
-4. Busy Saturday doing things. Totally missed 3PM.
-5. Busy Sunday doing lots of wood-working making Christmas presents -
-   see https://github.com/kezenator/pico-lamp. Made it upstairs in
-   time for 3PM but pretty tired and hungry.
-   Got really tripped up about not considering diagonals in part 1.
-   Annoyed my Line class didn't already have "points_on_line()" method.
-   Pretty slow. Not particularly impressed with this result - but stil
-   under 1000th for part 2. I thought this puzzle was a little bit of fun.
-6. Was at work and IT changes mean I don't have access to a VM with rust
-   on it at the moment. Then found an online Rust RPEL loop and decided to
-   use that. Could have got part 1 done quickly if I was ready. Got stuck on
-   part 2. I was going to use memorization to calculate 256 as 8 halves combined.
-   Then I realized the real solution. So a bit slow. Wrote a real version
-   and checked it in when I got home. Done in 9:14 / 2648th and 25:55 / 2924th,
-   so perhaps no bad considering the slow start. I'm not putting this in the table above.
-7. Busy working. Fun little puzzle. I got the triangle number equation,
-   but missed the median/mean part.
-8. Bad day at work, and was out. Was pretty tired when I got home and
-   really struggled to get anything. I went down totally the wrong track.
-   I think the final solution is pretty easy to read.
-   It was an enjoyable puzzle to do on day 9 - but still took me a good hour.
-9. Working at 3. Fun puzzle. First use of graph algorithms.
-   I got stuck with the meaning of 9 and edges in part 1.
-   Part 2 I got stuck using "strongly connected" rather than "breadth-first search reach".
-   Good refresher into the rust pathfinding library that will hopefully
-   help me on future days.
-
+1.  Came home from work early and got ready.
+    Pretty happy with 2:24 for part 1. Got stuck with
+    Rust iterators and references and slices vs slices of
+    references vs references to slices of references :(
+    this must be one of the worst parts of rust for simple
+    projects like this. Feel like I need to write "collect_vec"
+    and "windows_copied" to make this all much easier. Perhaps
+    that's a job for tonight. Got to go as I need a lesson for
+    using the hedge trimmer, and have an appointment at the barber
+    at 6 PM.
+2.  Was ready and waiting, but got a call at work at 2:59.
+    Didn't do anything until I got home.
+3.  Christmas party. No work done. Found this puzzle very boring.
+4.  Busy Saturday doing things. Totally missed 3PM.
+5.  Busy Sunday doing lots of wood-working making Christmas presents -
+    see https://github.com/kezenator/pico-lamp. Made it upstairs in
+    time for 3PM but pretty tired and hungry.
+    Got really tripped up about not considering diagonals in part 1.
+    Annoyed my Line class didn't already have "points_on_line()" method.
+    Pretty slow. Not particularly impressed with this result - but stil
+    under 1000th for part 2. I thought this puzzle was a little bit of fun.
+6.  Was at work and IT changes mean I don't have access to a VM with rust
+    on it at the moment. Then found an online Rust RPEL loop and decided to
+    use that. Could have got part 1 done quickly if I was ready. Got stuck on
+    part 2. I was going to use memorization to calculate 256 as 8 halves combined.
+    Then I realized the real solution. So a bit slow. Wrote a real version
+    and checked it in when I got home. Done in 9:14 / 2648th and 25:55 / 2924th,
+    so perhaps no bad considering the slow start. I'm not putting this in the table above.
+7.  Busy working. Fun little puzzle. I got the triangle number equation,
+    but missed the median/mean part.
+8.  Bad day at work, and was out. Was pretty tired when I got home and
+    really struggled to get anything. I went down totally the wrong track.
+    I think the final solution is pretty easy to read.
+    It was an enjoyable puzzle to do on day 9 - but still took me a good hour.
+9.  Working at 3. Fun puzzle. First use of graph algorithms.
+    I got stuck with the meaning of 9 and edges in part 1.
+    Part 2 I got stuck using "strongly connected" rather than "breadth-first search reach".
+    Good refresher into the rust pathfinding library that will hopefully
+    help me on future days.
+10. Fun little puzzle. Rust enums made it pretty readable.
+    Didn't to particularly well in the speed department - but it was a Friday
+    afternoon.
