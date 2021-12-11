@@ -140,6 +140,7 @@ My results (for days I was able to start at 3PM):
 | 1   | 2:24 / 933    | 9:00 / 2049    |
 | 5   | 13:26 / 1243  | 18:59 / 834    |
 | 10  | 10:57 / 1814  | 21:40 / 2087   |
+| 11  | 13:30 / 510   | 16:05 / 521    |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -190,3 +191,8 @@ Notes on each day:
 10. Fun little puzzle. Rust enums made it pretty readable.
     Didn't to particularly well in the speed department - but it was a Friday
     afternoon.
+11. Big day woodworking today. I read the puzzle and my heart sank. I don't
+    enjoy these ones. I sat around for a few minutes not having the energy to
+    start. But then thought lets get it done. The funny thing I got the best result
+    yet this year! Perhaps that's just because it's Friday night in the US?
+    Anyway - done.
