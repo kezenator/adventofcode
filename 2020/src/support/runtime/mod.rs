@@ -99,11 +99,25 @@ impl PuzzleDayRunner
 
         let duration = Instant::now().duration_since(start);
 
-        println!("[ {:10} ] [ {:3}.{:06} s] => [ {:20} ]",
+        print!("[ {:10} ] [ {:3}.{:06} s] => [",
             name,
             duration.as_secs(),
-            duration.subsec_micros(),
-            answer.calculated);
+            duration.subsec_micros());
+
+        if (answer.calculated.len() <= 20)
+            && answer.calculated.chars().position(|c| c == '\n').is_none()
+        {
+            println!(" {:20} ]", answer.calculated);
+        }
+        else
+        {
+            println!("");
+            for l in crate::support::input_to_lines(&answer.calculated)
+            {
+                println!("{:35}{}", "", l);
+            }
+            println!("{:34}]", "");
+        }
 
         if answer.calculated != answer.expected
         {

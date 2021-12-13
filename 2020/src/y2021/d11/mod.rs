@@ -1,5 +1,4 @@
 use crate::support::*;
-use crate::support::*;
 use std::collections::{ HashSet, VecDeque };
 
 const EXAMPLE: &str = include_str!("example.txt");
