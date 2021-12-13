@@ -34,7 +34,6 @@ impl CharGrid
         }
     }
 
-    #[allow(dead_code)]
     pub fn new_from_fill(width: usize, height: usize, default: char) -> Self
     {
         let chars = std::iter::repeat(default).take(width * height).collect();
@@ -48,6 +47,25 @@ impl CharGrid
             height,
             default,
         }
+    }
+
+    pub fn new_from_points(points: Vec<Point>) -> Self
+    {
+        let min_x = points.iter().map(|p| p.x).min().unwrap();
+        let max_x = points.iter().map(|p| p.x).max().unwrap();
+        let min_y = points.iter().map(|p| p.y).min().unwrap();
+        let max_y = points.iter().map(|p| p.y).max().unwrap();
+
+        let mut image = CharGrid::new_from_fill((max_x - min_x + 1) as usize, (max_y - min_y + 1) as usize, '.');
+
+        for p in points
+        {
+            image.put_char(
+                &Point::new(p.x - min_x, p.y - min_y),
+                '#');
+        }
+
+        image
     }
 
     #[allow(dead_code)]

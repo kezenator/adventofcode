@@ -82,21 +82,7 @@ fn part_2() -> String
         .map(|(pos, _)| Point::new(pos.x, -pos.y))
         .collect::<Vec<Point>>();
 
-    let min_x = points.iter().map(|p| p.x).min().unwrap();
-    let max_x = points.iter().map(|p| p.x).max().unwrap();
-    let min_y = points.iter().map(|p| p.y).min().unwrap();
-    let max_y = points.iter().map(|p| p.y).max().unwrap();
-
-    let mut image = CharGrid::new_from_fill((max_x - min_x + 1) as usize, (max_y - min_y + 1) as usize, '.');
-
-    for p in points
-    {
-        image.put_char(
-            &Point::new(p.x - min_x, p.y - min_y),
-            '#');
-    }
-
-    image.to_string()
+    CharGrid::new_from_points(points).to_string()
 }
 
 pub fn puzzles() -> PuzzleDay

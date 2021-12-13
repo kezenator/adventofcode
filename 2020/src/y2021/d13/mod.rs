@@ -21,7 +21,9 @@ impl Fold
     {
         match self
         {
+            // Fold right
             Fold::X(num) => if p.x > *num { Point::new(2 * num - p.x, p.y) } else { p.clone() },
+            // Fold up - but remember "up" means "down" in our coordinates
             Fold::Y(num) => if p.y > *num { Point::new(p.x, 2 * num - p.y) } else { p.clone() },
         }
     }
@@ -93,19 +95,7 @@ fn part_2(input: &str) -> String
                 .fold(p, |p, f| f.apply(p)));
     }
 
-    let minx = set.iter().map(|p| p.x).min().unwrap();
-    let miny = set.iter().map(|p| p.y).min().unwrap();
-    let width = set.iter().map(|p| p.x).max().unwrap() + 1 - minx;
-    let height = set.iter().map(|p| p.y).max().unwrap() + 1 - miny;
-
-    let mut grid = CharGrid::new_from_fill(width as usize, height as usize, '.');
-
-    for p in set
-    {
-        grid.put_char(&Point::new(p.x - minx, p.y - miny), '#');
-    }
-
-    grid.to_string()
+    CharGrid::new_from_points(set.drain().collect()).to_string()
 }
 
 pub fn puzzles() -> PuzzleDay

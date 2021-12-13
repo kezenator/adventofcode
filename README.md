@@ -141,6 +141,7 @@ My results (for days I was able to start at 3PM):
 | 5   | 13:26 / 1243  | 18:59 / 834    |
 | 10  | 10:57 / 1814  | 21:40 / 2087   |
 | 11  | 13:30 / 510   | 16:05 / 521    |
+| 13  | 14:47 / 1006  | 29:50 / 2031   |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -196,3 +197,11 @@ Notes on each day:
     start. But then thought lets get it done. The funny thing I got the best result
     yet this year! Perhaps that's just because it's Friday night in the US?
     Anyway - done.
+12. What a shit show! I got way to involved in AStar algorithm to find shortest
+    paths, when actually we only want to count *all* paths - which of course is
+    in the first line of the description. Took an hour and didn't get far.
+    Also hung over from another Christmas party - so that didn't help.
+    Eventually gave up, looked at redit, and was like "oh of course".
+    Basically copied a solution from there.
+13. Pretty slow. Mixed up with my point co-ordinates having inverse Z direction.
+    Missed that the input had multiple folds. Fun puzzle.
