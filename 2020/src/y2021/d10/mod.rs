@@ -1,114 +1,99 @@
 use crate::support::*;
 use std::collections::VecDeque;
 
-const EXAMPLE: &str = "[({(<(())[]>[[{[]{<()<>>\n[(()[<>])]({[<{<<[]>>(\n{([(<{}[<>[]}>{[]{[(<()>\n(((({<>}<{<{<>}{[]{[]{}\n[[<[([]))<([[{}[[()]]]\n[{[{({}]{}}([{[{{{}}([]\n{<[[]]>}<{[{[{[]{()[[[]\n[<(<(<(<{}))><([]([]()\n<{([([[(<>()){}]>(<<{{\n<{([{{}}[<[[[<>{}]]]>[]]";
+const EXAMPLE: &str = include_str!("example.txt");
 const INPUT: &str = include_str!("input.txt");
 
-#[derive(Debug)]
-enum ParseResult
+enum Parse
 {
-    Valid,
-    Corrupted(char),
     Incomplete(String),
+    Corrupt(char),
 }
 
-fn closing(ch: char) -> Option<char>
+fn close(c: char) -> Option<char>
 {
-    match ch
+    match c
     {
         '(' => Some(')'),
         '[' => Some(']'),
         '{' => Some('}'),
         '<' => Some('>'),
-        _ => None,
+        _ => None
     }
 }
 
-fn corrupt_score(ch: char) -> usize
+fn parse(input: &str) -> Parse
 {
-    match ch
+    let mut stack = VecDeque::new();
+
+    for c in input.chars()
     {
-        ')' => 3,
-        ']' => 57,
-        '}' => 1197,
-        '>' => 25137,
-        _ => 0,
-    }
-}
-
-fn incomplete_score(closing: &str) -> usize
-{
-    let mut result = 0;
-
-    for ch in closing.chars()
-    {
-        let part = match ch
-        {
-            ')' => 1,
-            ']' => 2,
-            '}' => 3,
-            '>' => 4,
-            _ => unreachable!(),
-        };
-
-        result = (5 * result) + part;
-    }
-
-    result
-}
-
-fn parse_chunk(chunk: &str) -> ParseResult
-{
-    let mut stack: VecDeque<char> = VecDeque::new();
-
-    for ch in chunk.chars()
-    {
-        if let Some(close) = closing(ch)
+        if let Some(close) = close(c)
         {
             stack.push_back(close);
         }
-        else if *stack.back().unwrap() == ch
+        else if c == *stack.back().unwrap()
         {
             stack.pop_back();
         }
         else
         {
-            return ParseResult::Corrupted(ch);
+            return Parse::Corrupt(c);
         }
     }
 
-    if stack.is_empty()
+    assert!(!stack.is_empty());
+
+    Parse::Incomplete(stack.iter().copied().rev().collect())
+}
+
+fn illegal_score(c: char) -> usize
+{
+    match c
     {
-        ParseResult::Valid
+        ')' => 3,
+        ']' => 57,
+        '}' => 1197,
+        '>' => 25137,
+        _ => unreachable!(),
     }
-    else
-    {
-        ParseResult::Incomplete(stack.iter().rev().copied().collect())
-    }
+}
+
+fn incomplete_score(s: &str) -> usize
+{
+    s.chars()
+        .map(|c|
+        {
+            match c
+            {
+                ')' => 1,
+                ']' => 2,
+                '}' => 3,
+                '>' => 4,
+                _ => unreachable!(),
+            }
+        })
+        .fold(0, |a, b| (a * 5) + b)
 }
 
 fn part_1(input: &str) -> usize
 {
-    input_to_lines(input)
-        .iter()
-        .map(|l| parse_chunk(l))
-        .map(|r| if let ParseResult::Corrupted(ch) = r { corrupt_score(ch) } else { 0 })
+    input_to_lines(input).iter()
+        .map(|s| parse(s))
+        .filter_map(|p| if let Parse::Corrupt(c) = p { Some(illegal_score(c)) } else { None })
         .sum()
 }
 
 fn part_2(input: &str) -> usize
 {
-    let mut scores = input_to_lines(input)
-        .iter()
-        .map(|l| parse_chunk(l))
-        .filter(|r| if let ParseResult::Incomplete(_) = r { true } else { false })
-        .map(|r| if let ParseResult::Incomplete(close) = r { close.clone() } else { String::new() })
-        .map(|close| incomplete_score(&close))
-        .collect::<Vec<usize>>();
-
-    scores.sort();
+    let mut scores = input_to_lines(input).iter()
+        .map(|s| parse(s))
+        .filter_map(|p| if let Parse::Incomplete(s) = p { Some(incomplete_score(&s)) } else { None })
+        .collect::<Vec<_>>();
 
     assert!((scores.len() % 2) == 1);
+
+    scores.sort();
 
     scores[scores.len() / 2]
 }
