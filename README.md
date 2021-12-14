@@ -142,6 +142,7 @@ My results (for days I was able to start at 3PM):
 | 10  | 10:57 / 1814  | 21:40 / 2087   |
 | 11  | 13:30 / 510   | 16:05 / 521    |
 | 13  | 14:47 / 1006  | 29:50 / 2031   |
+| 14  | 19:56 / 3278  | 44:08 / 1834   |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -205,3 +206,12 @@ Notes on each day:
     Basically copied a solution from there.
 13. Pretty slow. Mixed up with my point co-ordinates having inverse Z direction.
     Missed that the input had multiple folds. Fun puzzle.
+14. Was at work. Started, but got distracted by a someone asking me questions
+    about work :). Thought I was doing **really** badly, but seems I picked up
+    a lot of time in part 2 - maybe would have done OK if I didn't get
+    distracted. Immediately realized the number of pairs was the key in
+    part 2. Got slowed a bit because I wrote the example counts wrong on my
+    notepad and got confused. Counting pairs, then dividing by 2 and rouding up
+    (because each letter is counted in two pairs - except the start and end
+    letter) seems to work - but I haven't proved that it's correct for all
+    inputs.
