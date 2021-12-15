@@ -13,8 +13,6 @@ fn load_image(input: &str) -> CharGrid
 
 fn find_basins(image: &CharGrid) -> Vec<Point>
 {
-    let dirs = Point::directions_4();
-
     // Find an collect all points where...
 
     image.all_points().drain(..)
@@ -25,8 +23,7 @@ fn find_basins(image: &CharGrid) -> Vec<Point>
                 // There is no neighbour n (from this point p and a direction d)
                 // who is equal or lower to us (i.e. count is 0)
 
-                dirs.iter()
-                    .map(|d| p + *d)
+                p.neighbours_4()
                     .filter(|n| image.get_char(n) <= p_height)
                     .count() == 0
             })
@@ -44,8 +41,6 @@ fn basin_size(image: &CharGrid, basin: Point) -> usize
     // of the directed graph where we
     // step up/level, but not OUTSIDE
 
-    let dirs = Point::directions_4();
-
     bfs_reach(
         basin,
         |&p|
@@ -56,8 +51,7 @@ fn basin_size(image: &CharGrid, basin: Point) -> usize
 
             let p_height = image.get_char(&p);
 
-            dirs.iter()
-                .map(move |&d| p + d)
+            p.neighbours_4()
                 .filter(move |&n|
                     {
                         let n_height = image.get_char(&n);

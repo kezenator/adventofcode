@@ -10,6 +10,13 @@ pub struct Point
     pub y: i64,
 }
 
+const DIR_4: [(i64, i64); 4] = [
+    (0, 1),
+    (1, 0),
+    (0, -1),
+    (-1, 0),
+];
+
 impl Point
 {
     pub fn new(x: i64, y: i64) -> Self
@@ -22,14 +29,19 @@ impl Point
         self.x.abs() + self.y.abs()
     }
 
-    pub fn directions_4() -> Vec<Point>
+    pub fn directions_4() -> impl Iterator<Item = Point>
     {
-        vec![
-            Point::new(1, 0),
-            Point::new(0, 1),
-            Point::new(-1, 0),
-            Point::new(0, -1),
-        ]
+        DIR_4.iter()
+            .map(|(dx, dy)| Point::new(*dx, *dy))
+    }
+
+    pub fn neighbours_4(&self) -> impl Iterator<Item = Point>
+    {
+        let px = self.x.clone();
+        let py = self.y.clone();
+
+        DIR_4.iter()
+            .map(move |(dx, dy)| Point::new(px + *dx, py + *dy))
     }
 
     pub fn directions_8() -> Vec<Point>

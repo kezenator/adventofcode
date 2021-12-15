@@ -215,3 +215,8 @@ Notes on each day:
     (because each letter is counted in two pairs - except the start and end
     letter) seems to work - but I haven't proved that it's correct for all
     inputs.
+15. Just got home in time. Standard ASTAR algorithm. Got tripped up with the
+    Rust borrow checker again. Basically the neighbours function is much easier
+    to write if it returns a vector of neighbours rather than an iterator
+    that returns neighbours. Lost quite a few minutes on this. Other trick
+    was the addition is not mod 10 - but (((a + b - 1) % 9) + 1).

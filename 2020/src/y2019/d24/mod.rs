@@ -90,7 +90,7 @@ impl Pos
         }
         else // part_1
         {
-            Point::directions_4().iter()
+            Point::directions_4()
                 .map(|d| Pos::new(0, self.x + d.x, self.y + d.y))
                 .filter(|p| p.x >= 0 && p.x < 5 && p.y >= 0 && p.y < 5)
                 .collect()
