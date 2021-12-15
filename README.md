@@ -143,6 +143,7 @@ My results (for days I was able to start at 3PM):
 | 11  | 13:30 / 510   | 16:05 / 521    |
 | 13  | 14:47 / 1006  | 29:50 / 2031   |
 | 14  | 19:56 / 3278  | 44:08 / 1834   |
+| 15  | 13:10 / 629   | 26:23 / 419    |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -220,3 +221,4 @@ Notes on each day:
     to write if it returns a vector of neighbours rather than an iterator
     that returns neighbours. Lost quite a few minutes on this. Other trick
     was the addition is not mod 10 - but (((a + b - 1) % 9) + 1).
+    Best score yet this year!
