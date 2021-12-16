@@ -222,3 +222,13 @@ Notes on each day:
     that returns neighbours. Lost quite a few minutes on this. Other trick
     was the addition is not mod 10 - but (((a + b - 1) % 9) + 1).
     Best score yet this year!
+16. Great Day! Great Puzzle! It's been one of the best days of the year.
+    Not the most fun, but one of the most productive. And a puzzle that's right
+    up my street. Unfortunately I'm an engineer - and network packet decoding
+    means I look for accuracy not development speed. It's got some error handling.
+    Also - two wines before I wrote this one. Look it's Christmas - and this
+    is meant to be fun?!?!?!? Will this be used again this year? It's hard to
+    say. It seems like a building block - there are plenty of unused
+    op-codes. Perhaps even recursive functions via a map of "function definition"
+    and then "function call" opcodes. We'll see how my predictions play out....
+    Merry Christmas!
