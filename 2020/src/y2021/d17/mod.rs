@@ -50,8 +50,7 @@ fn max_y_in_tragectory(target_area: Rect, initial_velocity: Point) -> i64
 fn does_tragectory_hit_target_area(target_area: Rect, initial_velocity: Point) -> bool
 {
     points_in_tragectory(target_area, initial_velocity)
-        .map(|p| target_area.does_point_intersect(p))
-        .fold(false, |a, b| a || b)
+        .any(|p| target_area.does_point_intersect(p))
 }
 
 fn initial_velocities_that_hit_target_area(target_area: Rect) -> impl Iterator<Item = Point>
