@@ -34,6 +34,26 @@ impl Rect
         }
     }
 
+    pub fn get_min_x(&self) -> i64
+    {
+        self.min_x
+    }
+
+    pub fn get_min_y(&self) -> i64
+    {
+        self.min_y
+    }
+
+    pub fn get_max_x(&self) -> i64
+    {
+        self.max_x
+    }
+
+    pub fn get_max_y(&self) -> i64
+    {
+        self.max_y
+    }
+
     pub fn area(&self) -> i64
     {
         (self.max_x - self.min_x) * (self.max_y - self.min_y)
@@ -66,6 +86,11 @@ impl Rect
         {
             None
         }
+    }
+
+    pub fn does_point_intersect(&self, p: Point) -> bool
+    {
+        p.x >= self.min_x && p.x <= self.max_x && p.y >= self.min_y && p.y <= self.max_y
     }
 }
 

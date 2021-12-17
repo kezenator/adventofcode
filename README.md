@@ -144,6 +144,7 @@ My results (for days I was able to start at 3PM):
 | 13  | 14:47 / 1006  | 29:50 / 2031   |
 | 14  | 19:56 / 3278  | 44:08 / 1834   |
 | 15  | 13:10 / 629   | 26:23 / 419    |
+| 17  | 21:03 / 1055  | 25:43 / 773    |
 
 Puzzles more than 24 hours late:
 | Day | Puzzle(s) |
@@ -232,3 +233,7 @@ Notes on each day:
     op-codes. Perhaps even recursive functions via a map of "function definition"
     and then "function call" opcodes. We'll see how my predictions play out....
     Merry Christmas!
+17. Intresting puzzle. Implemented imperatively, then refactored into
+    rust iterators - which is actually slightly faster! Did part 2 really quick
+    as I had already iterated across all possible initial velocities.
+    Main problems were off-by-one errors using rust ranges.
