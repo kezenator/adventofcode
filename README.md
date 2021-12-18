@@ -237,3 +237,5 @@ Notes on each day:
     rust iterators - which is actually slightly faster! Did part 2 really quick
     as I had already iterated across all possible initial velocities.
     Main problems were off-by-one errors using rust ranges.
+18. Busy day with Christmas stuff. Only got to it the next morning.
+    Just found this one long winded. Done.
