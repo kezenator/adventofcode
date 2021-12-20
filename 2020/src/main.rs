@@ -2,9 +2,9 @@ use structopt::StructOpt;
 
 mod support;
 
-mod y2018;
-mod y2019;
-mod y2020;
+//mod y2018;
+//mod y2019;
+//mod y2020;
 mod y2021;
 
 use support::*;
@@ -26,9 +26,9 @@ fn main()
     let args = CmdArgs::from_args();
 
     let puzzles = PuzzleSet::new()
-        .with(y2018::puzzles())
-        .with(y2019::puzzles())
-        .with(y2020::puzzles())
+        //.with(y2018::puzzles())
+        //.with(y2019::puzzles())
+        //.with(y2020::puzzles())
         .with(y2021::puzzles())
     ;
 

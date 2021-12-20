@@ -239,3 +239,8 @@ Notes on each day:
     Main problems were off-by-one errors using rust ranges.
 18. Busy day with Christmas stuff. Only got to it the next morning.
     Just found this one long winded. Done.
+19. Out and about enjoying myself swiming on a great summer day.
+    I don't want to do this puzzle. I have too much stuff to organise
+    before Christmas. Can't guarantee I will do puzzles from here on in.
+20. Easy puzzle. Going to do it. Messed up the inifinite and needed to
+    look at the hints. Don't care. Need to get other Christmas stuff done.

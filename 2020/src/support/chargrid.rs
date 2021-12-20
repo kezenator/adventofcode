@@ -80,6 +80,12 @@ impl CharGrid
         self.height
     }
 
+    #[allow(dead_code)]
+    pub fn get_default(&self) -> char
+    {
+        self.default
+    }
+
     pub fn is_point_in_bounds(&self, point: &Point) -> bool
     {
         point.x >= 0 && point.x < self.width && point.y >= 0 && point.y < self.height        
