@@ -98,114 +98,69 @@ impl Cuboid
 
     pub fn difference(&self, other: Cuboid) -> Option<Vec<Cuboid>>
     {
-        self.csg_operation(
-            other,
-            |trial| self.intersects(trial) && !other.intersects(trial))
-    }
+        let mut result = Vec::with_capacity(6);
 
-    pub fn union(&self, other: Cuboid) -> Vec<Cuboid>
-    {
-        self.csg_operation(
-            other,
-            |trial| self.intersects(trial) || other.intersects(trial))
-        .unwrap()
-    }
-
-    fn csg_operation<F>(&self, other: Cuboid, test: F) -> Option<Vec<Cuboid>>
-        where F: Fn(Cuboid) -> bool
-    {
-        let mut result = Vec::new();
-
-        // 1) Find the overlapping sections on each axies,
-        // 2) For each item in the cartesian product (up to 3^3 = 27 parts),
-        // 3) Test them against the test function
-        // 4) If they pass, include in the results
-
-        let x_ranges = Cuboid::csg_axis_sections(self.min.x, self.max.x, other.min.x, other.max.x);
-        let y_ranges = Cuboid::csg_axis_sections(self.min.y, self.max.y, other.min.y, other.max.y);
-        let z_ranges = Cuboid::csg_axis_sections(self.min.z, self.max.z, other.min.z, other.max.z);
-
-        for (((x1, x2), (y1, y2)), (z1, z2)) in x_ranges.iter().copied()
-            .cartesian_product(y_ranges.iter().copied())
-            .cartesian_product(z_ranges.iter().copied())
+        if !self.intersects(other)
         {
-            let sub_cuboid = Cuboid::new(Point3::new(x1, y1, z1), Point3::new(x2, y2, z2));
+            // No intersection - just add ourselves
 
-            if test(sub_cuboid)
-            {
-                result.push(sub_cuboid);
-            }
+            result.push(*self);
         }
+        else if self.completely_contained_within(other)
+        {
+            // We're completely contained within the
+            // other item - nothing is left
+        }
+        else
+        {
+            let mut add_possibility = |x1: i64, x2: i64, y1: i64, y2: i64, z1: i64, z2: i64|
+            {
+                if (x1 <= x2) && (y1 <= y2) && (z1 <= z2)
+                {
+                    result.push(Cuboid::new(Point3::new(x1, y1, z1), Point3::new(x2, y2, z2)));
+                }
+            };
 
+            // There are up to six possibilities
+            // NOTE - stolen off the solutions mega thread :(
+            // https://github.com/ropewalker/advent_of_code_2021/blob/master/src/day22.rs
+            
+            add_possibility(
+                self.min.x, other.min.x - 1,
+                self.min.y, self.max.y,
+                self.min.z, self.max.z);
+
+            add_possibility(
+                other.max.x + 1, self.max.x,
+                self.min.y, self.max.y,
+                self.min.z, self.max.z);
+            
+            add_possibility(
+                i64::max(self.min.x, other.min.x), i64::min(self.max.x, other.max.x),
+                self.min.y, other.min.y - 1,
+                self.min.z, self.max.z);
+
+            add_possibility(
+                i64::max(self.min.x, other.min.x), i64::min(self.max.x, other.max.x),
+                other.max.y + 1, self.max.y,
+                self.min.z, self.max.z);
+            
+            add_possibility(
+                i64::max(self.min.x, other.min.x), i64::min(self.max.x, other.max.x),
+                i64::max(self.min.y, other.min.y), i64::min(self.max.y, other.max.y),
+                self.min.z, other.min.z - 1);
+
+            add_possibility(
+                i64::max(self.min.x, other.min.x), i64::min(self.max.x, other.max.x),
+                i64::max(self.min.y, other.min.y), i64::min(self.max.y, other.max.y),
+                other.max.z + 1, self.max.z);
+        }
+        
         if result.is_empty()
         {
             return None;
         }
         Some(result)
-    }
-
-    fn csg_axis_sections(s_min: i64, s_max: i64, o_min: i64, o_max: i64) -> Vec<(i64, i64)>
-    {
-        let mut result = Vec::with_capacity(3);
-
-        if (s_min == o_min) && (s_max == o_max)
-        {
-            // Exactly the same span - just add this one
-            result.push((s_min, s_max));
-        }
-        else if (o_max < s_min) || (s_max < o_min)
-        {
-            // They don't overlap - return two separate spans
-            result.push((s_min, s_max));
-            result.push((o_min, o_max));
-        }
-        else
-        {
-            // They overlap in some way.
-            // First, sort so that s-min is the smallest
-
-            let (s_min, s_max, o_min, o_max) = if s_min <= o_min
-            {
-                (s_min, s_max, o_min, o_max)
-            }
-            else
-            {
-                (o_min, o_max, s_min, s_max)
-            };
-
-            // If s_min and o_min are not the same,
-            // the include this segment
-
-            if s_min != o_min
-            {
-                result.push((s_min, o_min - 1));
-            }
-            
-            // We're now up to o_min.
-            // Include the next section to the minimum of
-            // s_max and o_max
-
-            result.push((o_min, i64::min(s_max, o_max)));
-
-            // Now, if s_max and o_max aren't the same
-            // we need to add the range after the min
-            // up to the max
-
-            if s_max != o_max
-            {
-                result.push((
-                    i64::min(s_max, o_max) + 1,
-                    i64::max(s_max, o_max)));
-            }
-
-            // There must be at least two entries.
-            // Both s_min == o_min and s_max == o_max was
-            // handled above as a special case.
-
-            assert!(result.len() >= 2);
-        }
-
-        result
     }
 }
 
