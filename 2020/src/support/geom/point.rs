@@ -1,4 +1,4 @@
-#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
+#[derive(Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Point
 {
     // Points are cartesian co-ordinates.
@@ -106,6 +106,14 @@ impl Point
         assert!(ang >= 0.0 && ang < (2.0 * std::f64::consts::PI));
 
         ang.to_degrees()
+    }
+}
+
+impl std::fmt::Debug for Point
+{
+    fn fmt(&self, fmt: &mut std::fmt::Formatter) -> std::fmt::Result
+    {
+        fmt.write_fmt(format_args!("({}, {})", self.x, self.y))
     }
 }
 
