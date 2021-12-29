@@ -1,8 +1,8 @@
 use crate::support::*;
 use std::collections::{ VecDeque, HashMap };
 
-const EXAMPLE: (usize, usize) = (4, 8);
-const INPUT: (usize, usize) = (7, 5);
+const EXAMPLE: &str = "Player 1 starting position: 4\nPlayer 2 starting position: 8";
+const INPUT: &str = "Player 1 starting position: 7\nPlayer 2 starting position: 5";
 
 struct DeterministicDice
 {
@@ -64,8 +64,19 @@ impl State
     }
 }
 
-fn part_1(input: (usize, usize)) -> usize
+fn parse_input(input: &str) -> (usize, usize)
 {
+    let lines = input_to_lines(input);
+    let (s1,) = scan(&lines[0]).skip_str("Player 1 starting position: ").remaining().parse::<usize>();
+    let (s2,) = scan(&lines[1]).skip_str("Player 2 starting position: ").remaining().parse::<usize>();
+
+    (s1, s2)
+}
+
+fn part_1(input: &str) -> usize
+{
+    let input = parse_input(input);
+
     let mut p1 = State::new(input.0, 0);
     let mut p2 = State::new(input.1, 1);
     let mut dice = DeterministicDice::new();
@@ -151,8 +162,10 @@ fn calc_dirac_num_universes_wins_in(pa: &HashMap<(usize, usize), usize>, pb: &Ha
         .sum()
 }
 
-fn part_2(input: (usize, usize)) -> usize
+fn part_2(input: &str) -> usize
 {
+    let input = parse_input(input);
+    
     let p1_details = calc_dirac_turns_score_to_num_ways(State::new(input.0, 0));
     let p2_details = calc_dirac_turns_score_to_num_ways(State::new(input.1, 1));
 
