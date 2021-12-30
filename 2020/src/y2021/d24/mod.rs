@@ -28,7 +28,7 @@ fn parse_rounds(input: &str) -> Vec<Round>
 
     let mut div = 0;
     let mut cx = 0;
-    let mut cy = 0;
+    let mut cy;
 
     for round_num in 0..14
     {

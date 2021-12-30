@@ -11,6 +11,7 @@ pub struct Rect
 
 impl Rect
 {
+    #[allow(dead_code)]
     pub fn new(p1: Point, p2: Point) -> Self
     {
         Rect
@@ -34,37 +35,44 @@ impl Rect
         }
     }
 
+    #[allow(dead_code)]
     pub fn get_min_x(&self) -> i64
     {
         self.min_x
     }
 
+    #[allow(dead_code)]
     pub fn get_min_y(&self) -> i64
     {
         self.min_y
     }
 
+    #[allow(dead_code)]
     pub fn get_max_x(&self) -> i64
     {
         self.max_x
     }
 
+    #[allow(dead_code)]
     pub fn get_max_y(&self) -> i64
     {
         self.max_y
     }
 
+    #[allow(dead_code)]
     pub fn area(&self) -> i64
     {
         (self.max_x - self.min_x) * (self.max_y - self.min_y)
     }
 
+    #[allow(dead_code)]
     pub fn perimeter(&self) -> i64
     {
         2 * (self.max_x - self.min_x)
             + 2 * (self.max_y - self.min_y)        
     }
 
+    #[allow(dead_code)]
     pub fn intersection(&self, other: Rect) -> Option<Self>
     {
         let max_min_x = i64::max(self.min_x, other.min_x);

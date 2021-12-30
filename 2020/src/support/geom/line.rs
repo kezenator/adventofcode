@@ -27,6 +27,7 @@ impl Line
         (*self).into()
     }
 
+    #[allow(dead_code)]
     pub fn num_points(&self) -> i64
     {
         self.equation().num_points()

@@ -1,4 +1,3 @@
-use itertools::Itertools;
 use crate::support::geom::Point3;
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
@@ -48,6 +47,7 @@ impl Cuboid
         other.completely_contains(*self)
     }
 
+    #[allow(dead_code)]
     pub fn intersection(&self, other: Cuboid) -> Option<Cuboid>
     {
         let max_min_x = i64::max(self.min.x, other.min.x);

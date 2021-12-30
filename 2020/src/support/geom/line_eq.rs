@@ -71,11 +71,13 @@ impl From<Line> for LineEquation
 
 impl LineEquation
 {
+    #[allow(dead_code)]
     pub fn num_points(&self) -> i64
     {
         self.num_points
     }
 
+    #[allow(dead_code)]
     pub fn point_at_index(&self, i: i64) -> Point
     {
         self.start + (i * self.dir)

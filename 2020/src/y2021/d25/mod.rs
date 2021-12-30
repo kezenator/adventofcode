@@ -70,8 +70,5 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(INPUT),
             expected: 353,
         })
-        .part_2(|| Answer {
-            calculated: "MERRY XMAS!",
-            expected: "MERRY XMAS!",
-        })
+        .final_gift()
 }

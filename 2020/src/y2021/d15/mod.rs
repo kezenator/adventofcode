@@ -1,6 +1,4 @@
 use crate::support::*;
-use std::collections::HashMap;
-use pathfinding::prelude::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
 const INPUT: &str = include_str!("input.txt");

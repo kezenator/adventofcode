@@ -31,7 +31,6 @@ fn parse(input: &str) -> Vec<(bool, Cuboid)>
 fn points_after_operations(ops: Vec<(bool, Cuboid)>) -> i64
 {
     let mut on_regions: Vec<Cuboid> = Vec::new();
-    let mut num_remaining = ops.len();
 
     for (on, region) in ops
     {
