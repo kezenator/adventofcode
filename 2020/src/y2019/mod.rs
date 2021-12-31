@@ -13,6 +13,7 @@ mod d08;
 mod d09;
 mod d10;
 mod d11;
+mod d12;
 mod d13;
 mod d22;
 mod d23;
@@ -33,6 +34,7 @@ pub fn puzzles() -> PuzzleYear
         .with(d09::puzzles())
         .with(d10::puzzles())
         .with(d11::puzzles())
+        .with(d12::puzzles())
         .with(d13::puzzles())
         .with(d22::puzzles())
         .with(d23::puzzles())

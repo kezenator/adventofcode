@@ -172,6 +172,11 @@ impl<'a, T> ScanParseFinal<'a, T>
 
         new_tuple
     }
+
+    pub fn ignore(self) -> T
+    {
+        self.tuple
+    }
 }
 
 #[cfg(test)]
