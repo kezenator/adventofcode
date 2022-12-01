@@ -244,3 +244,31 @@ Notes on each day:
     before Christmas. Can't guarantee I will do puzzles from here on in.
 20. Easy puzzle. Going to do it. Messed up the inifinite and needed to
     look at the hints. Don't care. Need to get other Christmas stuff done.
+
+## 2022
+
+Well another immense year on the personal front,
+including a new house. Very busy at the start of the
+month and some of the initial days will definately be
+late.
+
+Going to do rust again, with the same framework.
+There have been some real improvements in the Visual Studio
+Code Rust plugin which now more clearly displays the types
+in e.g. iterator chains. Hopefully this will stop me getting
+stuck with a missing reference or pointer like I have
+in previous years.
+
+Still in eastern Australia - so puzzles are released at 3PM.
+
+My results (for days I was able to start at 3PM):
+| Day | Part 1             | Part 2            | 3PM Start | Notes                                         |
+|-----|--------------------|-------------------|-----------|-----------------------------------------------|
+| 1   | 01:06:12 / 13639   | 01:10:43 / 12939  | No        | Late start due to moving stuff                |
+
+Notes on each day:
+1.  Late starting as I dropped off some flowers to some people
+    who have been helping me out lately.
+    Goot first puzzle. Very easy solution with the framework
+    I have - including "input_to_groups".
+    Easy to extend solution for both parts.
