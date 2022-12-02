@@ -42,6 +42,6 @@ pub fn puzzles() -> PuzzleDay
         })
         .part_2(|| Answer {
             calculated: part_2(INPUT),
-            expected: 1486,
+            expected: 200044,
         })
 }

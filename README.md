@@ -262,9 +262,10 @@ in previous years.
 Still in eastern Australia - so puzzles are released at 3PM.
 
 My results (for days I was able to start at 3PM):
-| Day | Part 1             | Part 2            | 3PM Start | Notes                                         |
-|-----|--------------------|-------------------|-----------|-----------------------------------------------|
-| 1   | 01:06:12 / 13639   | 01:10:43 / 12939  | No        | Late start due to moving stuff                |
+| Day | Part 1             | Part 2            | 3PM Start | Notes                                           |
+|-----|--------------------|-------------------|-----------|-------------------------------------------------|
+| 1   | 01:06:12 / 13639   | 01:10:43 / 12939  | No        | Late start due to moving stuff                  |
+| 2   | 16:37:07 / 108073  | 16:49:04 / 101899 | No        | OMG - took me 35 minutes getting back into Rust |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -272,3 +273,8 @@ Notes on each day:
     Goot first puzzle. Very easy solution with the framework
     I have - including "input_to_groups".
     Easy to extend solution for both parts.
+2.  What a disaster. Busy day at work, so not done
+    until the next morning. I'm out of practise in Rust,
+    and it took 35 minutes. Just converting a character to
+    an integer took my 5 minutes to find.
+    Anyway - done.
