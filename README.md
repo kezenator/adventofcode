@@ -264,8 +264,9 @@ Still in eastern Australia - so puzzles are released at 3PM.
 My results (for days I was able to start at 3PM):
 | Day | Part 1             | Part 2            | 3PM Start | Notes                                           |
 |-----|--------------------|-------------------|-----------|-------------------------------------------------|
-| 1   | 01:06:12 / 13639   | 01:10:43 / 12939  | No        | Late start due to moving stuff                  |
+| 1   | 01:06:12 /  13639  | 01:10:43 /  12939 | No        | Late start due to moving stuff                  |
 | 2   | 16:37:07 / 108073  | 16:49:04 / 101899 | No        | OMG - took me 35 minutes getting back into Rust |
+| 3   | 00:11:49 /   3662  | 00:34:51 /   7801 | Yes       | OMG - Rust itertools chunks is hard to use      |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -278,3 +279,7 @@ Notes on each day:
     and it took 35 minutes. Just converting a character to
     an integer took my 5 minutes to find.
     Anyway - done.
+3.  Such an easy problem. I could not work out how to use
+    Rust itertools "chunks" for part two to split into
+    groups of 3. Lost a good 15 minutes here.
+    Eventually gave up and wrote an iterative loop.
