@@ -35,24 +35,16 @@ fn part_1(input: &str) -> usize
 
 fn part_2(input: &str) -> usize
 {
-    let lines = input_to_lines(input)
+    input_to_lines(input)
         .iter()
         .map(|l| l.chars().collect::<Vec<char>>())
-        .collect::<Vec<Vec<char>>>();
-
-    let mut i = 0;
-    let mut sum = 0;
-
-    while i < lines.len()
-    {
-        sum += common_chars(&lines[i], &common_chars(&lines[i+1], &lines[i+2]))
-            .iter()
-            .map(|c| to_priority(*c))
-            .sum::<usize>();
-        i += 3;
-    }
-
-    sum
+        .collect::<Vec<Vec<char>>>()
+        .chunks(3)
+        .into_iter()
+        .map(|g| common_chars(&g[0], &common_chars(&g[1], &g[2])))
+        .flatten()
+        .map(|g| to_priority(g))
+        .sum::<usize>()
 }
 
 pub fn puzzles() -> PuzzleDay
