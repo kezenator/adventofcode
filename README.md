@@ -267,6 +267,11 @@ My results (for days I was able to start at 3PM):
 | 1   | 01:06:12 /  13639  | 01:10:43 /  12939 | No        | Late start due to moving stuff                  |
 | 2   | 16:37:07 / 108073  | 16:49:04 / 101899 | No        | OMG - took me 35 minutes getting back into Rust |
 | 3   | 00:11:49 /   3662  | 00:34:51 /   7801 | Yes       | OMG - Rust itertools chunks is hard to use      |
+| 4   | -                  | -                 | 9th       | Bit dull. But I guess the first parsing one.    |
+| 5   | -                  | -                 | 9th       | Great puzzle. Stack management.                 |
+| 6   | -                  | -                 | 9th       | OK. Not particularly fun.                       |
+| 7   | -                  | -                 | 9th       | Interesting. Rust tricked me up.                |
+| 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.             |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -283,3 +288,15 @@ Notes on each day:
     Rust itertools "chunks" for part two to split into
     groups of 3. Lost a good 15 minutes here.
     Eventually gave up and wrote an iterative loop.
+4.  Big few days. Only getting back to this on the 9th December.
+    Really boring puzzle. But I guess it's the first one
+    to test parsing skils.
+5.  Really fun puzzle. I liked this one. Glad I got it correct
+    on the first go with no errors.
+6.  Yeah not really fun. Rust "windows" makes this easy.
+7.  Interesting puzzle. I got tricked up a lot re-learning
+    rust Rc and RefCell and where you need to clone the Rc
+    and details like that.
+8.  OK little puzzle. Just brute-forced it via two separate
+    implementations to start with. Refactored into a shared
+    algorithm afterwards - but don't think it's very readable.
