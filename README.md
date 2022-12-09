@@ -272,6 +272,7 @@ My results (for days I was able to start at 3PM):
 | 6   | -                  | -                 | 9th       | OK. Not particularly fun.                       |
 | 7   | -                  | -                 | 9th       | Interesting. Rust tricked me up.                |
 | 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.             |
+| 9   | 00:35:09 /   4969  | 00:49:42 /   3314 | Yes       | ARGH! Slow part 1.                              |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -300,3 +301,6 @@ Notes on each day:
 8.  OK little puzzle. Just brute-forced it via two separate
     implementations to start with. Refactored into a shared
     algorithm afterwards - but don't think it's very readable.
+9.  Interesting puzzle. I totally stuffed up the moving algorithm.
+    Finally got there. Not impressed - but just goes to show how
+    slow perhaps I am this week.
