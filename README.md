@@ -274,6 +274,7 @@ My results (for days I was able to start at 3PM):
 | 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.             |
 | 9   | 00:35:09 /   4969  | 00:49:42 /   3314 | Yes       | ARGH! Slow part 1.                              |
 | 10  | 20:02:02 /  50631  | 20:19:56 /  46677 | No        | Hung over after Xmas parties. Not interested.   |
+| 11  | 02:17:41 /  10546  | 02:30:54 /   7163 | No        | Good puzzle. Happy I recognised % lcm quickly.  |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -308,3 +309,12 @@ Notes on each day:
 10. OK Not really fun. At this stage, I'm not 100% sure if this
     comms device CPU and CRT is going to be used again this year
     or not.
+11. Good puzzle. Didn't start at 3PM as I was having beers in the
+    pool. That's a good excuse. A lot of parsing - which I always
+    do too well to be quick. I recognised that the maths could be
+    done modulus the LCM of the divide tests (which all looked small
+    and prime) - but I got tricked up with part 1. I tried adding 3
+    into the LCM calculations - but then realized that the divide by
+    three only happens when there's no overflow - so I only have to do
+    the working MOD the LCM in part 2. Still took 15 minutes... when
+    the winner only took 2 minutes to do this.
