@@ -273,6 +273,7 @@ My results (for days I was able to start at 3PM):
 | 7   | -                  | -                 | 9th       | Interesting. Rust tricked me up.                |
 | 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.             |
 | 9   | 00:35:09 /   4969  | 00:49:42 /   3314 | Yes       | ARGH! Slow part 1.                              |
+| 10  | 20:02:02 /  50631  | 20:19:56 /  46677 | No        | Hung over after Xmas parties. Not interested.   |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -304,3 +305,6 @@ Notes on each day:
 9.  Interesting puzzle. I totally stuffed up the moving algorithm.
     Finally got there. Not impressed - but just goes to show how
     slow perhaps I am this week.
+10. OK Not really fun. At this stage, I'm not 100% sure if this
+    comms device CPU and CRT is going to be used again this year
+    or not.
