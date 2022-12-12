@@ -262,19 +262,20 @@ in previous years.
 Still in eastern Australia - so puzzles are released at 3PM.
 
 My results (for days I was able to start at 3PM):
-| Day | Part 1             | Part 2            | 3PM Start | Notes                                           |
-|-----|--------------------|-------------------|-----------|-------------------------------------------------|
-| 1   | 01:06:12 /  13639  | 01:10:43 /  12939 | No        | Late start due to moving stuff                  |
-| 2   | 16:37:07 / 108073  | 16:49:04 / 101899 | No        | OMG - took me 35 minutes getting back into Rust |
-| 3   | 00:11:49 /   3662  | 00:34:51 /   7801 | Yes       | OMG - Rust itertools chunks is hard to use      |
-| 4   | -                  | -                 | 9th       | Bit dull. But I guess the first parsing one.    |
-| 5   | -                  | -                 | 9th       | Great puzzle. Stack management.                 |
-| 6   | -                  | -                 | 9th       | OK. Not particularly fun.                       |
-| 7   | -                  | -                 | 9th       | Interesting. Rust tricked me up.                |
-| 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.             |
-| 9   | 00:35:09 /   4969  | 00:49:42 /   3314 | Yes       | ARGH! Slow part 1.                              |
-| 10  | 20:02:02 /  50631  | 20:19:56 /  46677 | No        | Hung over after Xmas parties. Not interested.   |
-| 11  | 02:17:41 /  10546  | 02:30:54 /   7163 | No        | Good puzzle. Happy I recognised % lcm quickly.  |
+| Day | Part 1             | Part 2            | 3PM Start | Notes                                            |
+|-----|--------------------|-------------------|-----------|--------------------------------------------------|
+| 1   | 01:06:12 /  13639  | 01:10:43 /  12939 | No        | Late start due to moving stuff                   |
+| 2   | 16:37:07 / 108073  | 16:49:04 / 101899 | No        | OMG - took me 35 minutes getting back into Rust  |
+| 3   | 00:11:49 /   3662  | 00:34:51 /   7801 | Yes       | OMG - Rust itertools chunks is hard to use       |
+| 4   | -                  | -                 | 9th       | Bit dull. But I guess the first parsing one.     |
+| 5   | -                  | -                 | 9th       | Great puzzle. Stack management.                  |
+| 6   | -                  | -                 | 9th       | OK. Not particularly fun.                        |
+| 7   | -                  | -                 | 9th       | Interesting. Rust tricked me up.                 |
+| 8   | -                  | -                 | 9th       | Fun little puzzle. Brute forced it.              |
+| 9   | 00:35:09 /   4969  | 00:49:42 /   3314 | Yes       | ARGH! Slow part 1.                               |
+| 10  | 20:02:02 /  50631  | 20:19:56 /  46677 | No        | Hung over after Xmas parties. Not interested.    |
+| 11  | 02:17:41 /  10546  | 02:30:54 /   7163 | No        | Good puzzle. Happy I recognised % lcm quickly.   |
+| 12  | 01:23:10 /   5610  | 01:32:08 /   5399 | No        | First search. Re-wrote part 2 after brute force. |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -318,3 +319,6 @@ Notes on each day:
     three only happens when there's no overflow - so I only have to do
     the working MOD the LCM in part 2. Still took 15 minutes... when
     the winner only took 2 minutes to do this.
+12. First A* search puzzle. First try solved part 1 in 0.2 seconds, so
+    I just let it run for a minute or so to solve part 2. Then re-wrote
+    to search from the top down.
