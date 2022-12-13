@@ -276,6 +276,7 @@ My results (for days I was able to start at 3PM):
 | 10  | 20:02:02 /  50631  | 20:19:56 /  46677 | No        | Hung over after Xmas parties. Not interested.    |
 | 11  | 02:17:41 /  10546  | 02:30:54 /   7163 | No        | Good puzzle. Happy I recognised % lcm quickly.   |
 | 12  | 01:23:10 /   5610  | 01:32:08 /   5399 | No        | First search. Re-wrote part 2 after brute force. |
+| 13  | 03:20:28 /   9814  | 03:27:30 /   9027 | No        | Interesting puzzle.                              |
 
 Notes on each day:
 1.  Late starting as I dropped off some flowers to some people
@@ -322,3 +323,4 @@ Notes on each day:
 12. First A* search puzzle. First try solved part 1 in 0.2 seconds, so
     I just let it run for a minute or so to solve part 2. Then re-wrote
     to search from the top down.
+13. Got tripped up on this one. Not doing well this year.
