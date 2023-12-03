@@ -14,6 +14,17 @@ mod d11;
 mod d12;
 mod d13;
 mod d14;
+mod d15;
+mod d16;
+mod d17;
+mod d18;
+mod d19;
+mod d20;
+mod d21;
+mod d22;
+mod d23;
+mod d24;
+mod d25;
 
 pub fn puzzles() -> PuzzleYear
 {
@@ -32,4 +43,15 @@ pub fn puzzles() -> PuzzleYear
         .with(d12::puzzles())
         .with(d13::puzzles())
         .with(d14::puzzles())
+        .with(d15::puzzles())
+        .with(d16::puzzles())
+        .with(d17::puzzles())
+        .with(d18::puzzles())
+        .with(d19::puzzles())
+        .with(d20::puzzles())
+        .with(d21::puzzles())
+        .with(d22::puzzles())
+        .with(d23::puzzles())
+        .with(d24::puzzles())
+        .with(d25::puzzles())
 }

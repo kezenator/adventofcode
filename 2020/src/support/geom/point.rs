@@ -60,6 +60,15 @@ impl Point
         ]
     }
 
+    pub fn neighbours_8(&self) -> impl Iterator<Item = Point>
+    {
+        let px = self.x.clone();
+        let py = self.y.clone();
+
+        Self::directions_8().into_iter()
+            .map(move |d| Point::new(px + d.x, py + d.y))
+    }
+
     pub fn rotate_90_left(&self) -> Point
     {
         Point::new(-self.y, self.x)

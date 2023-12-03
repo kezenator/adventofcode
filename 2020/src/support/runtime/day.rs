@@ -29,12 +29,15 @@ impl PuzzleDay
 
     pub fn run(&self, runner: PuzzleDayRunner)
     {
-        for example in self.part1_examples.iter()
+        if !runner.part2only()
         {
-            runner.run("Example", example);
-        }
+            for example in self.part1_examples.iter()
+            {
+                runner.run("Example", example);
+            }
 
-        runner.run("Part 1", &self.part1);
+            runner.run("Part 1", &self.part1);
+        }
 
         for example in self.part2_examples.iter()
         {

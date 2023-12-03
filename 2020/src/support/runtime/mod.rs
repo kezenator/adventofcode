@@ -36,14 +36,14 @@ impl PuzzleSet
         self
     }
 
-    pub fn run(&self, year_filter: Option<usize>, day_filter: Option<usize>)
+    pub fn run(&self, year_filter: Option<usize>, day_filter: Option<usize>, part2only: bool)
     {
         for (&year, puzzle_year) in self.years.iter()
         {
             if year_filter.is_none()
                 || year_filter == Some(year)
             {
-                puzzle_year.run(PuzzleYearRunner::new(year, day_filter));
+                puzzle_year.run(PuzzleYearRunner::new(year, day_filter, part2only));
             }
         }
     }
@@ -53,16 +53,18 @@ pub struct PuzzleYearRunner
 {
     year: usize,
     day_filter: Option<usize>,
+    part2only: bool,
 }
 
 impl PuzzleYearRunner
 {
-    fn new(year: usize, day_filter: Option<usize>) -> Self
+    fn new(year: usize, day_filter: Option<usize>, part2only: bool) -> Self
     {
         PuzzleYearRunner
         {
             year,
             day_filter,
+            part2only,
         }
     }
 
@@ -79,6 +81,7 @@ impl PuzzleYearRunner
         {
             _year: self.year,
             _day: day,
+            _part2only: self.part2only,
         }
     }
 }
@@ -87,10 +90,16 @@ pub struct PuzzleDayRunner
 {
     _year: usize,
     _day: usize,
+    _part2only: bool,
 }
 
 impl PuzzleDayRunner
 {
+    pub fn part2only(&self) -> bool
+    {
+        self._part2only
+    }
+
     pub fn run(&self, name: &str, puzzle: &Puzzle)
     {
         let start = Instant::now();

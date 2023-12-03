@@ -7,6 +7,7 @@ mod y2019;
 mod y2020;
 mod y2021;
 mod y2022;
+mod y2023;
 
 use support::*;
 
@@ -20,6 +21,9 @@ struct CmdArgs
     /// The day to run. All days if not specified.
     #[structopt(short, long)]
     day: Option<usize>,
+    /// Run part 2 only
+    #[structopt(short, long)]
+    part2only: bool,
 }
 
 fn main()
@@ -32,7 +36,8 @@ fn main()
         .with(y2020::puzzles())
         .with(y2021::puzzles())
         .with(y2022::puzzles())
+        .with(y2023::puzzles())
     ;
 
-    puzzles.run(args.year, args.day);
+    puzzles.run(args.year, args.day, args.part2only);
 }

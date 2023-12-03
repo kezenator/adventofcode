@@ -56,23 +56,23 @@ fn part_2_top_down(input: &str) -> u64
     // 2) Map each previous target to the number of ways to reach it
     // 3) Sum all of the ways to reach the previous targets
 
-    let ways_to_reach = Memorized::new(
-        move |target, ways_to_reach| -> u64
+    let func = move |target: &u64, ways_to_reach: &Memorized<u64, u64>| -> u64
+    {
+        if *target == 0
         {
-            if *target == 0
-            {
-                1
-            }
-            else
-            {
-                vals.iter()
-                    .filter(|&i| (*i < *target) && ((i + 3) >= *target))
-                    .map(|i| ways_to_reach.get(i))
-                    .sum()
-            }
-        });
+            1
+        }
+        else
+        {
+            vals.iter()
+                .filter(|&i| (*i < *target) && ((i + 3) >= *target))
+                .map(|i| ways_to_reach.get(i))
+                .sum()
+        }
+    };
 
-    ways_to_reach.get(&target)
+    Memorized::new(&func)
+        .get(&target)
 }
 
 fn part_2_bottom_up(input: &str) -> u64

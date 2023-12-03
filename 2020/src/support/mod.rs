@@ -1,3 +1,4 @@
+pub mod alg;
 pub mod chargrid;
 pub mod geom;
 pub mod input;
@@ -8,6 +9,7 @@ pub mod scan;
 pub mod string;
 pub mod tuple_append;
 
+pub use alg::*;
 pub use chargrid::*;
 pub use geom::*;
 pub use input::*;

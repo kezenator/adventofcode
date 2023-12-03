@@ -17,6 +17,21 @@ impl Point3
     {
         self.x.abs() + self.y.abs() + self.z.abs()
     }
+
+    pub fn neighbours_6(&self) -> impl Iterator<Item = Point3>
+    {
+        static NEIGHBOURS: [Point3;6] = [
+            Point3{ x: -1, y: 0, z: 0 },
+            Point3{ x: 1, y: 0, z: 0 },
+            Point3{ x: 0, y: -1, z: 0 },
+            Point3{ x: 0, y: 1, z: 0 },
+            Point3{ x: 0, y: 0, z: -1 },
+            Point3{ x: 0, y: 0, z: 1 },
+        ];
+
+        let offset = self.clone();
+        NEIGHBOURS.iter().map(move |p| offset + *p)
+    }
 }
 
 impl std::fmt::Debug for Point3

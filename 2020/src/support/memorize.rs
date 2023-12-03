@@ -3,30 +3,41 @@ use std::fmt::Debug;
 use std::hash::Hash;
 use std::cell::RefCell;
 
-pub struct Memorized<I, O>
+struct Data<I, O>
     where I: Hash + Eq + Clone + Debug,
         O: Clone + Debug,
-
 {
-    cache: RefCell<HashMap<I, O>>,
-    func: Box<dyn Fn(&I, &Memorized<I, O>) -> O>,
-    debug: bool,
-    indent: RefCell<usize>,
+    cache: HashMap<I, O>,
+    indent: usize,
+    num_memorized: u64,
+    num_calculated: u64,
 }
 
-impl<I, O> Memorized<I, O>
+pub struct Memorized<'a, I, O>
     where I: Hash + Eq + Clone + Debug,
         O: Clone + Debug,
 {
-    pub fn new<F>(func: F) -> Self
-        where F: 'static + Fn(&I, &Memorized<I, O>) -> O
+    func: &'a dyn Fn(&I, &Memorized<'a, I, O>) -> O,
+    debug: bool,
+    data: RefCell<Data<I, O>>,
+}
+
+impl<'a, I, O> Memorized<'a, I, O>
+    where I: Hash + Eq + Clone + Debug,
+        O: Clone + Debug,
+{
+    pub fn new<F>(func: &'a F) -> Self
+        where F: 'a + Fn(&I, &Memorized<'a, I, O>) -> O
     {
         Memorized
         {
-            cache: RefCell::new(HashMap::new()),
-            func: Box::new(func),
+            func,
             debug: false,
-            indent: RefCell::new(0),
+            data: RefCell::new(Data{
+                cache: HashMap::new(),
+                indent: 0,
+                num_memorized: 0,
+                num_calculated: 0}),
         }
     }
 
@@ -40,36 +51,48 @@ impl<I, O> Memorized<I, O>
     pub fn get(&self, input: &I) -> O
     {
         {
-            if let Some(output) = self.cache.borrow().get(input)
+            let mut data = self.data.borrow_mut();
+
+            if let Some(output) = data.cache.get(input).cloned()
             {
+                data.num_memorized += 1;
+
                 if self.debug
                 {
-                    let indent = std::iter::repeat(' ').take(*self.indent.borrow()).collect::<String>();
+                    let indent = vec![' '; data.indent].into_iter().collect::<String>();
                     println!("{}F({:?}) => {:?} (memorized)", indent, input, output);
                 }
 
-                return output.clone();
+                return output;
             }
-        }
 
-        if self.debug
-        {
-            *self.indent.borrow_mut() += 1;
+            data.indent += 1;
         }
 
         let output = (self.func)(input, self);
 
+        let mut data = self.data.borrow_mut();
+
+        data.indent -= 1;
+        data.num_calculated += 1;
+
         if self.debug
         {
-            *self.indent.borrow_mut() -= 1;
-            let indent = std::iter::repeat(' ').take(*self.indent.borrow()).collect::<String>();
-
+            let indent = vec![' '; data.indent].into_iter().collect::<String>();
             println!("{}F({:?}) => {:?} (calculated)", indent, input, output);
         }
 
-        self.cache.borrow_mut().insert(input.clone(), output.clone());
+        data.cache.insert(input.clone(), output.clone());
 
         output
+    }
+
+    pub fn print_stats(&self)
+    {
+        let data = self.data.borrow();
+
+        println!("Memorized:  {}", data.num_memorized);
+        println!("Calculated: {}", data.num_calculated);
     }
 }
 
@@ -77,7 +100,7 @@ impl<I, O> Memorized<I, O>
 fn test_memorized()
 {
     let fibonacchi = Memorized::new(
-        move |target, fibonacchi| -> u64
+        &move |target, fibonacchi| -> u64
         {
             match *target
             {
