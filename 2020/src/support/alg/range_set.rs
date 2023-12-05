@@ -3,6 +3,7 @@ use std::fmt::Debug;
 use super::range_inc::*;
 use itertools::*;
 
+#[derive(Clone)]
 pub struct RangeSet<T: RangeNumber>
 {
     ranges: Vec<RangeInc<T>>,

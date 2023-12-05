@@ -116,6 +116,11 @@ impl<T: RangeNumber> RangeInc<T>
             None
         }
     }
+
+    pub fn contains(&self, value: T) -> bool
+    {
+        self.start <= value && value <= self.end
+    }
 }
 
 impl<T: RangeNumber> Debug for RangeInc<T>
