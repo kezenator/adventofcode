@@ -1,138 +1,151 @@
-use std::iter::{Iterator, IntoIterator};
-use std::fmt::Debug;
 use super::range_inc::*;
 use itertools::*;
+use std::fmt::Debug;
+use std::iter::{IntoIterator, Iterator};
 
-#[derive(Clone)]
-pub struct RangeSet<T: RangeNumber>
-{
+#[derive(Clone, PartialEq, Eq)]
+pub struct RangeSet<T: RangeNumber> {
     ranges: Vec<RangeInc<T>>,
 }
 
-impl<T: RangeNumber> RangeSet<T>
-{
-    pub fn new() -> Self
-    {
+impl<T: RangeNumber> RangeSet<T> {
+    pub fn new() -> Self {
         RangeSet { ranges: Vec::new() }
     }
 
-    pub fn new_from_range(range: RangeInc<T>) -> Self
-    {
-        RangeSet { ranges: vec![range] }
+    pub fn new_from_range(range: RangeInc<T>) -> Self {
+        RangeSet {
+            ranges: vec![range],
+        }
     }
 
-    pub fn all() -> Self
-    {
+    pub fn all() -> Self {
         Self::new_from_range(RangeInc::<T>::all())
     }
 
-    pub fn ranges(&self) -> impl Iterator<Item = RangeInc<T>>
-    {
+    pub fn is_empty(&self) -> bool {
+        self.ranges.is_empty()
+    }
+
+    pub fn count(&self) -> T {
+        let mut result = T::zero();
+
+        for range in self.ranges.iter()
+        {
+            result += (range.end - range.start) + T::one();
+        }
+
+        result
+    }
+
+    pub fn contains_value(&self, value: T) -> bool {
+        self.ranges.iter().any(|r| r.contains(value))
+    }
+
+    pub fn ranges(&self) -> impl Iterator<Item = RangeInc<T>> {
         self.ranges.clone().into_iter()
     }
 
-    pub fn values(&self) -> impl Iterator<Item = T>
-    {
+    pub fn values(&self) -> impl Iterator<Item = T> {
         self.ranges.clone().into_iter().map(|r| r.iter()).flatten()
     }
 
-    pub fn remove_value(&mut self, value: T)
-    {
+    pub fn remove_value(&mut self, value: T) {
         self.remove_range(RangeInc::new_range(value, value));
     }
 
-    pub fn remove_range(&mut self, range: RangeInc<T>)
-    {
-        self.ranges = self.ranges.iter()
+    pub fn remove_range(&mut self, range: RangeInc<T>) {
+        self.ranges = self
+            .ranges
+            .iter()
             .map(|r| r.difference(range).into_iter())
             .flatten()
             .collect_vec();
     }
 
-    pub fn insert_value(&mut self, value: T)
-    {
+    pub fn insert_value(&mut self, value: T) {
         self.insert_range(RangeInc::new_range(value, value))
     }
 
-    pub fn insert_range(&mut self, range: RangeInc<T>)
-    {
+    pub fn insert_range(&mut self, range: RangeInc<T>) {
         self.ranges.push(range);
         self.insert_fixup();
     }
 
-    pub fn insersection_with_range(mut self, range: RangeInc<T>) -> Self
-    {
+    pub fn insert_set(&mut self, set: &RangeSet<T>) {
+        for range in set.ranges.iter() {
+            self.insert_range(*range)
+        }
+    }
+
+    pub fn insersection_with_range(mut self, range: RangeInc<T>) -> Self {
         self.insersect_with_range(range);
         self
     }
 
-    pub fn insersect_with_range(&mut self, range: RangeInc<T>)
-    {
-        self.ranges = self.ranges.iter()
+    pub fn insersect_with_range(&mut self, range: RangeInc<T>) {
+        self.ranges = self
+            .ranges
+            .iter()
             .map(|r| r.intersection(range).into_iter())
             .flatten()
             .collect_vec()
     }
 
-    pub fn inverse(mut self) -> Self
-    {
+    pub fn inverse(mut self) -> Self {
         self.invert();
         self
     }
 
-    pub fn invert(&mut self)
-    {
-        if (self.ranges.is_empty())
-        {
+    pub fn invert(&mut self) {
+        if (self.ranges.is_empty()) {
             self.ranges.push(RangeInc::all());
-        }
-        else // not empty
+        } else
+        // not empty
         {
             let cur_len = self.ranges.len();
 
             let mut new = Vec::new();
             new.reserve(cur_len + 2);
 
-            if (self.ranges[0].start > T::min_value())
-            {
-                new.push(RangeInc::new_range(T::min_value(), self.ranges[0].start - T::one()));
+            if (self.ranges[0].start > T::min_value()) {
+                new.push(RangeInc::new_range(
+                    T::min_value(),
+                    self.ranges[0].start - T::one(),
+                ));
             }
 
-            if (self.ranges.len() >= 2)
-            {
-                for i in 0..(cur_len - 1)
-                {
+            if (self.ranges.len() >= 2) {
+                for i in 0..(cur_len - 1) {
                     new.push(RangeInc::new_range(
                         self.ranges[i].end + T::one(),
-                        self.ranges[i + 1].start - T::one()));
+                        self.ranges[i + 1].start - T::one(),
+                    ));
                 }
             }
 
-            if (self.ranges[cur_len - 1].end < T::max_value())
-            {
-                new.push(RangeInc::new_range(self.ranges[cur_len - 1].end + T::one(), T::max_value()));
+            if (self.ranges[cur_len - 1].end < T::max_value()) {
+                new.push(RangeInc::new_range(
+                    self.ranges[cur_len - 1].end + T::one(),
+                    T::max_value(),
+                ));
             }
 
             self.ranges = new;
         }
     }
 
-    fn insert_fixup(&mut self)
-    {
+    fn insert_fixup(&mut self) {
         let mut new = self.ranges.drain(..).collect_vec();
         self.ranges.clear();
 
         new.sort_by(|a, b| a.start.cmp(&b.start));
 
-        for r in new.into_iter()
-        {
-            match self.ranges.pop()
-            {
+        for r in new.into_iter() {
+            match self.ranges.pop() {
                 None => self.ranges.push(r),
-                Some(o) =>
-                {
-                    for ur in r.union(o)
-                    {
+                Some(o) => {
+                    for ur in r.union(o) {
                         self.ranges.push(ur);
                     }
                 }
@@ -141,37 +154,40 @@ impl<T: RangeNumber> RangeSet<T>
     }
 }
 
-impl<T: RangeNumber> Debug for RangeSet<T>
-{
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result
-    {
+impl<T: RangeNumber> Debug for RangeSet<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_list().entries(self.ranges.iter()).finish()
     }
 }
 
-
 #[cfg(test)]
-mod tests
-{
+mod tests {
     use super::*;
     use crate::support::scan;
 
     fn test_set<T: 'static + RangeNumber + std::str::FromStr>(set: &RangeSet<T>, expected: &str)
-        where T::Err: 'static + std::fmt::Debug
+    where
+        T::Err: 'static + std::fmt::Debug,
     {
-        let ranges = expected.split(",")
+        let ranges = expected
+            .split(",")
             .map(|rs| scan(rs).until("..=").parse::<T>().remaining().parse::<T>())
             .map(|(start, end)| RangeInc::new_range(start, end))
             .collect_vec();
 
         assert_eq!(ranges, set.ranges().collect_vec());
-        assert_eq!(ranges.into_iter().flatten().collect_vec(), set.values().collect_vec());
-        assert_eq!(format!("[{}]", expected).replace(",", ", "), format!("{:?}", set));
+        assert_eq!(
+            ranges.into_iter().flatten().collect_vec(),
+            set.values().collect_vec()
+        );
+        assert_eq!(
+            format!("[{}]", expected).replace(",", ", "),
+            format!("{:?}", set)
+        );
     }
 
     #[test]
-    fn test_range_set()
-    {
+    fn test_range_set() {
         let mut set = RangeSet::<u8>::all();
 
         test_set(&set, "0..=255");

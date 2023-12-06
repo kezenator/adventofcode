@@ -1,12 +1,12 @@
 use std::fmt::Debug;
 use std::hash::Hash;
-use num_traits::{One, Bounded, NumOps, NumAssignOps};
+use num_traits::{One, Bounded, NumOps, NumAssignOps, Zero};
 
-pub trait RangeNumber: Sized + Clone + Copy + Debug + Bounded + One + NumOps + NumAssignOps + PartialEq + Eq + PartialOrd + Ord
+pub trait RangeNumber: Sized + Clone + Copy + Debug + Bounded + Zero + One + NumOps + NumAssignOps + PartialEq + Eq + PartialOrd + Ord
 {
 }
 
-impl<T: Sized + Clone + Copy + Debug + Bounded + One + NumOps + NumAssignOps + PartialEq + Eq + PartialOrd + Ord> RangeNumber for T
+impl<T: Sized + Clone + Copy + Debug + Bounded + Zero + One + NumOps + NumAssignOps + PartialEq + Eq + PartialOrd + Ord> RangeNumber for T
 {
 }
 
