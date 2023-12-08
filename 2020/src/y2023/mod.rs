@@ -6,6 +6,7 @@ mod d03;
 mod d04;
 mod d05;
 mod d06;
+mod d07;
 
 pub fn puzzles() -> PuzzleYear
 {
@@ -16,4 +17,5 @@ pub fn puzzles() -> PuzzleYear
         .with(d04::puzzles())
         .with(d05::puzzles())
         .with(d06::puzzles())
+        .with(d07::puzzles())
 }
