@@ -1,6 +1,4 @@
 use crate::support::*;
-use itertools::*;
-use pathfinding::prelude::directions::E;
 use std::collections::HashMap;
 
 const EXAMPLE: &str = include_str!("example.txt");

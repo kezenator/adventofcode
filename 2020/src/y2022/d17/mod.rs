@@ -96,6 +96,7 @@ impl Board
                     .unwrap_or(0)
     }
 
+    #[allow(unused)]
     fn to_char_grid(&self) -> CharGrid
     {
         CharGrid::new_from_points(self.filled
@@ -127,7 +128,7 @@ impl Board
 
         let start_jet_index = self.jet_index;
 
-        while true
+        loop
         {
             // Push by jet
             let jet_char = self.jet_patten[self.jet_index];
@@ -149,7 +150,7 @@ impl Board
             // Fall
             let trial_fall_pos = Point::new(cur_pos.x, cur_pos.y - 1);
             
-            if (self.can_place_rock(rock_index, trial_fall_pos))
+            if self.can_place_rock(rock_index, trial_fall_pos)
             {
                 cur_pos = trial_fall_pos;
             }
@@ -235,7 +236,7 @@ impl Board
             remaining -= 5;
         }
 
-        if (self.cycle_time_in_blocks.is_some())
+        if self.cycle_time_in_blocks.is_some()
         {
             let num_cycles = remaining / self.cycle_time_in_blocks.unwrap();
             remaining = remaining % self.cycle_time_in_blocks.unwrap();

@@ -8,6 +8,7 @@ pub mod transform3;
 
 pub use cuboid::Cuboid;
 pub use line::Line;
+#[allow(unused)]
 pub use line_eq::LineEquation;
 pub use point::Point;
 pub use point3::Point3;

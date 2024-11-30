@@ -1,6 +1,5 @@
 use crate::support::*;
 use itertools::*;
-use pathfinding::utils::absdiff;
 
 const EXAMPLE: &str = include_str!("example.txt");
 

@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use crate::support::*;
-use itertools::*;
 
 const EXAMPLE1: &str = include_str!("example1.txt");
 const EXAMPLE2: &str = include_str!("example2.txt");
@@ -72,7 +71,6 @@ fn count_crossings<FExtract: Fn(&Point) -> i64, FBuild: Fn(i64) -> Point>(map: &
 {
     let mut inc_count = 0;
     let mut dec_count = 0;
-    let mut sum = 0;
 
     for i in 0..extract(&point)
     {
@@ -86,7 +84,6 @@ fn count_crossings<FExtract: Fn(&Point) -> i64, FBuild: Fn(i64) -> Point>(map: &
             for dir in junction_dirs
             {
                 let dir = extract(&Point::new(dir.y, dir.x));
-                sum += dir;
                 if dir > 0 { inc_count += 1; }
                 if dir < 0 { dec_count += 1; }
             }

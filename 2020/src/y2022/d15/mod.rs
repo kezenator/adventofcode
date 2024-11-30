@@ -1,5 +1,4 @@
 use crate::support::*;
-use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
 

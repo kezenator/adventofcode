@@ -34,7 +34,7 @@ impl From<Vec<usize>> for Rank
         value.sort();
 
         let mut groups = value.into_iter()
-            .group_by(|v| *v)
+            .chunk_by(|v| *v)
             .into_iter()
             .map(|(key, it)| (key, it.count()))
             .collect::<BTreeMap::<_, _>>();

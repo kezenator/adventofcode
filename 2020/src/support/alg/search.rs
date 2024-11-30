@@ -2,6 +2,7 @@ pub use std::cmp::Ordering;
 use std::collections::VecDeque;
 use std::fmt::Debug;
 
+#[allow(unused)]
 #[derive(PartialEq, Eq, PartialOrd, Ord)]
 pub enum SearchDebugLevel
 {

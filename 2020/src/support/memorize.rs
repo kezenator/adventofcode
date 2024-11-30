@@ -87,6 +87,7 @@ impl<'a, I, O> Memorized<'a, I, O>
         output
     }
 
+    #[allow(unused)]
     pub fn print_stats(&self)
     {
         let data = self.data.borrow();

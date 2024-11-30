@@ -55,7 +55,7 @@ impl InputCache
             // Need to do a HTTP GET to download the input
             let value = load(year, day, &self.cookie);
 
-            if (!dir.is_dir())
+            if !dir.is_dir()
             {
                 std::fs::create_dir(dir)
                     .expect("Cannot create year directory");

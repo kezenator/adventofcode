@@ -36,7 +36,6 @@ fn start_end(input: &str) -> (Point, Point)
     let grid = CharGrid::new_from_input(input, '#');
     let width = grid.get_width();
     let height = grid.get_height();
-    let input = parse(input);
     let start = Point::new(1, 0);
     let end = Point::new(width - 2, height - 1);
 

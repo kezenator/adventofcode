@@ -23,6 +23,7 @@ impl<T: RangeNumber> RangeSet<T> {
         Self::new_from_range(RangeInc::<T>::all())
     }
 
+    #[allow(unused)]
     pub fn is_empty(&self) -> bool {
         self.ranges.is_empty()
     }
@@ -38,6 +39,7 @@ impl<T: RangeNumber> RangeSet<T> {
         result
     }
 
+    #[allow(unused)]
     pub fn contains_value(&self, value: T) -> bool {
         self.ranges.iter().any(|r| r.contains(value))
     }
@@ -50,6 +52,7 @@ impl<T: RangeNumber> RangeSet<T> {
         self.ranges.clone().into_iter().map(|r| r.iter()).flatten()
     }
 
+    #[allow(unused)]
     pub fn remove_value(&mut self, value: T) {
         self.remove_range(RangeInc::new_range(value, value));
     }
@@ -72,6 +75,7 @@ impl<T: RangeNumber> RangeSet<T> {
         self.insert_fixup();
     }
 
+    #[allow(unused)]
     pub fn insert_set(&mut self, set: &RangeSet<T>) {
         for range in set.ranges.iter() {
             self.insert_range(*range)
@@ -98,7 +102,7 @@ impl<T: RangeNumber> RangeSet<T> {
     }
 
     pub fn invert(&mut self) {
-        if (self.ranges.is_empty()) {
+        if self.ranges.is_empty() {
             self.ranges.push(RangeInc::all());
         } else
         // not empty
@@ -108,14 +112,14 @@ impl<T: RangeNumber> RangeSet<T> {
             let mut new = Vec::new();
             new.reserve(cur_len + 2);
 
-            if (self.ranges[0].start > T::min_value()) {
+            if self.ranges[0].start > T::min_value() {
                 new.push(RangeInc::new_range(
                     T::min_value(),
                     self.ranges[0].start - T::one(),
                 ));
             }
 
-            if (self.ranges.len() >= 2) {
+            if self.ranges.len() >= 2 {
                 for i in 0..(cur_len - 1) {
                     new.push(RangeInc::new_range(
                         self.ranges[i].end + T::one(),
@@ -124,7 +128,7 @@ impl<T: RangeNumber> RangeSet<T> {
                 }
             }
 
-            if (self.ranges[cur_len - 1].end < T::max_value()) {
+            if self.ranges[cur_len - 1].end < T::max_value() {
                 new.push(RangeInc::new_range(
                     self.ranges[cur_len - 1].end + T::one(),
                     T::max_value(),

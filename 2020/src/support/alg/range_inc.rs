@@ -35,6 +35,7 @@ impl<T: RangeNumber> RangeInc<T>
         RangeIncIter { start: self.start, end: self.end, finished: false }
     }
 
+    #[allow(unused)]
     pub fn extent(&self, range: RangeInc<T>) -> RangeInc<T>
     {
         RangeInc::new_range(self.start.min(range.start), self.end.max(range.end))
@@ -117,6 +118,7 @@ impl<T: RangeNumber> RangeInc<T>
         }
     }
 
+    #[allow(unused)]
     pub fn contains(&self, value: T) -> bool
     {
         self.start <= value && value <= self.end

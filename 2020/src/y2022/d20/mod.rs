@@ -1,7 +1,5 @@
 use crate::support::*;
 use itertools::*;
-use std::collections::HashSet;
-use pathfinding::directed::bfs::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
 
@@ -17,7 +15,7 @@ impl EncryptedFile
     {
         let orig_numbers = input_to_lines_parsed(input);
 
-        let mut shuffled_indexes = (0..orig_numbers.len()).collect_vec();
+        let shuffled_indexes = (0..orig_numbers.len()).collect_vec();
 
         EncryptedFile { orig_numbers, shuffled_indexes }
     }
@@ -27,7 +25,7 @@ impl EncryptedFile
         let mut indexes = self.shuffled_indexes.clone();
         let len = self.orig_numbers.len();
 
-        for r in 0..rounds
+        for _r in 0..rounds
         {
             for i in 0..len
             {

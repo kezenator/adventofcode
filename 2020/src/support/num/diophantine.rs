@@ -15,6 +15,7 @@ impl Quadratic
         Quadratic { a, b, c }
     }
 
+    #[allow(unused)]
     pub fn eval(&self, x: i64) -> i64
     {
         self.a * x * x + self.b * x + self.c

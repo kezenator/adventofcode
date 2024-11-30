@@ -1,5 +1,4 @@
 use crate::support::*;
-use itertools::*;
 use std::collections::{HashMap, HashSet};
 
 const EXAMPLE: &str = include_str!("example.txt");
@@ -26,7 +25,6 @@ fn one_round(input: Vec<Point>, round_num: usize) -> (Vec<Point>, bool)
 
     let input: HashSet<Point> = input.into_iter().collect();
     let mut dests: HashMap<Point, Vec<Point>> = HashMap::new();
-    let mut moved = false;
 
     for elf_pos in input.iter()
     {
@@ -47,7 +45,6 @@ fn one_round(input: Vec<Point>, round_num: usize) -> (Vec<Point>, bool)
 
                 if all_free_in_dir
                 {
-                    moved = true;
                     dest = *elf_pos + dirs[1];
                     break;
                 }

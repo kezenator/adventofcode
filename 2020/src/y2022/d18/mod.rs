@@ -51,7 +51,7 @@ fn surface_area(input: &str, count_inside: bool) -> usize
 
     let mut lava_or_inside_points = points.clone();
 
-    if (!count_inside)
+    if !count_inside
     {
         // For all points - work out if they are inside
         // and if so - also include them in the "not outside" points
