@@ -1,5 +1,6 @@
 use itertools::Itertools;
 use crate::support::*;
+use std::collections::HashSet;
 
 #[derive(Hash, PartialEq, Eq, Clone)]
 pub struct CharGrid
@@ -164,6 +165,60 @@ impl CharGrid
         }
         
         result
+    }
+
+    #[allow(unused)]
+    pub fn find_inside_point(&self) -> Point
+    {
+        for test_p in self.all_points()
+        {
+            if self.get_char(&test_p) == self.default
+            {
+                let search_result = pathfinding::directed::astar::astar(
+                    &test_p,
+                    |p|
+                    {
+                        p.neighbours_4()
+                            .filter(|p| self.get_char(p) == self.default)
+                            .map(|p| (p, 1))
+                    },
+                    |p| p.x.min(p.y).min(self.width - p.x).min(self.height - p.y),
+                    |p| !self.is_point_in_bounds(p));
+
+                if search_result.is_none()
+                {
+                    // This point starts on a default char,
+                    // and there is path off the image only passing
+                    // through inside points
+                    return test_p;
+                }
+            }
+        }
+        unreachable!();
+    }
+
+    #[allow(unused)]
+    pub fn flood_fill(&mut self, point: &Point, fill: char)
+    {
+        let target = self.get_char(point);
+
+        let mut done = HashSet::new();
+        let mut todo = vec![*point];
+
+        while !todo.is_empty()
+        {
+            let mut new_todo = vec![];
+            for p in todo.into_iter()
+            {
+                done.insert(p);
+                if self.is_point_in_bounds(&p) && (self.get_char(&p) == target)
+                {
+                    self.put_char(&p, fill);
+                    new_todo.extend(p.neighbours_4());
+                }                
+            }
+            todo = new_todo;
+        }
     }
 }
 

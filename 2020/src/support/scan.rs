@@ -140,6 +140,15 @@ impl<'a, T> ScanParse<'a, T>
             remaining: self.remaining,
         }
     }
+
+    pub fn ignore(self) -> ScanTokenize<'a, T>
+    {
+        ScanTokenize::<T>
+        {
+            tuple: self.tuple,
+            remaining: self.remaining,
+        }
+    }
 }
 
 pub struct ScanParseFinal<'a, T>
