@@ -4,7 +4,6 @@ use std::collections::{ HashMap, HashSet };
 const EXAMPLE_1: &str = include_str!("example_1.txt");
 const EXAMPLE_2: &str = include_str!("example_2.txt");
 const EXAMPLE_3: &str = include_str!("example_3.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn parse_moves(input: &str) -> HashMap<String, HashSet<String>>
 {
@@ -110,8 +109,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE_3),
             expected: 226,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3000,
         })
         .example(|| Answer {
@@ -126,8 +125,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2(EXAMPLE_3),
             expected: 3509,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 74222,
         })
 }

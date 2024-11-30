@@ -52,8 +52,6 @@ aaaabbaabbaaaaaaabbbabbbaaabbaabaaa
 babaaabbbaaabaababbaabababaaab
 aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba"#;
 
-const INPUT: &str = include_str!("input.txt");
-
 #[derive(Clone, Debug, PartialEq, Eq)]
 enum Rule
 {
@@ -249,7 +247,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(19)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 2, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 173, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 173, })
         .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 12, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 367, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 367, })
 }

@@ -1,8 +1,6 @@
 use std::collections::{ HashMap, HashSet };
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 struct Map
 {
     doors: HashMap<Point, HashSet<Point>>,
@@ -207,6 +205,6 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: part_1("^ENNWSWW(NEWS|)SSSEEN(WNSE|)EE(SWEN|)NNN$"), expected: 18, })
         .example(|| Answer { calculated: part_1("^ESSWWN(E|NNENN(EESS(WNSE|)SSS|WWWSSSSE(SW|NNNE)))$"), expected: 23, })
         .example(|| Answer { calculated: part_1("^WSSEESWWWNW(S|NENNEEEENN(ESSSSW(NWSW|SSEN)|WSWWN(E|WWS(E|SS))))$"), expected: 31, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 3930, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 8240, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 3930, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 8240, })
 }

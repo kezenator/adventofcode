@@ -1,4 +1,5 @@
 use crate::support::*;
+use itertools::*;
 
 fn increasing(s: &str) -> bool
 {
@@ -42,16 +43,20 @@ fn is_valid_2(password: u64) -> bool
         && has_run(&password, 2)
 }
 
-fn part_1() -> usize
+fn part_1(input: &str) -> usize
 {
-    (236491..713788)
+    let range = input.trim().split('-').map(|s| s.parse::<u64>().unwrap()).collect_vec();
+
+    (range[0]..(range[1]+1))
         .filter(|p| is_valid_1(*p))
         .count()
 }
 
-fn part_2() -> usize
+fn part_2(input: &str) -> usize
 {
-    (236491..713788)
+    let range = input.trim().split('-').map(|s| s.parse::<u64>().unwrap()).collect_vec();
+
+    (range[0]..(range[1]+1))
         .filter(|p| is_valid_2(*p))
         .count()
 }
@@ -62,9 +67,9 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: is_valid_1(111111), expected: true, })
         .example(|| Answer { calculated: is_valid_1(223450), expected: false, })
         .example(|| Answer { calculated: is_valid_1(123789), expected: false, })
-        .part_1(|| Answer { calculated: part_1(), expected: 1169, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 1169, })
         .example(|| Answer { calculated: is_valid_2(112233), expected: true, })
         .example(|| Answer { calculated: is_valid_2(123444), expected: false, })
         .example(|| Answer { calculated: is_valid_2(111122), expected: true, })
-        .part_2(|| Answer { calculated: part_2(), expected: 757, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 757, })
 }

@@ -2,7 +2,6 @@ use crate::support::*;
 use pathfinding::prelude::*;
 
 const EXAMPLE: &str = "2199943210\n3987894921\n9856789892\n8767896789\n9899965678";
-const INPUT: &str = include_str!("input.txt");
 
 const OUTSIDE: char = '9';
 
@@ -98,16 +97,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 15,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 526,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 1134,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 1123524,
         })
 }

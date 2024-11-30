@@ -2,12 +2,11 @@ use crate::support::*;
 use std::collections::HashSet;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 // A square box
-const PART_2_ANSWER_EXAMPLE: &str = "#####\n#...#\n#...#\n#...#\n#####";
+const PART_2_ANSWER_FOR_EXAMPLE: &str = "#####\n#...#\n#...#\n#...#\n#####";
 // "HKUJGAJZ"
-const PART_2_ANSWER_INPUT: &str = "#..#.#..#.#..#...##..##...##....##.####\n#..#.#.#..#..#....#.#..#.#..#....#....#\n####.##...#..#....#.#....#..#....#...#.\n#..#.#.#..#..#....#.#.##.####....#..#..\n#..#.#.#..#..#.#..#.#..#.#..#.#..#.#...\n#..#.#..#..##...##...###.#..#..##..####";
+const PART_2_ANSWER_FOR_INPUT: &str = "#..#.#..#.#..#...##..##...##....##.####\n#..#.#.#..#..#....#.#..#.#..#....#....#\n####.##...#..#....#.#....#..#....#...#.\n#..#.#.#..#..#....#.#.##.####....#..#..\n#..#.#.#..#..#.#..#.#..#.#..#.#..#.#...\n#..#.#..#..##...##...###.#..#..##..####";
 
 enum Fold
 {
@@ -105,16 +104,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 17,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 621,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
-            expected: PART_2_ANSWER_EXAMPLE,
+            expected: PART_2_ANSWER_FOR_EXAMPLE,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
-            expected: PART_2_ANSWER_INPUT,
+        .part_2(|input| Answer {
+            calculated: part_2(input),
+            expected: PART_2_ANSWER_FOR_INPUT,
         })
 }

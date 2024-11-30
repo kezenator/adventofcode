@@ -1,7 +1,5 @@
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 //  **    ** **** *    ***
 // *  *    *    * *    *  *
 // *       *   *  *    *  *
@@ -139,14 +137,14 @@ fn render_image(input: &str, width: usize, height: usize) -> String
     render_paint_points(&paints)
 }
 
-fn part_1() -> usize
+fn part_1(input: &str) -> usize
 {
-    get_1_x_2_for_min_0(INPUT, 25, 6)
+    get_1_x_2_for_min_0(input, 25, 6)
 }
 
-fn part_2() -> String
+fn part_2(input: &str) -> String
 {
-    render_image(INPUT, 25, 6)
+    render_image(input, 25, 6)
 }
 
 pub fn puzzles() -> PuzzleDay
@@ -156,16 +154,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: get_1_x_2_for_min_0("123456789012", 3, 2),
             expected: 1,
         })
-        .part_1(|| Answer {
-            calculated: part_1(),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 2286,
         })
         .example(|| Answer {
             calculated: render_image("0222112222120000", 2, 2),
             expected: " *\n* \n",
         })
-        .part_2(|| Answer {
-            calculated: part_2(),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: PART_2_ANSWER,
         })
 }

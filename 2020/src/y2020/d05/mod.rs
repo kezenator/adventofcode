@@ -1,7 +1,5 @@
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 fn seat_id(s: &str) -> u64
 {
     s.chars().map(
@@ -47,6 +45,6 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: seat_id("BFFFBBFRRR"), expected: 567, })
         .example(|| Answer { calculated: seat_id("FFFBBBFRRR"), expected: 119, })
         .example(|| Answer { calculated: seat_id("BBFFBBFRLL"), expected: 820, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 978, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 727, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 978, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 727, })
 }

@@ -2,7 +2,6 @@ use std::collections::{HashMap, HashSet};
 use crate::support::*;
 
 const EXAMPLE_1: &str = "class: 1-3 or 5-7\nrow: 6-11 or 33-44\nseat: 13-40 or 45-50\n\nyour ticket:\n7,1,14\n\nnearby tickets:\n7,3,47\n40,4,50\n55,2,20\n38,6,12";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug)]
 struct Class
@@ -179,6 +178,6 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(16)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 71, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 27911, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 737176602479i64, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 27911, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 737176602479i64, })
 }

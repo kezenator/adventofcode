@@ -3,13 +3,17 @@ use std::time::Instant;
 
 mod answer;
 mod day;
+mod input;
 mod year;
 
 pub use answer::*;
 pub use day::*;
 pub use year::*;
 
-pub type Puzzle = Box<dyn Fn() -> StrAnswer>;
+pub type PuzzleExample = Box<dyn Fn() -> StrAnswer>;
+pub type PuzzleWithInput = Box<dyn Fn(&str) -> StrAnswer>;
+
+use input::InputCache;
 
 pub struct PuzzleSet
 {
@@ -38,33 +42,37 @@ impl PuzzleSet
 
     pub fn run(&self, year_filter: Option<usize>, day_filter: Option<usize>, part2only: bool)
     {
+        let mut input_cache = InputCache::new();
+
         for (&year, puzzle_year) in self.years.iter()
         {
             if year_filter.is_none()
                 || year_filter == Some(year)
             {
-                puzzle_year.run(PuzzleYearRunner::new(year, day_filter, part2only));
+                puzzle_year.run(PuzzleYearRunner::new(year, day_filter, part2only, &mut input_cache));
             }
         }
     }
 }
 
-pub struct PuzzleYearRunner
+pub struct PuzzleYearRunner<'a>
 {
     year: usize,
     day_filter: Option<usize>,
     part2only: bool,
+    input_cache: &'a mut InputCache,
 }
 
-impl PuzzleYearRunner
+impl<'a> PuzzleYearRunner<'a>
 {
-    fn new(year: usize, day_filter: Option<usize>, part2only: bool) -> Self
+    fn new(year: usize, day_filter: Option<usize>, part2only: bool, input_cache: &'a mut InputCache) -> Self
     {
         PuzzleYearRunner
         {
             year,
             day_filter,
             part2only,
+            input_cache,
         }
     }
 
@@ -73,7 +81,7 @@ impl PuzzleYearRunner
         self.day_filter.is_none() || self.day_filter == Some(day)
     }
 
-    pub fn for_day(&self, day: usize) -> PuzzleDayRunner
+    pub fn for_day(&mut self, day: usize) -> PuzzleDayRunner
     {
         println!("---- {:04} Day {:02} -----------------------------------------", self.year, day);
 
@@ -82,6 +90,7 @@ impl PuzzleYearRunner
             _year: self.year,
             _day: day,
             _part2only: self.part2only,
+            _input: self.input_cache.get(self.year, day),
         }
     }
 }
@@ -91,6 +100,7 @@ pub struct PuzzleDayRunner
     _year: usize,
     _day: usize,
     _part2only: bool,
+    _input: String,
 }
 
 impl PuzzleDayRunner
@@ -100,7 +110,18 @@ impl PuzzleDayRunner
         self._part2only
     }
 
-    pub fn run(&self, name: &str, puzzle: &Puzzle)
+    pub fn run_with_input(&self, name: &str, puzzle: &PuzzleWithInput)
+    {
+        self.run_internal(name, || puzzle(&self._input));
+    }
+
+    pub fn run_example(&self, name: &str, puzzle: &PuzzleExample)
+    {
+        self.run_internal(name, puzzle);
+    }
+
+    fn run_internal<F>(&self, name: &str, puzzle: F)
+        where F: Fn() -> StrAnswer
     {
         let start = Instant::now();
 
@@ -108,7 +129,7 @@ impl PuzzleDayRunner
 
         let duration = Instant::now().duration_since(start);
 
-        print!("[ {:10} ] [ {:3}.{:06} s] => [",
+        print!("[ {:11} ] [ {:3}.{:06} s] => [",
             name,
             duration.as_secs(),
             duration.subsec_micros());

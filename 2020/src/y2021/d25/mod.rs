@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn single_move(grid: &CharGrid, ch: char, dir: Point) -> CharGrid
 {
@@ -66,8 +65,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 58,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 353,
         })
         .final_gift()

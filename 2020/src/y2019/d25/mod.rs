@@ -5,8 +5,6 @@ use itertools::Itertools;
 use crate::support::*;
 use crate::y2019::intcode::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 struct ItemCombiner
 {
     turns: VecDeque<NextTurn>,
@@ -312,11 +310,11 @@ struct Droid
 
 impl Droid
 {
-    pub fn new() -> Self
+    pub fn new(input: &str) -> Self
     {
         Droid
         {
-            comp: Intcode::new_from_input(INPUT),
+            comp: Intcode::new_from_input(input),
             cur_location: None,
             visited_locations: HashMap::new(),
             unvisited_locations: HashSet::new(),
@@ -671,15 +669,15 @@ impl Droid
     }
 }
 
-fn part_1() -> String
+fn part_1(input: &str) -> String
 {
-    let mut droid = Droid::new();
+    let mut droid = Droid::new(input);
     droid.run_part_1()
 }
 
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(25)
-        .part_1(|| Answer { calculated: part_1(), expected: "805306888", })
+        .part_1(|input| Answer { calculated: part_1(input), expected: "805306888", })
         .final_gift()
 }

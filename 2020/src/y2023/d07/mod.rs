@@ -3,7 +3,6 @@ use crate::support::*;
 use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
 enum Rank
@@ -152,16 +151,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 6440,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 249726565,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 5905,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 251135960,
         })
 }

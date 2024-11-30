@@ -1,15 +1,13 @@
 use crate::support::*;
 use crate::y2019::intcode::Intcode;
 
-const INPUT: &str = include_str!("input.txt");
-
-fn run(part_2: bool) -> i64
+fn run(input: &str, part_2: bool) -> i64
 {
     let mut computers: Vec<Intcode> = Vec::new();
 
     for addr in 0..50
     {
-        computers.push(Intcode::new_from_input(INPUT));
+        computers.push(Intcode::new_from_input(input));
         computers.last_mut().unwrap().input(addr);
     }
 
@@ -79,19 +77,19 @@ fn run(part_2: bool) -> i64
     }
 }
 
-fn part_1() -> i64
+fn part_1(input: &str) -> i64
 {
-    run(false)
+    run(input, false)
 }
 
-fn part_2() -> i64
+fn part_2(input: &str) -> i64
 {
-    run(true)
+    run(input, true)
 }
 
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(23)
-        .part_1(|| Answer { calculated: part_1(), expected: 24555, })
-        .part_2(|| Answer { calculated: part_2(), expected: 19463, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 24555, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 19463, })
 }

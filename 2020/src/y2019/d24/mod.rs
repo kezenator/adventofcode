@@ -2,7 +2,6 @@ use std::collections::HashSet;
 use std::fmt::{Debug, Error, Formatter};
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
 const EXAMPLE: &str = "....#\n#..#.\n#..##\n..#..\n#....";
 
 #[derive(PartialEq, Eq, Hash, Clone, Debug)]
@@ -286,7 +285,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(24)
         .example(|| Answer{ calculated: part_1(EXAMPLE), expected: 2129920, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 17863741, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 17863741, })
         .example(|| Answer{ calculated: part_2(EXAMPLE, 10), expected: 99, })
-        .part_2(|| Answer { calculated: part_2(INPUT, 200), expected: 2029, })
+        .part_2(|input| Answer { calculated: part_2(input, 200), expected: 2029, })
 }

@@ -2,7 +2,6 @@ use std::collections::HashSet;
 use crate::support::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn parse_dirs(input: &str) -> Vec<Point>
 {
@@ -152,7 +151,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(24)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 10, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 436, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 436, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 2208, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 4133, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 4133, })
 }

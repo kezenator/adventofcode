@@ -4,7 +4,6 @@ use std::collections::HashSet;
 use pathfinding::directed::bfs::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct EncryptedFile
 {
@@ -94,16 +93,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 3,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3466,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 1623178306i64,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 9995532008348i64,
         })
 }

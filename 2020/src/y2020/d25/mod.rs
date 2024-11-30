@@ -1,7 +1,5 @@
 use crate::support::*;
 
-const INPUT: &str = "10943862\n12721030";
-
 fn public_key_to_loop_size(pub_key: u64) -> u64
 {
     let mut result = 1;
@@ -46,6 +44,6 @@ pub fn puzzles() -> PuzzleDay
     puzzle_day(25)
         .example(|| Answer { calculated: public_key_to_loop_size(5764801), expected: 8, })
         .example(|| Answer { calculated: public_key_to_loop_size(17807724), expected: 11, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 5025281, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 5025281, })
         .final_gift()
 }

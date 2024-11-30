@@ -2,7 +2,6 @@ use itertools::Itertools;
 use crate::support::*;
 
 const EXAMPLE: &str = "389125467";
-const INPUT: &str = "974618352";
 
 fn simulate(input: &str, num_cups: usize, num_moves: usize) -> Vec<usize>
 {
@@ -115,7 +114,7 @@ pub fn puzzles() -> PuzzleDay
     puzzle_day(23)
         .example(|| Answer { calculated: simulate(EXAMPLE, 9, 10).iter().join(""), expected: "192658374", })
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: "67384529", })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: "75893264", })
+        .part_1(|input| Answer { calculated: part_1(input), expected: "75893264", })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 149245887792u64, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 38162588308u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 38162588308u64, })
 }

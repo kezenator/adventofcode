@@ -2,7 +2,6 @@ use crate::support::*;
 use std::ops::Range;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn parse(input: &str) -> Vec<(Range<usize>, Range<usize>)>
 {
@@ -53,16 +52,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 2,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 475,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 4,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 825,
         })
 }

@@ -7,7 +7,6 @@ const EXAMPLE_1: &str = "deal with increment 7\ndeal into new stack\ndeal into n
 const EXAMPLE_2: &str = "cut 6\ndeal with increment 7\ndeal into new stack";
 const EXAMPLE_3: &str = "deal with increment 7\ndeal with increment 9\ncut -2";
 const EXAMPLE_4: &str = "deal into new stack\ncut -2\ndeal with increment 7\ncut 8\ncut -4\ndeal with increment 7\ncut 3\ndeal with increment 9\ndeal with increment 3\ncut -1";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(PartialEq, Eq, Hash, Clone, Debug)]
 struct Function
@@ -189,6 +188,6 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: example(EXAMPLE_2), expected: "3 0 7 4 1 8 5 2 9 6", })
         .example(|| Answer { calculated: example(EXAMPLE_3), expected: "6 3 0 7 4 1 8 5 2 9", })
         .example(|| Answer { calculated: example(EXAMPLE_4), expected: "9 2 5 8 1 4 7 0 3 6", })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 1498, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 0, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 1498, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 0, })
 }

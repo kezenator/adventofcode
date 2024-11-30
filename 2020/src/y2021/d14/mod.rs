@@ -2,7 +2,6 @@ use crate::support::*;
 use std::collections::HashMap;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Input
 {
@@ -118,16 +117,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 1588,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3247,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 2188189693529usize,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 4110568157153usize,
         })
 }

@@ -6,7 +6,6 @@ const EXAMPLE_3: &str = "2 * 3 + (4 * 5)";
 const EXAMPLE_4: &str = "5 + (8 * 3 + 9 + 3 * 4 * 3)";
 const EXAMPLE_5: &str = "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))";
 const EXAMPLE_6: &str = "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 enum Token
@@ -160,12 +159,12 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: eval_1(EXAMPLE_4), expected: 437, })
         .example(|| Answer { calculated: eval_1(EXAMPLE_5), expected: 12240, })
         .example(|| Answer { calculated: eval_1(EXAMPLE_6), expected: 13632, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 12956356593940u64, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 12956356593940u64, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_1), expected: 231, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_2), expected: 51, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_3), expected: 46, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_4), expected: 1445, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_5), expected: 669060, })
         .example(|| Answer { calculated: eval_2(EXAMPLE_6), expected: 23340, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 94240043727614u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 94240043727614u64, })
 }

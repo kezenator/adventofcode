@@ -2,7 +2,6 @@ use std::collections::HashMap;
 use crate::support::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Schematic
 {
@@ -102,16 +101,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 4361,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 535235,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 467835,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 79844424,
         })
 }

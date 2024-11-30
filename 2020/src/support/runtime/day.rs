@@ -1,4 +1,5 @@
-use super::Puzzle;
+use super::PuzzleExample;
+use super::PuzzleWithInput;
 use super::Answer;
 use super::PuzzleDayRunner;
 
@@ -14,10 +15,10 @@ pub fn puzzle_day(day: usize) -> PuzzleDayBuilder
 pub struct PuzzleDay
 {
     day: usize,
-    part1_examples: Vec<Puzzle>,
-    part1: Puzzle,
-    part2_examples: Vec<Puzzle>,
-    part2: Option<Puzzle>,
+    part1_examples: Vec<PuzzleExample>,
+    part1: PuzzleWithInput,
+    part2_examples: Vec<PuzzleExample>,
+    part2: Option<PuzzleWithInput>,
 }
 
 impl PuzzleDay
@@ -33,20 +34,20 @@ impl PuzzleDay
         {
             for example in self.part1_examples.iter()
             {
-                runner.run("Example", example);
+                runner.run_example("Example", example);
             }
 
-            runner.run("Part 1", &self.part1);
+            runner.run_with_input("Part 1", &self.part1);
         }
 
         for example in self.part2_examples.iter()
         {
-            runner.run("Example", example);
+            runner.run_example("Example", example);
         }
         
         if let Some(part2) = &self.part2
         {
-            runner.run("Part 2", &part2);
+            runner.run_with_input("Part 2", &part2);
         }
     }
 }
@@ -54,7 +55,7 @@ impl PuzzleDay
 pub struct PuzzleDayBuilder
 {
     day: usize,
-    part1_examples: Vec<Puzzle>,
+    part1_examples: Vec<PuzzleExample>,
 }
 
 impl PuzzleDayBuilder
@@ -71,13 +72,13 @@ impl PuzzleDayBuilder
     pub fn part_1<T, U, F>(self, puzzle: F) -> PuzzleDayBuilderPart1Done
         where T: 'static + ToString,
             U: 'static + ToString,
-            F: 'static + Fn() -> Answer<T, U>
+            F: 'static + Fn(&str) -> Answer<T, U>
     {
         PuzzleDayBuilderPart1Done
         {
             day: self.day,
             part1_examples: self.part1_examples,
-            part1: Box::new(move || puzzle().into()),
+            part1: Box::new(move |input| puzzle(input).into()),
             part2_examples: Vec::new(),
         }
     }
@@ -86,9 +87,9 @@ impl PuzzleDayBuilder
 pub struct PuzzleDayBuilderPart1Done
 {
     day: usize,
-    part1_examples: Vec<Puzzle>,
-    part1: Puzzle,
-    part2_examples: Vec<Puzzle>,
+    part1_examples: Vec<PuzzleExample>,
+    part1: PuzzleWithInput,
+    part2_examples: Vec<PuzzleExample>,
 }
 
 impl PuzzleDayBuilderPart1Done
@@ -105,7 +106,7 @@ impl PuzzleDayBuilderPart1Done
     pub fn part_2<T, U, F>(self, puzzle: F) -> PuzzleDay
         where T: 'static + ToString,
             U: 'static + ToString,
-            F: 'static + Fn() -> Answer<T, U>
+            F: 'static + Fn(&str) -> Answer<T, U>
     {
         PuzzleDay
         {
@@ -113,7 +114,7 @@ impl PuzzleDayBuilderPart1Done
             part1_examples: self.part1_examples,
             part1: self.part1,
             part2_examples: self.part2_examples,
-            part2: Some(Box::new(move || puzzle().into())),
+            part2: Some(Box::new(move |input| puzzle(input).into())),
         }
     }
 

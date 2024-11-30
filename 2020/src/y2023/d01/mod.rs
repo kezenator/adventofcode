@@ -3,7 +3,6 @@ use itertools::*;
 
 const EXAMPLE1: &str = include_str!("example1.txt");
 const EXAMPLE2: &str = include_str!("example2.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn find_needle(needle: &str, haystack: &Vec<char>, start_index: usize) -> bool
 {
@@ -89,16 +88,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE1),
             expected: 142,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 55607,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE2),
             expected: 281,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 55291,
         })
 }

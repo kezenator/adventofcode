@@ -3,7 +3,6 @@ use std::collections::HashSet;
 
 const EXAMPLE_1: &str = include_str!("example_1.txt");
 const EXAMPLE_2: &str = include_str!("example_2.txt");
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Moon
@@ -164,9 +163,9 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE_2, 100),
             expected: 1940,
         })
-        .part_1(|| Answer
+        .part_1(|input| Answer
         {
-            calculated: part_1(INPUT, 1000),
+            calculated: part_1(input, 1000),
             expected: 10944,
         })
         .example(|| Answer
@@ -174,8 +173,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2(EXAMPLE_1),
             expected: 2772,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 484244804958744i64,
         })
 }

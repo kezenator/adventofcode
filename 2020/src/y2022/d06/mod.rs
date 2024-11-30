@@ -2,7 +2,6 @@ use crate::support::*;
 use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn all_different(packet: &&[char]) -> bool
 {
@@ -42,16 +41,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 7,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 1816,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 19,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 2625,
         })
 }

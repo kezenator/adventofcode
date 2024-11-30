@@ -5,7 +5,6 @@ use std::cell::*;
 use std::collections::HashMap;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct DirStruct
 {
@@ -158,16 +157,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 95437,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 1444896,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 24933642,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 404395,
         })
 }

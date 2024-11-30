@@ -2,7 +2,6 @@ use crate::support::*;
 use std::collections::{ VecDeque, HashMap };
 
 const EXAMPLE: &str = "Player 1 starting position: 4\nPlayer 2 starting position: 8";
-const INPUT: &str = "Player 1 starting position: 7\nPlayer 2 starting position: 5";
 
 struct DeterministicDice
 {
@@ -181,16 +180,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 739785,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 798147,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 444356092776315usize,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 809953813657517usize,
         })
 }

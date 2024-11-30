@@ -4,7 +4,6 @@ use itertools::*;
 
 const EXAMPLE1: &str = include_str!("example1.txt");
 const EXAMPLE2: &str = include_str!("example2.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn junctions_to_char(ch: char) -> Vec<Point>
 {
@@ -163,16 +162,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE1),
             expected: 8,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 7102,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE2),
             expected: 10,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 363,
         })
 }

@@ -1,7 +1,5 @@
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 #[derive(Debug)]
 struct Round
 {
@@ -204,12 +202,12 @@ fn part_2(input: &str) -> u64
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(24)
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 92967699949891u64,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 91411143612181u64,
         })
 }

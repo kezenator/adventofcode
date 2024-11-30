@@ -1,8 +1,6 @@
 use crate::support::*;
 use std::collections::HashSet;
 
-const INPUT: &str = include_str!("input.txt");
-
 fn part_1(input: &str) -> i32
 {
     input_to_lines(input).iter()
@@ -48,8 +46,8 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer {
             calculated: part_1("-1\n-2\n-3\n"),
             expected: -6, })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 522, })
         .example(|| Answer {
             calculated: part_2("+1\n-1\n"),
@@ -63,7 +61,7 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer {
             calculated: part_2("+7\n+7\n-2\n-7\n-4\n"),
             expected: 14, })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 73364, })
 }

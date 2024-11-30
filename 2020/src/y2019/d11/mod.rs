@@ -2,8 +2,6 @@ use std::collections::HashMap;
 use crate::support::*;
 use crate::y2019::intcode::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 // .##..#..#..##..#..#.####.####.###..#..#
 // #..#.#..#.#..#.#..#....#.#....#..#.#.#.
 // #..#.####.#....####...#..###..#..#.##..
@@ -16,9 +14,9 @@ const INPUT: &str = include_str!("input.txt");
 const PART_2_ANSWER: &str = ".##..#..#..##..#..#.####.####.###..#..#\n#..#.#..#.#..#.#..#....#.#....#..#.#.#.\n#..#.####.#....####...#..###..#..#.##..\n####.#..#.#....#..#..#...#....###..#.#.\n#..#.#..#.#..#.#..#.#....#....#....#.#.\n#..#.#..#..##..#..#.####.####.#....#..#";
 
 
-fn run(start_on_white: bool) -> HashMap::<Point, bool>
+fn run(input: &str, start_on_white: bool) -> HashMap::<Point, bool>
 {
-    let mut comp = Intcode::new_from_input(INPUT);
+    let mut comp = Intcode::new_from_input(input);
     let mut points: HashMap::<Point, bool> = HashMap::new();
 
     let mut pos = Point::new(0, 0);
@@ -70,14 +68,14 @@ fn run(start_on_white: bool) -> HashMap::<Point, bool>
     }
 }
 
-fn part_1() -> usize
+fn part_1(input: &str) -> usize
 {
-    run(false).len()
+    run(input, false).len()
 }
 
-fn part_2() -> String
+fn part_2(input: &str) -> String
 {
-    let points = run(true).iter()
+    let points = run(input, true).iter()
         .filter(|(_, &white)| white)
         .map(|(pos, _)| Point::new(pos.x, -pos.y))
         .collect::<Vec<Point>>();
@@ -88,6 +86,6 @@ fn part_2() -> String
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(11)
-        .part_1(|| Answer { calculated: part_1(), expected: 2184, })
-        .part_2(|| Answer { calculated: part_2(), expected: PART_2_ANSWER, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 2184, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: PART_2_ANSWER, })
 }

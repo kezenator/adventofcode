@@ -3,7 +3,6 @@ use itertools::*;
 use std::collections::{HashMap, HashSet};
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Rock
 {
@@ -278,16 +277,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 3068,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3090,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 1514285714288i64,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 1530057803453i64,
         })
 }

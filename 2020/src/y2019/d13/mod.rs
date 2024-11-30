@@ -2,8 +2,6 @@ use std::collections::HashMap;
 use crate::support::*;
 use crate::y2019::intcode::*;
 
-const INPUT: &str = include_str!("input.txt");
-
 struct Arcade
 {
     comp: Intcode,
@@ -13,11 +11,11 @@ struct Arcade
 
 impl Arcade
 {
-    pub fn new(part_2: bool) -> Self
+    pub fn new(input: &str, part_2: bool) -> Self
     {
         let mut result = Arcade
         {
-            comp: Intcode::new_from_input(INPUT),
+            comp: Intcode::new_from_input(input),
             display: HashMap::new(),
             score: 0,
         };
@@ -90,18 +88,18 @@ impl Arcade
     }
 }
 
-fn part_1() -> usize
+fn part_1(input: &str) -> usize
 {
-    let mut arcade = Arcade::new(false);
+    let mut arcade = Arcade::new(input, false);
     arcade.run();
     arcade.display.iter()
         .filter(|(_, &tile_id)| tile_id == 2)
         .count()
 }
 
-fn part_2() -> i64
+fn part_2(input: &str) -> i64
 {
-    let mut arcade = Arcade::new(true);
+    let mut arcade = Arcade::new(input, true);
     arcade.run();
     arcade.score
 }
@@ -109,6 +107,6 @@ fn part_2() -> i64
 pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(13)
-        .part_1(|| Answer { calculated: part_1(), expected: 233, })
-        .part_2(|| Answer { calculated: part_2(), expected: 11991, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 233, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 11991, })
 }

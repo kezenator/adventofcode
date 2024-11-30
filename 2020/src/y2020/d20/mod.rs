@@ -2,7 +2,6 @@ use crate::support::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
 const EXAMPLE_REASSEMBLED: &str = include_str!("example_reassembled.txt");
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Clone)]
 struct Tile
@@ -334,8 +333,8 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(20)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 20899048083289u64, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 15006909892229u64, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 15006909892229u64, })
         .example(|| Answer { calculated: check_reassembly(EXAMPLE, EXAMPLE_REASSEMBLED), expected: true, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 273, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 2190, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 2190, })
 }

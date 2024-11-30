@@ -2,7 +2,6 @@ use std::collections::{HashSet, VecDeque};
 use crate::support::*;
 
 const EXAMPLE: &str = "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10";
-const INPUT: &str = include_str!("input.txt");
 
 
 pub fn part_1(input: &str) -> u64
@@ -139,7 +138,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(22)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 306, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 34127, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 34127, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 291, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 32054, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 32054, })
 }

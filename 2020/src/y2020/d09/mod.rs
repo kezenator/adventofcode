@@ -2,7 +2,6 @@ use itertools::Itertools;
 use crate::support::*;
 
 const EXAMPLE: &str = "35\n20\n15\n25\n47\n40\n62\n55\n65\n95\n102\n117\n150\n182\n127\n219\n299\n277\n309\n576\n";
-const INPUT: &str = include_str!("input.txt");
 
 fn part_1(input: &str, len: usize) -> usize
 {
@@ -48,7 +47,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(9)
         .example(|| Answer { calculated: part_1(EXAMPLE, 5), expected: 127, })
-        .part_1(|| Answer { calculated: part_1(INPUT, 25), expected: 1492208709, })
+        .part_1(|input| Answer { calculated: part_1(input, 25), expected: 1492208709, })
         .example(|| Answer { calculated: part_2(EXAMPLE, part_1(EXAMPLE, 5)), expected: 62, })
-        .part_2(|| Answer { calculated: part_2(INPUT, part_1(INPUT, 25)), expected: 238243506, })
+        .part_2(|input| Answer { calculated: part_2(input, part_1(input, 25)), expected: 238243506, })
 }

@@ -1,6 +1,5 @@
 use crate::support::*;
 
-const INPUT: &str = include_str!("input.txt");
 const EXAMPLE1: &str = "abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab\n";
 const EXAMPLE2: &str = "abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz\n";
 
@@ -70,13 +69,13 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer {
             calculated: part_1(EXAMPLE1),
             expected: 12, })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 5928, })
         .example(|| Answer {
             calculated: part_2(EXAMPLE2),
             expected: "fgij", })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: "bqlporuexkwzyabnmgjqctvfs", })
 }

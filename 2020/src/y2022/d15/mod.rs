@@ -2,7 +2,6 @@ use crate::support::*;
 use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Datum
 {
@@ -112,16 +111,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE, 10),
             expected: 26,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT, 2000000),
+        .part_1(|input| Answer {
+            calculated: part_1(input, 2000000),
             expected: 5508234,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE, 20),
             expected: 56000011,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT, 4000000),
+        .part_2(|input| Answer {
+            calculated: part_2(input, 4000000),
             expected: 10457634860779i64,
         })
 }

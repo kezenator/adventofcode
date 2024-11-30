@@ -18,10 +18,21 @@ impl CharGrid
 
         assert!(lines.len() > 0);
 
-        let width = lines[0].len() as i64;
+        let width = lines.iter().map(|l| l.len()).max().unwrap() as i64;
         let height = lines.len() as i64;
 
-        let chars = lines.iter().map(|s| s.chars()).flatten().collect::<Vec<char>>();
+        let chars = lines.iter()
+            .map(|s| 
+            {
+                let mut chars = s.chars().collect_vec();
+                while chars.len() < (width as usize)
+                {
+                    chars.push(default);
+                }
+                chars
+            })
+            .flatten()
+            .collect_vec();
 
         assert_eq!(chars.len() as i64, width * height);
 

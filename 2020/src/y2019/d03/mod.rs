@@ -4,7 +4,6 @@ use crate::support::*;
 const EXAMPLE_1: &str = "R8,U5,L5,D3\nU7,R6,D4,L4";
 const EXAMPLE_2: &str = "R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83";
 const EXAMPLE_3: &str = "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug)]
 struct Direction
@@ -119,9 +118,9 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 6, })
         .example(|| Answer { calculated: part_1(EXAMPLE_2), expected: 159, })
         .example(|| Answer { calculated: part_1(EXAMPLE_3), expected: 135, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 651, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 651, })
         .example(|| Answer { calculated: part_2(EXAMPLE_1), expected: 30, })
         .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 610, })
         .example(|| Answer { calculated: part_2(EXAMPLE_3), expected: 410, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 7534, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 7534, })
 }

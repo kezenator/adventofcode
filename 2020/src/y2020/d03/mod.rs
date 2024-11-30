@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "..##.......\n#...#...#..\n.#....#..#.\n..#.#...#.#\n.#...##..#.\n..#.##.....\n.#.#.#....#\n.#........#\n#.##...#...\n#...##....#\n.#..#...#.#\n";
-const INPUT: &str = include_str!("input.txt");
 
 pub fn count_trees_down_slope(lines: &Vec<String>, right: usize, down: usize) -> u64
 {
@@ -44,7 +43,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(3)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 7, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 265, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 265, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 336, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 3154761400u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 3154761400u64, })
 }

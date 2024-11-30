@@ -4,7 +4,6 @@ use std::collections::HashSet;
 
 const SHORT_EXAMPLE: &str = "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf";
 const LONG_EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 struct SignalSet
@@ -174,8 +173,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(LONG_EXAMPLE),
             expected: 26,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 397,
         })
         .example(|| Answer {
@@ -186,8 +185,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2(LONG_EXAMPLE),
             expected: 61229,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 1027422,
         })
 }

@@ -3,7 +3,6 @@ use itertools::*;
 use std::collections::{HashMap, HashSet};
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn parse(input: &str) -> Vec<Point>
 {
@@ -119,16 +118,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 110,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3780,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 20,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 930,
         })
 }

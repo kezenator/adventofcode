@@ -2,7 +2,6 @@ use std::collections::HashSet;
 use crate::support::*;
 
 const EXAMPLE: &str = "abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb";
-const INPUT: &str = include_str!("input.txt");
 
 fn part_1(input: &str) -> usize
 {
@@ -52,7 +51,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(6)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 11, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 6809, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 6809, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 6, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 3394, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 3394, })
 }

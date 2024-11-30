@@ -37,6 +37,8 @@ impl PuzzleYear
 
     pub fn run(&self, runner: PuzzleYearRunner)
     {
+        let mut runner = runner;
+        
         for (&day, day_puzzles) in self.days.iter()
         {
             if runner.include_day(day)

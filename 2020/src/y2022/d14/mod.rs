@@ -2,7 +2,6 @@ use crate::support::*;
 use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn parse_point(input: &str) -> Point
 {
@@ -145,16 +144,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 24,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 1406,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 93,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 20870,
         })
 }

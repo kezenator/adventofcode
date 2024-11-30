@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "F10\nN3\nF7\nR90\nF11";
-const INPUT: &str = include_str!("input.txt");
 
 fn part_1(input: &str) -> i64
 {
@@ -134,7 +133,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(12)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 25, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2228, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 2228, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 286, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 42908, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 42908, })
 }

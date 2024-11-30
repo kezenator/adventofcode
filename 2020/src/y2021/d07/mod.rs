@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "16,1,2,0,4,2,7,1,2,14";
-const INPUT: &str = include_str!("input.txt");
 
 fn cost_to_move_to<F>(nums: &Vec<i64>, pos: i64, move_cost: &F) -> i64
     where F: Fn(i64) -> i64
@@ -51,16 +50,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 37,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 353800,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 168,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 98119739,
         })
 }

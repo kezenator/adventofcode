@@ -2,7 +2,6 @@ use std::collections::HashSet;
 use crate::support::*;
 
 const EXAMPLE_1: &str = ".#.\n..#\n###";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 struct Point4D
@@ -204,7 +203,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(17)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 112, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 317, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 317, })
         .example(|| Answer { calculated: part_2(EXAMPLE_1), expected: 848, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 1692, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 1692, })
 }

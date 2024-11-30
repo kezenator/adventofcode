@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn from_snafu_digit(digit: char) -> i64
 {
@@ -83,8 +82,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: "2=-1=0",
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: "2==221=-002=0-02-000",
         })
         .final_gift()

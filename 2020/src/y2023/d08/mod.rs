@@ -5,7 +5,6 @@ use itertools::*;
 const EXAMPLE1: &str = include_str!("example1.txt");
 const EXAMPLE2: &str = include_str!("example2.txt");
 const EXAMPLE3: &str = include_str!("example3.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Map
 {
@@ -105,16 +104,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE2),
             expected: 6,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 12643,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE3),
             expected: 6,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 13133452426987u64,
         })
 }

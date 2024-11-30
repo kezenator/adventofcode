@@ -4,7 +4,6 @@ use std::ops::{Add, Range};
 use itertools::Itertools;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Clone, Copy, Debug)]
 struct SnailfishEntry
@@ -305,16 +304,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 4140,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3763,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 3993,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 4664,
         })
 }

@@ -4,7 +4,6 @@ use std::collections::HashSet;
 
 const EXAMPLE1: &str = include_str!("example1.txt");
 const EXAMPLE2: &str = include_str!("example2.txt");
-const INPUT: &str = include_str!("input.txt");
 
 type Rope = Vec<Point>;
 
@@ -87,8 +86,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE1),
             expected: 13,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 5883,
         })
         .example(|| Answer {
@@ -99,8 +98,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2(EXAMPLE2),
             expected: 36,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 2367,
         })
 }

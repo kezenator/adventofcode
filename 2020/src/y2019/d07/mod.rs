@@ -2,8 +2,6 @@ use itertools::Itertools;
 use crate::support::*;
 use super::intcode::Intcode;
 
-const INPUT: &str = include_str!("input.txt");
-
 pub fn run(input: &str, phases: Vec<i64>) -> i64
 {
     let mut comps = Vec::new();
@@ -62,8 +60,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1("3,31,3,32,1002,32,10,32,1001,31,-2,31,1007,31,0,33,1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0"),
             expected: 65210,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 21760,
         })
         .example(|| Answer {
@@ -74,8 +72,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2("3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,54,-5,54,1105,1,12,1,53,54,53,1008,54,0,55,1001,55,1,55,2,53,55,53,4,53,1001,56,-1,56,1005,56,6,99,0,0,0,0,10"),
             expected: 18216,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 69816958,
         })
 }

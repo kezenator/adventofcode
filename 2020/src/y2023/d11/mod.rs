@@ -3,7 +3,6 @@ use crate::support::*;
 use itertools::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn expand_space(input: &str, factor: i64) -> Vec<Point>
 {
@@ -70,8 +69,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 374,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 10033566,
         })
         .example(|| Answer {
@@ -82,8 +81,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: solve(EXAMPLE, 100),
             expected: 8410,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 560822911938i64,
         })
 }

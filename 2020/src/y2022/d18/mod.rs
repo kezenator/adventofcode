@@ -4,7 +4,6 @@ use std::collections::HashSet;
 use pathfinding::directed::bfs::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 fn range<F>(points: &HashSet<Point3>, func: F) -> (i64, i64)
     where F: Fn(&Point3) -> i64
@@ -109,16 +108,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 64,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 3530,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 58,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 2000,
         })
 }

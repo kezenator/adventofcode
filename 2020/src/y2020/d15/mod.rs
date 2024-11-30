@@ -2,7 +2,6 @@ use std::collections::HashMap;
 use crate::support::*;
 
 const EXAMPLE_1: &str = "0,3,6";
-const INPUT: &str = "2,15,0,9,1,20";
 
 pub fn after_turns(input: &str, total_turns: usize) -> usize
 {
@@ -85,7 +84,7 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: part_1("2,3,1"), expected: 78, })
         .example(|| Answer { calculated: part_1("3,2,1"), expected: 438, })
         .example(|| Answer { calculated: part_1("3,1,2"), expected: 1836, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 1280, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 1280, })
         .example(|| Answer { calculated: part_2("0,3,6"), expected: 175594, })
         .example(|| Answer { calculated: part_2("1,3,2"), expected: 2578, })
         .example(|| Answer { calculated: part_2("2,1,3"), expected: 3544142, })
@@ -93,5 +92,5 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer { calculated: part_2("2,3,1"), expected: 6895259, })
         .example(|| Answer { calculated: part_2("3,2,1"), expected: 18, })
         .example(|| Answer { calculated: part_2("3,1,2"), expected: 362, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 651639, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 651639, })
 }

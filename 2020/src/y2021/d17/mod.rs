@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "target area: x=20..30, y=-10..-5";
-const INPUT: &str = "target area: x=269..292, y=-68..-44";
 
 fn parse_target_area(input: &str) -> Rect
 {
@@ -83,16 +82,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 45,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 2278,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 112,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 996,
         })
 }

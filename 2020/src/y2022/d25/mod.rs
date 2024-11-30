@@ -4,7 +4,6 @@ use std::collections::{HashMap, HashSet};
 use pathfinding::directed::astar::*;
 
 const EXAMPLE: &str = include_str!("example.txt");
-const INPUT: &str = include_str!("input.txt");
 
 struct Input
 {
@@ -120,16 +119,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 18,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 305,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 54,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 905,
         })
 }

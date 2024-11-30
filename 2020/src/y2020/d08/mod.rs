@@ -2,7 +2,6 @@ use std::collections::HashSet;
 use crate::support::*;
 
 const EXAMPLE: &str = "nop +0\nacc +1\njmp +4\nacc +3\njmp -3\nacc -99\nacc +1\njmp -4\nacc +6\n";
-const INPUT: &str = include_str!("input.txt");
 
 pub enum ConsoleResult
 {
@@ -118,7 +117,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(8)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 5, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2003, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 2003, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 8, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 1984, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 1984, })
 }

@@ -2,7 +2,6 @@ use crate::support::{*, num::diophantine::Quadratic};
 use itertools::*;
 
 const EXAMPLE: &str = "Time:      7  15   30\nDistance:  9  40  200";
-const INPUT: &str = "Time:        61     70     90     66\nDistance:   643   1184   1362   1041";
 
 struct Race
 {
@@ -68,16 +67,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 288,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 293046,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 71503,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 35150181,
         })
 }

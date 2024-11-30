@@ -3,7 +3,6 @@ use std::collections::HashSet;
 use crate::support::*;
 
 const EXAMPLE: &str = "x=495, y=2..7\ny=7, x=495..501\nx=501, y=3..7\nx=498, y=2..4\nx=506, y=1..2\nx=498, y=10..13\nx=504, y=10..13\ny=13, x=498..504";
-const INPUT: &str = include_str!("input.txt");
 
 enum Input
 {
@@ -343,7 +342,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(17)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 57, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 31412, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 31412, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 29, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 25857, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 25857, })
 }

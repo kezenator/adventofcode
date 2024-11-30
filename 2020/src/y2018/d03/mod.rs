@@ -2,7 +2,6 @@ use crate::support::*;
 use std::collections::{HashMap, HashSet};
 use std::cmp::{min, max};
 
-const INPUT: &str = include_str!("input.txt");
 const EXAMPLE1: &str = "#1 @ 1,3: 4x4\n#2 @ 3,1: 4x4\n#3 @ 5,5: 2x2\n";
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -142,13 +141,13 @@ pub fn puzzles() -> PuzzleDay
         .example(|| Answer {
             calculated: part_1(EXAMPLE1),
             expected: 4, })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 104712, })
         .example(|| Answer {
             calculated: part_2(EXAMPLE1),
             expected: 3, })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 840, })
 }

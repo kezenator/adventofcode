@@ -4,7 +4,6 @@ use itertools::Itertools;
 use crate::support::*;
 
 const EXAMPLE: &str = "mxmxvkd kfcds sqjhc nhms (contains dairy, fish)\ntrh fvjkl sbzzf mxmxvkd (contains dairy)\nsqjhc fvjkl (contains soy)\nsqjhc mxmxvkd sbzzf (contains fish)";
-const INPUT: &str = include_str!("input.txt");
 
 struct Food
 {
@@ -122,7 +121,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(21)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 5, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2072, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 2072, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: "mxmxvkd,sqjhc,fvjkl", })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: "fdsfpg,jmvxx,lkv,cbzcgvc,kfgln,pqqks,pqrvc,lclnj", })
+        .part_2(|input| Answer { calculated: part_2(input), expected: "fdsfpg,jmvxx,lkv,cbzcgvc,kfgln,pqqks,pqrvc,lclnj", })
 }

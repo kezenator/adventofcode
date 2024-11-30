@@ -1,8 +1,6 @@
 use crate::support::*;
 use std::collections::HashSet;
 
-const INPUT: &str = include_str!("input.txt");
-
 const EXAMPLE_1_1: &str = ".#..#\n.....\n#####\n....#\n...##\n";
 const EXAMPLE_1_2: &str = "......#.#.\n#..#.#....\n..#######.\n.#.#.###..\n.#..#.....\n..#....#.#\n#..#....#.\n.##.#..###\n##...#..#.\n.#....####\n";
 const EXAMPLE_1_3: &str = ".#..##.###...#######\n##.############..##.\n.#.######.########.#\n.###.#######.####.#.\n#####.##.#.##.###.##\n..#####..#.#########\n####################\n#.####....###.#.#.##\n##.#################\n#####.##.###..####..\n..######..##.#######\n####.##.####...##..#\n.#####..#.######.###\n##...#.##########...\n#.##########.#######\n.####.#.###.###.#.##\n....##.##.###..#####\n.#.#.###########.###\n#.#.#.#####.####.###\n###.##.####.##.#..##\n";
@@ -149,16 +147,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE_1_3),
             expected: 210,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 214,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE_1_3),
             expected: 802,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 502,
         })
 }

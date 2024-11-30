@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "00100\n11110\n10110\n10111\n10101\n01111\n00111\n11100\n10000\n11001\n00010\n01010\n";
-const INPUT: &str = include_str!("input.txt");
 
 fn filter_and_collect<F>(input: &str, keep_non_matching: bool, filter: F) -> usize
     where F: Fn(usize, usize) -> char
@@ -94,16 +93,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 198,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 4138664,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 230,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 4273224,
         })
 }

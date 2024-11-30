@@ -3,7 +3,6 @@ use crate::support::*;
 
 const EXAMPLE_1: &str = "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X\nmem[8] = 11\nmem[7] = 101\nmem[8] = 0";
 const EXAMPLE_2: &str = "mask = 000000000000000000000000000000X1001X\nmem[42] = 100\nmask = 00000000000000000000000000000000X0XX\nmem[26] = 1";
-const INPUT: &str = include_str!("input.txt");
 
 pub fn part_1(input: &str) -> u64
 {
@@ -144,7 +143,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(14)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 165, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 17481577045893u64, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 17481577045893u64, })
         .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 208, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 4160009892257u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 4160009892257u64, })
 }

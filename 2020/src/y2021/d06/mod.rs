@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "3,4,3,1,2";
-const INPUT: &str = include_str!("input.txt");
 
 fn simulate(input: &str, days: usize) -> u64
 {
@@ -68,16 +67,16 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1(EXAMPLE),
             expected: 5934,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 380243,
         })
         .example(|| Answer {
             calculated: part_2(EXAMPLE),
             expected: 26984457539u64,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 1708791884591u64,
         })
 }

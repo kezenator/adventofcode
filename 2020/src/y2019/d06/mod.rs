@@ -3,7 +3,6 @@ use std::collections::HashMap;
 
 const EXAMPLE_1: &str = "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L";
 const EXAMPLE_2: &str = "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN";
-const INPUT: &str = include_str!("input.txt");
 
 fn parse_orbits(input: &str) -> HashMap<String, String>
 {
@@ -66,7 +65,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(6)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 42, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 150150, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 150150, })
         .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 4, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 352, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 352, })
 }

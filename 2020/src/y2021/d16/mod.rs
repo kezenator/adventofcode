@@ -2,8 +2,6 @@ use crate::support::*;
 use data_encoding::HEXUPPER;
 use bitreader::{BitReader, BitReaderError};
 
-const INPUT: &str = include_str!("input.txt");
-
 enum Packet
 {
     Literal
@@ -211,8 +209,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_1("A0016C880162017C3686B18A3D4780"),
             expected: 31,
         })
-        .part_1(|| Answer {
-            calculated: part_1(INPUT),
+        .part_1(|input| Answer {
+            calculated: part_1(input),
             expected: 955,
         })
         .example(|| Answer {
@@ -247,8 +245,8 @@ pub fn puzzles() -> PuzzleDay
             calculated: part_2("9C0141080250320F1802104A08"),
             expected: 1,
         })
-        .part_2(|| Answer {
-            calculated: part_2(INPUT),
+        .part_2(|input| Answer {
+            calculated: part_2(input),
             expected: 158135423448u64,
         })
 }

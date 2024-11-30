@@ -1,7 +1,6 @@
 use crate::support::*;
 
 const EXAMPLE: &str = "939\n7,13,x,x,59,x,31,19";
-const INPUT: &str = include_str!("input.txt");
 
 fn part_1(input: &str) -> u64
 {
@@ -70,12 +69,12 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(13)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 295, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 3789, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 3789, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 1068781, })
         .example(|| Answer { calculated: part_2_ans("17,x,13,19"), expected: 3417, })
         .example(|| Answer { calculated: part_2_ans("67,7,59,61"), expected: 754018, })
         .example(|| Answer { calculated: part_2_ans("67,x,7,59,61"), expected: 779210, })
         .example(|| Answer { calculated: part_2_ans("67,7,x,59,61"), expected: 1261476, })
         .example(|| Answer { calculated: part_2_ans("1789,37,47,1889"), expected: 1202161486, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 667437230788118u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 667437230788118u64, })
 }

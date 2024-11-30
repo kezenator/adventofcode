@@ -3,7 +3,6 @@ use crate::support::*;
 
 const EXAMPLE_1: &str = "16\n10\n15\n5\n1\n11\n7\n19\n6\n12\n4";
 const EXAMPLE_2: &str = "28\n33\n18\n42\n31\n14\n46\n20\n48\n47\n24\n23\n49\n45\n19\n38\n39\n11\n1\n32\n25\n35\n8\n17\n7\n9\n4\n2\n34\n10\n3";
-const INPUT: &str = include_str!("input.txt");
 
 fn parse_input(input: &str) -> Vec<u64>
 {
@@ -130,8 +129,8 @@ pub fn puzzles() -> PuzzleDay
     puzzle_day(10)
         .example(|| Answer { calculated: part_1(EXAMPLE_1), expected: 35, })
         .example(|| Answer { calculated: part_1(EXAMPLE_2), expected: 220, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 2482, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 2482, })
         .example(|| Answer { calculated: part_2(EXAMPLE_1), expected: 8, })
         .example(|| Answer { calculated: part_2(EXAMPLE_2), expected: 19208, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 96717311574016u64, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 96717311574016u64, })
 }

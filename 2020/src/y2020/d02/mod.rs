@@ -2,7 +2,6 @@ use crate::support::*;
 use std::str::FromStr;
 
 const EXAMPLE: &str = "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc\n";
-const INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug)]
 struct Policy
@@ -67,7 +66,7 @@ pub fn puzzles() -> PuzzleDay
 {
     puzzle_day(2)
         .example(|| Answer { calculated: part_1(EXAMPLE), expected: 2, })
-        .part_1(|| Answer { calculated: part_1(INPUT), expected: 445, })
+        .part_1(|input| Answer { calculated: part_1(input), expected: 445, })
         .example(|| Answer { calculated: part_2(EXAMPLE), expected: 1, })
-        .part_2(|| Answer { calculated: part_2(INPUT), expected: 491, })
+        .part_2(|input| Answer { calculated: part_2(input), expected: 491, })
 }
