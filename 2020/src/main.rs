@@ -8,6 +8,7 @@ mod y2020;
 mod y2021;
 mod y2022;
 mod y2023;
+mod y2024;
 
 use support::*;
 
@@ -37,6 +38,7 @@ fn main()
         .with(y2021::puzzles())
         .with(y2022::puzzles())
         .with(y2023::puzzles())
+        .with(y2024::puzzles())
     ;
 
     puzzles.run(args.year, args.day, args.part2only);

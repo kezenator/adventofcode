@@ -324,3 +324,27 @@ Notes on each day:
     I just let it run for a minute or so to solve part 2. Then re-wrote
     to search from the top down.
 13. Got tripped up on this one. Not doing well this year.
+
+## 2023
+
+Hmmm - not many notes here either.
+Finished up to day 11. Started days 12 onwards in late November 2024
+as practice.
+
+## 2024
+
+Ready to start - in Rust again.
+Was thinking of moving to C# this year as I've been learning a lot
+for work - but didn't get ready in time.
+
+Comments from 2022 about the improvements to the VSCode plugins are
+definately on point - I rely on these **A LOT** to fix e.g. filter closure takes
+a reference and needing an extra deref operation.
+
+My results (for days I was able to start at 3PM):
+| Day | Part 1             | Part 2            | 3PM Start | Notes                                            |
+|-----|--------------------|-------------------|-----------|--------------------------------------------------|
+|  1  | 00:03:45 / 1183    | 00:05:30 / 941    | Yes       | OK. Obviously not 9 seconds!!!! OMG how????      |
+
+Notes:
+1. OK. Sure they will get more interesting.
