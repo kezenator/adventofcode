@@ -56,6 +56,15 @@ pub fn input_to_lines_parsed<T>(input: &str) -> Vec<T>
         .collect()
 }
 
+pub fn input_to_lines_mapped<F, T>(input: &str, mapper: F) -> Vec<T>
+    where F: Fn(&str) -> T
+{
+    input_to_lines(input)
+        .drain(..)
+        .map(|s| mapper(&s))
+        .collect()
+}
+
 #[cfg(test)]
 mod tests
 {
@@ -83,5 +92,11 @@ mod tests
         assert_eq!(input_to_lines_parsed::<String>("a\nb"), vec!["a".to_owned(), "b".to_owned()]);
         assert_eq!(input_to_lines_parsed::<char>("a\nb"), vec!['a', 'b']);
         assert_eq!(input_to_lines_parsed::<u64>("123\n456"), vec![123, 456]);
+    }
+
+    #[test]
+    fn test_input_to_lines_mapped()
+    {
+        assert_eq!(input_to_lines_mapped("a\nb", |l| l.to_uppercase()), vec!["A".to_owned(), "B".to_owned()]);
     }
 }

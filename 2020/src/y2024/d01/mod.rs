@@ -6,34 +6,24 @@ const EXAMPLE: &str = include_str!("example.txt");
 
 fn part_1(input: &str) -> usize
 {
-    let pairs: Vec<(usize, usize)> = input_to_lines(input).iter()
-        .map(|l| scan(l).until_whitespace().parse().skip_ws().remaining().parse())
-        .collect();
+    let pairs: Vec<(usize, usize)> = input_to_lines_mapped(
+        input,
+        |l| scan(l).until_whitespace().parse().skip_ws().remaining().parse());
 
-    let l = pairs.iter()
-        .map(|p| p.0)
-        .sorted()
+    let sorted_pairs = pairs.iter().map(|p| p.0).sorted()
+        .zip(pairs.iter().map(|p| p.1).sorted())
         .collect_vec();
 
-    let r = pairs.iter()
-        .map(|p| p.1)
-        .sorted()
-        .collect_vec();
-
-    let pairs = l.iter().cloned()
-        .zip(r.iter().cloned())
-        .collect_vec();
-
-    pairs.into_iter()
+    sorted_pairs.into_iter()
         .map(|(a, b)| a.abs_diff(b))
         .sum()
 }
 
 fn part_2(input: &str) -> usize
 {
-    let pairs: Vec<(usize, usize)> = input_to_lines(input).iter()
-        .map(|l| scan(l).until_whitespace().parse().skip_ws().remaining().parse())
-        .collect();
+    let pairs: Vec<(usize, usize)> = input_to_lines_mapped(
+        input,
+        |l| scan(l).until_whitespace().parse().skip_ws().remaining().parse());
 
     let l = pairs.iter()
         .map(|p| p.0)
