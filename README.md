@@ -345,6 +345,23 @@ My results (for days I was able to start at 3PM):
 | Day | Part 1             | Part 2            | 3PM Start | Notes                                            |
 |-----|--------------------|-------------------|-----------|--------------------------------------------------|
 |  1  | 00:03:45 / 1183    | 00:05:30 / 941    | Yes       | OK. Obviously not 9 seconds!!!! OMG how????      |
+|  2  |                    |                   | No        | Boring.                                          |
+|  3  |                    |                   | No        | Didn't enjoy.                                    |
+|  4  |                    |                   | No        | Meh.                                             |
+|  5  |                    |                   | No        | OK - starting to get better...                   |
+|  6  |                    | About 15 mins     | No        | Good puzzle.                                     |
+|  7  | 6 mins             | 11 mins           | No        | Really enjoyed this one.                         |
+|  8  | 00:14:05 / 1400    | 00:20:56 / 1372   | Yes       | Meh. Slow.                                       |
 
 Notes:
 1. OK. Sure they will get more interesting.
+2. Boring.
+3. Used regex. Don't know rust regex - not happy with this version but not doing it again.
+4. Guessed the wrong part 1 - so my solution looks a bit weird. Can't be bothered doing it better.
+5. Really enjoyed this one. Not the "cleanest" code - but again can't be bothered fixing it.
+6. Missed the optimization here and tested every clear location on the map. Cheated to work out you only need to check
+   locations on the original path. Parallel solution is fairly fast - about 0.6 seconds on my laptop.
+7. Good puzzle. Happy with the solution. Optimizations include reserving space in HashSets, discarding large possible solutions
+   (as all operators increase the size), and parallization - about 0.2 seconds on my laptop.
+8. Hot. Tired after Christmas parties. Got messed up by grouping iterator operations. Got messed up by
+   considering all '.' as a frequency and thus all 'empty' points were '.' transmitters.

@@ -28,7 +28,7 @@ fn is_in_order(update: &Vec<usize>, rules: &Vec<(usize, usize)>) -> bool
     return true;
 }
 
-fn part_1(input: &str) -> usize
+fn input_to_rules_and_updates(input: &str) -> (Vec<(usize, usize)>, Vec<Vec<usize>>)
 {
     let groups = input_to_groups(input);
     let rules: Vec<(usize, usize)> = groups[0].iter()
@@ -37,6 +37,12 @@ fn part_1(input: &str) -> usize
     let updates: Vec<Vec<usize>> = groups[1].iter()
         .map(|l| scan(l).remaining().parse_vec(",").0)
         .collect_vec();
+    (rules, updates)
+}
+
+fn part_1(input: &str) -> usize
+{
+    let (rules, updates) = input_to_rules_and_updates(input);
     
     updates.into_iter()
         .filter(|u| is_in_order(u, &rules))
@@ -46,13 +52,7 @@ fn part_1(input: &str) -> usize
 
 fn part_2(input: &str) -> usize
 {
-    let groups = input_to_groups(input);
-    let rules: Vec<(usize, usize)> = groups[0].iter()
-        .map(|l| scan(l).until("|").parse().remaining().parse())
-        .collect_vec();
-    let updates: Vec<Vec<usize>> = groups[1].iter()
-        .map(|l| scan(l).remaining().parse_vec(",").0)
-        .collect_vec();
+    let (rules, updates) = input_to_rules_and_updates(input);
 
     let bad_updates = updates.into_iter()
         .filter(|u| !is_in_order(u, &rules))
