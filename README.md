@@ -352,6 +352,9 @@ My results (for days I was able to start at 3PM):
 |  6  |                    | About 15 mins     | No        | Good puzzle.                                     |
 |  7  | 6 mins             | 11 mins           | No        | Really enjoyed this one.                         |
 |  8  | 00:14:05 / 1400    | 00:20:56 / 1372   | Yes       | Meh. Slow.                                       |
+|  9  |                    |                   | No        | Intesting. Slow.                                 |
+| 10  |                    |                   | No        | Meh. Solved part 2 first whoops!                 |
+| 11  |                    |                   | No        | Fun! Silly mistake.                              |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -365,3 +368,9 @@ Notes:
    (as all operators increase the size), and parallization - about 0.2 seconds on my laptop.
 8. Hot. Tired after Christmas parties. Got messed up by grouping iterator operations. Got messed up by
    considering all '.' as a frequency and thus all 'empty' points were '.' transmitters.
+9. Yeah - interesting puzzle. Still want to re-write using my set-of-ranges class, but probably won't get to it.
+10. Bit mistake here solving number of paths instead of number of reachable summits - and oh look that was part 2!
+    Part 2 was actually easier when using the Rust pathfinding crate.
+11. Interesting puzzle. Got the right approach (recursive function). Proably got a bit slowed down by going to
+    Memorization first up - turns out only about 50% of calculations are duplicates - so a straight-forward
+    recursive function would possibly be quick enough.

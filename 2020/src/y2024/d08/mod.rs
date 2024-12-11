@@ -1,7 +1,7 @@
 
 use itertools::*;
 use crate::support::*;
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 const EXAMPLE: &str = include_str!("example.txt");
 
