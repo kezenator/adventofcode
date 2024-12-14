@@ -1,6 +1,6 @@
 use itertools::Itertools;
 use crate::support::*;
-use std::collections::HashSet;
+use std::collections::{HashSet, VecDeque};
 
 #[derive(Hash, PartialEq, Eq, Clone)]
 pub struct CharGrid
@@ -197,27 +197,35 @@ impl CharGrid
         unreachable!();
     }
 
+    pub fn find_flood_fill_points(&self, start_point: &Point) -> GridArea
+    {
+        let target_char = self.get_char(start_point);
+        let mut points = HashSet::new();
+        let mut to_check = VecDeque::new();
+        to_check.push_back(start_point.clone());
+
+        while let Some(next_to_check) = to_check.pop_front()
+        {
+            if (self.get_char(&next_to_check) == target_char)
+                && points.insert(next_to_check.clone())
+            {
+                for n in next_to_check.neighbours_4()
+                {
+                    to_check.push_back(n);
+                }
+            }
+        }
+
+        GridArea { points }
+    }
+
+
     #[allow(unused)]
     pub fn flood_fill(&mut self, point: &Point, fill: char)
     {
-        let target = self.get_char(point);
-
-        let mut done = HashSet::new();
-        let mut todo = vec![*point];
-
-        while !todo.is_empty()
+        for p in self.find_flood_fill_points(point).points
         {
-            let mut new_todo = vec![];
-            for p in todo.into_iter()
-            {
-                done.insert(p);
-                if self.is_point_in_bounds(&p) && (self.get_char(&p) == target)
-                {
-                    self.put_char(&p, fill);
-                    new_todo.extend(p.neighbours_4());
-                }                
-            }
-            todo = new_todo;
+            self.put_char(&p, fill);
         }
     }
 }
