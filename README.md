@@ -355,6 +355,11 @@ My results (for days I was able to start at 3PM):
 |  9  |                    |                   | No        | Intesting. Slow.                                 |
 | 10  |                    |                   | No        | Meh. Solved part 2 first whoops!                 |
 | 11  |                    |                   | No        | Fun! Silly mistake.                              |
+| 12  |                    |                   | No        | Good puzzle. Found part 2 hard.                  |
+| 13  |                    |                   | No        | Very good puzzle.                                |
+| 14  |                    |                   | No        | Fun. Cheated a little.                           |
+| 15  |                    |                   | No        | VERY FRUSTRATING - didn't enjoin this one.       |
+| 16  |                    |                   | No        | Very good! Wish I started at 3PM.                |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -374,3 +379,15 @@ Notes:
 11. Interesting puzzle. Got the right approach (recursive function). Proably got a bit slowed down by going to
     Memorization first up - turns out only about 50% of calculations are duplicates - so a straight-forward
     recursive function would possibly be quick enough.
+12. Found this interesting. I found part 2 harder than I should have. Made a few silly mistakes.
+    Happy with the solution (although I'm sure there's a better algorithm out there) - and have at least
+    added it as a new common routine.
+13. Really good puzzle. I got distracted thinking it should be a quadratic because it was "minimize" - but of
+    course there's always a red-herring! It was linear and there was only a single possible combination of
+    button presses. Had good diophantine routines to find integter solutions - so was easy once I got to this point.
+14. Fun puzzle. Started going through the first 600 or so images to find part 2 - but then cheated.
+    Should have guessed that unique locations would be the spot.
+15. Very FRUSTRATING! I didn't like this one. Finally got an OK solution that's general to any box width scaling factor
+    (although probably exponential slow-down in the wost case for larger values).
+16. Good puzzle. Wish I was ready at 3PM for this one as I'm good at this. Only took a couple minutes.
+    The ASTAR routine I use provides all least-cost solutions - so part 2 was simple.
