@@ -399,7 +399,7 @@ Notes:
     input. This is OK as there is only about 12 possible starting A values for my input, and only about 1-2
     possible combinations for the lower bits lost in the A-register divide at each step - so the breath-first
     search is very narrow. Took me about 3 hours including a walk to solve. NOT A GENERAL SOLUTION!!!
-18. Good short, easy puzzle. My first simple solution (using A*) took about 20 seconds in debug build to solve.
+18. Good short, easy puzzle. My first simple solution (using repeated A*) took about 20 seconds in debug build to solve.
     Then moved to a simpler breath-first algorithm which took 10 seconds. Visualized the result - and realized
     that the points are filled in in a random scattering (to eventually make a complex maze). So I find
     the shortest path, and keep fulling in points that are not on the shortest path. If a point on the current shortest path
