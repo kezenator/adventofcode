@@ -98,6 +98,11 @@ impl CharGrid
         self.default
     }
 
+    pub fn set_default(&mut self, default: char)
+    {
+        self.default = default
+    }
+
     pub fn is_point_in_bounds(&self, point: &Point) -> bool
     {
         point.x >= 0 && point.x < self.width && point.y >= 0 && point.y < self.height        
@@ -206,7 +211,8 @@ impl CharGrid
 
         while let Some(next_to_check) = to_check.pop_front()
         {
-            if (self.get_char(&next_to_check) == target_char)
+            if self.is_point_in_bounds(&next_to_check)
+                && (self.get_char(&next_to_check) == target_char)
                 && points.insert(next_to_check.clone())
             {
                 for n in next_to_check.neighbours_4()

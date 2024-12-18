@@ -360,6 +360,8 @@ My results (for days I was able to start at 3PM):
 | 14  |                    |                   | No        | Fun. Cheated a little.                           |
 | 15  |                    |                   | No        | VERY FRUSTRATING - didn't enjoin this one.       |
 | 16  |                    |                   | No        | Very good! Wish I started at 3PM.                |
+| 17  |                    |                   | No        | Whoa!!! Got stuck. Interesting.                  |
+| 18  |                    |                   | No        | Pretty easy. Good optimization chosen.           |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -391,3 +393,15 @@ Notes:
     (although probably exponential slow-down in the wost case for larger values).
 16. Good puzzle. Wish I was ready at 3PM for this one as I'm good at this. Only took a couple minutes.
     The ASTAR routine I use provides all least-cost solutions - so part 2 was simple.
+17. Really interesting puzzle. It got sucked into part 1 and worked on the computer. Then WHOA!!!
+    Eventually went back to de-compiling the code by hand, working out what it did, and trying a
+    breath-first search executing the programme in reverse, to collect all solutions, then find the minimum
+    input. This is OK as there is only about 12 possible starting A values for my input, and only about 1-2
+    possible combinations for the lower bits lost in the A-register divide at each step - so the breath-first
+    search is very narrow. Took me about 3 hours including a walk to solve. NOT A GENERAL SOLUTION!!!
+18. Good short, easy puzzle. My first simple solution (using A*) took about 20 seconds in debug build to solve.
+    Then moved to a simpler breath-first algorithm which took 10 seconds. Visualized the result - and realized
+    that the points are filled in in a random scattering (to eventually make a complex maze). So I find
+    the shortest path, and keep fulling in points that are not on the shortest path. If a point on the current shortest path
+    is 'corrupted' - I re-calculate a new shortest path (or see if it's fully blocked). This means most points are just
+    filled in - and the A* algorithm only runs about 50 times. Solves in 0.2s even in debug build.
