@@ -363,7 +363,7 @@ My results (for days I was able to start at 3PM):
 | 17  |                    |                   | No        | Whoa!!! Got stuck. Interesting.                  |
 | 18  |                    |                   | No        | Pretty easy. Good optimization chosen.           |
 | 19  |                    |                   | No        | Pretty easy via memorization.                    |
-| 20  |                    |                   | No        | ARGH!!! Off-by-one errors!                       |
+| 20  | 00:19:00 / 559     | 01:58:47 / 2963   | Yes       | ARGH!!! Off-by-one errors!                       |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -413,4 +413,6 @@ Notes:
     that didn't re-use any already existing paths becuase that would mean there is a "better" cheat).
     Eventually worked out my problems and realized it's a super simple problem iterating over (a well chosen subset)
     of the combinations of cheat start and end points from the original path. Rayon parallel iterator over the start
-    point (with sub-iteration over the end point) gives a solution in 0.4s even in debug mode.
+    point (with sub-iteration over the end point) gives a solution in 0.4s even in debug mode. Clearly learnt something
+    from day 6 as I was on the right path from the beginning - just tired and made silly mistakes. It's been a very
+    big week!
