@@ -18,6 +18,8 @@ mod d15;
 mod d16;
 mod d17;
 mod d18;
+mod d19;
+mod d20;
 
 pub fn puzzles() -> PuzzleYear
 {
@@ -40,4 +42,6 @@ pub fn puzzles() -> PuzzleYear
     .with(d16::puzzles())
     .with(d17::puzzles())
     .with(d18::puzzles())
+    .with(d19::puzzles())
+    .with(d20::puzzles())
 }

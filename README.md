@@ -362,6 +362,8 @@ My results (for days I was able to start at 3PM):
 | 16  |                    |                   | No        | Very good! Wish I started at 3PM.                |
 | 17  |                    |                   | No        | Whoa!!! Got stuck. Interesting.                  |
 | 18  |                    |                   | No        | Pretty easy. Good optimization chosen.           |
+| 19  |                    |                   | No        | Pretty easy via memorization.                    |
+| 20  |                    |                   | No        | ARGH!!! Off-by-one errors!                       |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -405,3 +407,10 @@ Notes:
     the shortest path, and keep fulling in points that are not on the shortest path. If a point on the current shortest path
     is 'corrupted' - I re-calculate a new shortest path (or see if it's fully blocked). This means most points are just
     filled in - and the A* algorithm only runs about 50 times. Solves in 0.2s even in debug build.
+19. Good quick puzzle - via memorization worked out well.
+20. ARGH!!!! Ready at 3PM. Got part 1 done pretty quickly. Part 2 I was plagued by off-by-one errors in the path
+    length calculation and got really stuck. Went down bad routes (e.g. thinking you had to only count "good" cheats
+    that didn't re-use any already existing paths becuase that would mean there is a "better" cheat).
+    Eventually worked out my problems and realized it's a super simple problem iterating over (a well chosen subset)
+    of the combinations of cheat start and end points from the original path. Rayon parallel iterator over the start
+    point (with sub-iteration over the end point) gives a solution in 0.4s even in debug mode.
