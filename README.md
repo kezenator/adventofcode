@@ -364,6 +364,11 @@ My results (for days I was able to start at 3PM):
 | 18  |                    |                   | No        | Pretty easy. Good optimization chosen.           |
 | 19  |                    |                   | No        | Pretty easy via memorization.                    |
 | 20  | 00:19:00 / 559     | 01:58:47 / 2963   | Yes       | ARGH!!! Off-by-one errors!                       |
+| 21  |                    |                   | No        | Very fun puzzle!                                 |
+| 21  |                    |                   | No        | Did not enjoy this one.                          |
+| 21  |                    |                   | No        | The big algorithm I didn't know.                 |
+| 21  |                    |                   | No        | Whoa! Went in big for a generic solution.        |
+| 21  |                    |                   | No        | Yaya! Done.                                      |
 
 Notes:
 1. OK. Sure they will get more interesting.
@@ -416,3 +421,18 @@ Notes:
     point (with sub-iteration over the end point) gives a solution in 0.4s even in debug mode. Clearly learnt something
     from day 6 as I was on the right path from the beginning - just tired and made silly mistakes. It's been a very
     big week!
+21. Ahahah! This was a good puzzle. I correctly guessed what part 2 would be. Made a couple of silly off-by-one errors. 
+22. Meh. Didn't enjoy this puzzle today.
+23. Didn't do that good a job here. Eventually cheated. Clearly the big algorithm that I didn't know
+    for this year.
+24. Whoa! This was epic. I think I went in too big in part 2 and wrote a generic algorithm that will handle
+    (almost) any swapping of wires - as long as there is only one error in each 'digit' of the answer.
+    I've checked in my first version I got working - but I will need to re-write it using a standard
+    depth-first-search library as once I got the concepts organized it's not that hard and is not
+    particularly expensive. Key points I found were that the zXX output digits are made from XOR-triplets,
+    and the carry stage has an OR or AND as it's last element. So most swaps could be found by searching
+    for the other "correct" equation - but with the XOR-triples the ordering of the operations were mixed
+    up - so I matched correct branches and then grouped the remaining XOR terms into a new wire to
+    perform the sub-search on. Took me too many hours!!
+25. Done. Spent a lot of time of this this year - perhaps too much? Make sure you
+    read this before you start next years ahahaha!
